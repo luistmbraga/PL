@@ -4,7 +4,7 @@ typedef struct nivel *Nivel;
 
 typedef struct comentario *Comentario;
 
-Nivel initTeste();
+Nivel testeInit();
 
 long numberOfRepliesV1(Nivel n);
 
