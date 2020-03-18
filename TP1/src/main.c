@@ -8,8 +8,7 @@ Write your code in this editor and press "Run" button to compile and execute it.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "nivel.h"
-#include "comentario.h"
+#include "comentarios.h"
 
 int LOOP =  0;
 /*

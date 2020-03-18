@@ -1,7 +1,8 @@
-#ifndef __NIVEL_H__
-#include "comentario.h"
+#ifndef __Comentarios_H__
 
 typedef struct nivel *Nivel;
+
+typedef struct comentario *Comentario;
 
 Nivel initTeste();
 

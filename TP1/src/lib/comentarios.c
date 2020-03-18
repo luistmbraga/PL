@@ -1,11 +1,14 @@
-#include "nivel.h"
-#include "comentario.h"
+#include "comentarios.h"
 
 struct nivel {
     struct nivel *ant;
     struct comentario *replies;
 };
 
+struct comentario {
+    struct comentario *prox;
+    struct nivel *replies;
+};
 
 long repliesV1(Comentario c){
     long replies = 0;
