@@ -1,4 +1,6 @@
 #include "comentarios.h"
+#include <stdlib.h>
+
 
 struct nivel {
     struct nivel *ant;
