@@ -20,7 +20,11 @@ $(ODIR)/%.o : %.c $(DEPS)
 program: $(SOURCES_OBJ) $(MY_LIBS_OBJ)
 	$(CC) $(CFLAGS) $(wildcard $(ODIR)/*.o)  $(wildcard $(OLDIR)/*.o) -o program 
 
+flex:
+	flex -o main.c tp1.l
+
 clean:
 	rm obj/*.o
 	rm obj/lib/*.o
 	rm program
+	rm main.c

@@ -3636,6 +3636,7 @@ int main(int argc, char* argv[]){
   }
   else {help(); return 0;}
 
+  // CSV
   printf("A criar tabela CSV...\n");
   start = clock();
   create_csvTABLE("tabela.csv");
