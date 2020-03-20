@@ -1,0 +1,62 @@
+%{
+/* Declaracoes C diversas */
+#include <comentarios.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+%}
+/* Abreviaturas de ER */
+
+acentos		\xc3[\x80-\xbf]
+letra		[a-zA-Z]|{acentos}
+palavra		{letra}+	
+
+%%
+
+%%
+int yywrap()
+{ return(1); }
+
+void help(){
+
+	printf("\n");
+	printf("*--------------------------------HELP-----------------------------*\n");
+	printf("*                         	                                  *\n");
+	printf("*    Utilização:                                                  *\n");
+	printf("*                 1- make                                         *\n");
+	printf("*                 2- ./program [nome do ficheiro a processar]     *\n");
+	printf("*                                                                 *\n");
+	printf("*--------------------------------HELP----------------------------*\n");
+
+}
+
+int main(int argc, char* argv[]){ 
+
+	if(argc < 2){
+		help();
+		return 0;
+	}
+
+	if(access(argv[1], F_OK) != -1){
+
+		if(access(argv[1], R_OK) != -1){
+			yyin = fopen(argv[1], "r");
+
+			yylex();
+	
+			fclose(yyin);
+		}
+		else{
+			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
+		}
+	}
+	else{
+		printf("O ficheiro dado como argumento não existe !\n");
+	}
+
+	// Nivel r = testeInit();
+
+	// printf("Número total de filhos de forma acumulativa: %ld\n", numberOfRepliesV1(r));
+
+	return 0;
+}

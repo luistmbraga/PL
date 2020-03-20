@@ -437,13 +437,16 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "tp1.l"
-#line 2 "tp1.l"
+#line 1 "tp1.fl"
+#line 2 "tp1.fl"
 /* Declaracoes C diversas */
 #include <comentarios.h>
-#line 445 "main.c"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#line 448 "main.c"
 /* Abreviaturas de ER */
-#line 447 "main.c"
+#line 450 "main.c"
 
 #define INITIAL 0
 
@@ -660,10 +663,10 @@ YY_DECL
 		}
 
 	{
-#line 7 "tp1.l"
+#line 14 "tp1.fl"
 
 
-#line 667 "main.c"
+#line 670 "main.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -722,10 +725,10 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "tp1.l"
+#line 16 "tp1.fl"
 ECHO;
 	YY_BREAK
-#line 729 "main.c"
+#line 732 "main.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1730,18 +1733,52 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 9 "tp1.l"
+#line 16 "tp1.fl"
 
 int yywrap()
 { return(1); }
 
-int main(){ 
-yylex();
+void help(){
 
-Nivel r = testeInit();
+	printf("\n");
+	printf("*--------------------------------HELP-----------------------------*\n");
+	printf("*                         	                                  *\n");
+	printf("*    Utilização:                                                  *\n");
+	printf("*                 1- make                                         *\n");
+	printf("*                 2- ./program [nome do ficheiro a processar]     *\n");
+	printf("*                                                                 *\n");
+	printf("*--------------------------------HELP----------------------------*\n");
 
-printf("Número total de filhos de forma acumulativa: %ld\n", numberOfRepliesV1(r));
+}
 
-return 0;
+int main(int argc, char* argv[]){ 
+
+	if(argc < 2){
+		help();
+		return 0;
+	}
+
+	if(access(argv[1], F_OK) != -1){
+
+		if(access(argv[1], R_OK) != -1){
+			yyin = fopen(argv[1], "r");
+
+			yylex();
+	
+			fclose(yyin);
+		}
+		else{
+			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
+		}
+	}
+	else{
+		printf("O ficheiro dado como argumento não existe !\n");
+	}
+
+	// Nivel r = testeInit();
+
+	// printf("Número total de filhos de forma acumulativa: %ld\n", numberOfRepliesV1(r));
+
+	return 0;
 }
 
