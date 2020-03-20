@@ -5,20 +5,23 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+
+void printTimestamp();
 %}
 /* Abreviaturas de ER */
 
 decimal 	[0-9]
 acentos 	\xc3[\x80-\xbf]
 alpha 		[a-zA-Z]
-letra 		alpha|{acentos}
+letra 		{alpha}|{acentos}
 palavra		{letra}+
 oList 		\<ol\ +class=\"comments__list\"\ +id=\"approved-comments\"\>
+comentario	\<li
 
-%x OL
+%x OL LI
 
 %%
-{oList}		{ECHO; printf("\n");}
+{palavra}	{ECHO; printf("\n");}
 .|\n		{}
 %%
 
@@ -34,7 +37,7 @@ void help(){
 	printf("*                 1- make                                         *\n");
 	printf("*                 2- ./program [nome do ficheiro a processar]     *\n");
 	printf("*                                                                 *\n");
-	printf("*--------------------------------HELP----------------------------*\n");
+	printf("*--------------------------------HELP-----------------------------*\n");
 
 }
 
@@ -58,16 +61,21 @@ int main(int argc, char* argv[]){
 			
 			int len = strlen(argv[1]);
 
+			// definir nome do novo ficheiro
 			char nome[len+3];
 			strcpy(nome, argv[1]);
 			nome[len-5] = '\0';
 			strcat(nome, "JSON.json");
+			
+			// abrir o ficheiro a escrever
 
-			printf("%s\n", nome);
-
+			// abrir o ficheiro a ler
 			sprintf(com, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]);
 			yyin = popen(com, "r");
 
+			//yyin = fopen(argv[1], "r");
+
+			// inicializar a leitura
 			yylex();
 	
 			fclose(yyin);
