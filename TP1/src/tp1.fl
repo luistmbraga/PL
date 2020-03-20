@@ -4,16 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 %}
 /* Abreviaturas de ER */
 
-acentos		\xc3[\x80-\xbf]
-letra		[a-zA-Z]|{acentos}
-palavra		{letra}+	
+decimal 	[0-9]
+acentos 	\xc3[\x80-\xbf]
+alpha 		[a-zA-Z]
+letra 		alpha|{acentos}
+palavra		{letra}+
+oList 		\<ol\ +class=\"comments__list\"\ +id=\"approved-comments\"\>
+
+%x OL
 
 %%
-
+{oList}		{ECHO; printf("\n");}
+.|\n		{}
 %%
+
 int yywrap()
 { return(1); }
 
@@ -30,6 +38,12 @@ void help(){
 
 }
 
+void printTimestamp(){
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	printf("\"timestamp\":%d-%02d-%02d,\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+}
+
 int main(int argc, char* argv[]){ 
 
 	if(argc < 2){
@@ -40,11 +54,25 @@ int main(int argc, char* argv[]){
 	if(access(argv[1], F_OK) != -1){
 
 		if(access(argv[1], R_OK) != -1){
-			yyin = fopen(argv[1], "r");
+			char com[200];
+			
+			int len = strlen(argv[1]);
+
+			char nome[len+3];
+			strcpy(nome, argv[1]);
+			nome[len-5] = '\0';
+			strcat(nome, "JSON.json");
+
+			printf("%s\n", nome);
+
+			sprintf(com, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]);
+			yyin = popen(com, "r");
 
 			yylex();
 	
 			fclose(yyin);
+
+			// printTimestamp();
 		}
 		else{
 			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
