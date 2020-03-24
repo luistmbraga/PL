@@ -35,7 +35,7 @@ time		\<time
 datetime 	datetime\ *=\ *\"
 nome		\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
 commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
-texto		{palavra}|{decimal}|
+texto		({palavra}|{decimal}|['\?!%&#@€])+
 
 %x COMLIST COM ID TIME DATETIME NAME COMMENTEXT
 
