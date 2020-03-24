@@ -1,5 +1,6 @@
 %{
 /* Declaracoes C diversas */
+#define _GNU_SOURCE
 #include <comentarios.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +9,12 @@
 long profundidade = 0;
 int contador = 0;
 Nivel com = NULL;
+void printTimestamp(); 
+void endComment();
+void printNTimes(int times, char print); 
+void printFieldStringPreDef(char* string);  
+void printFieldString(char* field, char* yytext, int ultimo);
+void printFieldNum(char* field, long num, int ultimo); 
 %}
 %option stack
 /* Abreviaturas de ER */
@@ -27,7 +34,9 @@ time		datetime\ *=\ *\"
 %x COMLIST COM ID TIME
 
 %%
-{comList}			{yy_push_state(COMLIST);}
+{comList}			{ 	printf("antes do push!\n");
+					  	yy_push_state(COMLIST);
+					  	printf("depois do push!\n");	}
 
 <COMLIST>{
 {com}				{
@@ -149,17 +158,20 @@ void printTimestamp(){
 }
 
 int main(int argc, char* argv[]){ 
-
+	
+	
 	if(argc < 2){
 		help();
 		return 0;
 	}
+	
 
 	if(access(argv[1], F_OK) != -1){
 
 		if(access(argv[1], R_OK) != -1){
-			char com[200];
+			char comm[200];
 			
+			/*
 			int len = strlen(argv[1]);
 
 			// definir nome do novo ficheiro
@@ -167,17 +179,19 @@ int main(int argc, char* argv[]){
 			strcpy(nome, argv[1]);
 			nome[len-5] = '\0';
 			strcat(nome, "JSON.json");
-			
+			*/
+
 			// abrir o ficheiro a escrever
 			
 			// escrever nome da collection
 			printf("\"commentThread\": [\n");
 			
 			// abrir o ficheiro a ler
-			sprintf(com, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]);
-			yyin = popen(com, "r");
+			//sprintf(comm, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]); 
+			//yyin = popen(comm, "r"); 
+			//yyin = NULL;
 
-			//yyin = fopen(argv[1], "r");
+			yyin = fopen(argv[1], "r");
 
 			// inicializar a leitura
 			yylex();
@@ -185,9 +199,11 @@ int main(int argc, char* argv[]){
 			// fechar o ficheiro
 			printf("]\n");
 
-			pclose(yyin);
+			fclose(yyin); 
 
-			// printTimestamp();
+			// falta fazer system para transformar a saída 
+
+	
 		}
 		else{
 			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
@@ -196,6 +212,7 @@ int main(int argc, char* argv[]){
 	else{
 		printf("O ficheiro dado como argumento não existe !\n");
 	}
+	
 
 	// Nivel r = testeInit();
 

@@ -532,6 +532,7 @@ char *yytext;
 #line 1 "tp1.fl"
 #line 2 "tp1.fl"
 /* Declaracoes C diversas */
+#define _GNU_SOURCE
 #include <comentarios.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -540,10 +541,16 @@ char *yytext;
 long profundidade = 0;
 int contador = 0;
 Nivel com = NULL;
-#line 544 "main.c"
+void printTimestamp(); 
+void endComment();
+void printNTimes(int times, char print); 
+void printFieldStringPreDef(char* string);  
+void printFieldString(char* field, char* yytext, int ultimo);
+void printFieldNum(char* field, long num, int ultimo); 
+#line 551 "main.c"
 /* Abreviaturas de ER */
 
-#line 547 "main.c"
+#line 554 "main.c"
 
 #define INITIAL 0
 #define COMLIST 1
@@ -774,9 +781,9 @@ YY_DECL
 		}
 
 	{
-#line 29 "tp1.fl"
+#line 36 "tp1.fl"
 
-#line 780 "main.c"
+#line 787 "main.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -835,13 +842,15 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 30 "tp1.fl"
-{yy_push_state(COMLIST);}
+#line 37 "tp1.fl"
+{ 	printf("antes do push!\n");
+					  	yy_push_state(COMLIST);
+					  	printf("depois do push!\n");	}
 	YY_BREAK
 
 case 2:
 YY_RULE_SETUP
-#line 33 "tp1.fl"
+#line 42 "tp1.fl"
 {
 							if(profundidade > 0){ addComment(com); com = addNivelToComment(com);}
 						printFieldStringPreDef("{\n");
@@ -852,7 +861,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 40 "tp1.fl"
+#line 49 "tp1.fl"
 {
 							if(profundidade > 0) printFieldStringPreDef("],\n");
 						--profundidade;
@@ -863,7 +872,7 @@ YY_RULE_SETUP
 
 case 4:
 YY_RULE_SETUP
-#line 48 "tp1.fl"
+#line 57 "tp1.fl"
 {
 						printFieldStringPreDef("\"hasReplies\": TRUE,\n");
 						printFieldStringPreDef("\"replies\": [\n");
@@ -874,12 +883,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 55 "tp1.fl"
+#line 64 "tp1.fl"
 {yy_push_state(ID);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 56 "tp1.fl"
+#line 65 "tp1.fl"
 {yy_push_state(TIME);}
 	YY_BREAK
 case 7:
@@ -889,7 +898,7 @@ YY_LINENO_REWIND_TO(yy_bp + 5);
 (yy_c_buf_p) = yy_cp = yy_bp + 5;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 57 "tp1.fl"
+#line 66 "tp1.fl"
 {
 										endComment();
 										printFieldStringPreDef("}\n");
@@ -902,7 +911,7 @@ YY_LINENO_REWIND_TO(yy_bp + 5);
 (yy_c_buf_p) = yy_cp = yy_bp + 5;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 61 "tp1.fl"
+#line 70 "tp1.fl"
 {
 										endComment();
 										printFieldStringPreDef("},\n");
@@ -912,41 +921,41 @@ YY_RULE_SETUP
 
 case 9:
 YY_RULE_SETUP
-#line 68 "tp1.fl"
+#line 77 "tp1.fl"
 {printFieldString("id", yytext, 0);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 69 "tp1.fl"
+#line 78 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 11:
 YY_RULE_SETUP
-#line 73 "tp1.fl"
+#line 82 "tp1.fl"
 {
 								printFieldString("date", yytext, 0);
 							}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 76 "tp1.fl"
+#line 85 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 79 "tp1.fl"
+#line 88 "tp1.fl"
 {}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 80 "tp1.fl"
+#line 89 "tp1.fl"
 ECHO;
 	YY_BREAK
-#line 950 "main.c"
+#line 959 "main.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMLIST):
 case YY_STATE_EOF(COM):
@@ -2001,7 +2010,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 80 "tp1.fl"
+#line 89 "tp1.fl"
 
 
 int yywrap()
@@ -2074,17 +2083,20 @@ void printTimestamp(){
 }
 
 int main(int argc, char* argv[]){ 
-
+	
+	
 	if(argc < 2){
 		help();
 		return 0;
 	}
+	
 
 	if(access(argv[1], F_OK) != -1){
 
 		if(access(argv[1], R_OK) != -1){
-			char com[200];
+			char comm[200];
 			
+			/*
 			int len = strlen(argv[1]);
 
 			// definir nome do novo ficheiro
@@ -2092,17 +2104,19 @@ int main(int argc, char* argv[]){
 			strcpy(nome, argv[1]);
 			nome[len-5] = '\0';
 			strcat(nome, "JSON.json");
-			
+			*/
+
 			// abrir o ficheiro a escrever
 			
 			// escrever nome da collection
 			printf("\"commentThread\": [\n");
 			
 			// abrir o ficheiro a ler
-			sprintf(com, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]);
-			yyin = popen(com, "r");
+			//sprintf(comm, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]); 
+			//yyin = popen(comm, "r"); 
+			//yyin = NULL;
 
-			//yyin = fopen(argv[1], "r");
+			yyin = fopen(argv[1], "r");
 
 			// inicializar a leitura
 			yylex();
@@ -2110,9 +2124,9 @@ int main(int argc, char* argv[]){
 			// fechar o ficheiro
 			printf("]\n");
 
-			pclose(yyin);
+			fclose(yyin);
 
-			// printTimestamp();
+	
 		}
 		else{
 			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
@@ -2121,6 +2135,7 @@ int main(int argc, char* argv[]){
 	else{
 		printf("O ficheiro dado como argumento não existe !\n");
 	}
+	
 
 	// Nivel r = testeInit();
 

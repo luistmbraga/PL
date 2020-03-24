@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -std=c11 -g -I$(IDIR)
 
 program: flex
-	$(CC) $(CFLAGS) -o program main.c lib/*.c
+	$(CC) $(CFLAGS) -o program main.c lib/*.c -ll
 
 flex:
 	flex -o main.c tp1.fl
