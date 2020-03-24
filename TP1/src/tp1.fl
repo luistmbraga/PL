@@ -35,6 +35,7 @@ time		\<time
 datetime 	datetime\ *=\ *\"
 nome		\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
 commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
+texto		{palavra}|{decimal}|
 
 %x COMLIST COM ID TIME DATETIME NAME COMMENTEXT
 
@@ -103,8 +104,8 @@ commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
 }
 
 <COMMENTEXT>{
-.+/\<\/p\>					{printFieldString("commentText", yytext, 0);}
-\<\/p\>						{yy_pop_state();}
+({palavra}|{space})+/\<\/p\>					{printFieldString("commentText", yytext, 0);}
+\<\/p\>							{yy_pop_state();}
 }
 
 <*>.|\n				{}
@@ -155,7 +156,7 @@ void printFieldStringPreDef(char* string){
 }
 
 void printFieldString(char* field, char* yytext, int ultimo){
-	char string[1024];
+	char string[yyleng+100];
 	if(ultimo == 1)	sprintf(string, "\"%s\": \"%s\"\n", field, yytext);
 	else sprintf(string, "\"%s\": \"%s\",\n", field, yytext);
 	printNTimes(profundidade, '\t');
@@ -163,7 +164,7 @@ void printFieldString(char* field, char* yytext, int ultimo){
 }
 
 void printFieldNum(char* field, long num, int ultimo){
-	char string[50];
+	char string[yyleng+100];
 	if (ultimo == 1) sprintf(string, "\"%s\": %ld\n", field, num);
 	else sprintf(string, "\"%s\": %ld,\n", field, num);
 	printNTimes(profundidade, '\t');
