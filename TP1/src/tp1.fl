@@ -35,8 +35,7 @@ time		\<time
 datetime 	datetime\ *=\ *\"
 nome		\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
 commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
-texto		({palavra}|{decimal}|['\?!%&#@€])+
-([a-zA-Z]|[\n\t\ ]|[!\",�\.]|[\xc3[\x80-\xbf]])+(?=\<\/p\>)
+texto		([a-zA-Z]|[\n\t\ ]|[!\",�\.]|[\xc3[\x80-\xbf]])+
 %x COMLIST COM ID TIME DATETIME NAME COMMENTEXT
 
 %%
@@ -104,7 +103,7 @@ texto		({palavra}|{decimal}|['\?!%&#@€])+
 }
 
 <COMMENTEXT>{
-({palavra}|{space})+/\<\/p\>					{printFieldString("commentText", yytext, 0);}
+{texto}/\<\/p\>					{printFieldString("commentText", yytext, 0);}
 \<\/p\>							{yy_pop_state();}
 }
 
