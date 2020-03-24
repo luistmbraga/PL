@@ -14,6 +14,8 @@ Nivel addNivelToComment(Nivel atual);
 
 Nivel getAnt(Nivel atual);
 
+long depthOfNivel(Nivel n);
+
 long numberOfReplies(Nivel n);
 
 long replies(Comentario c);

@@ -38,6 +38,25 @@ Nivel getAnt(Nivel atual){
     return atual->ant;
 }
 
+long depths(Comentario c){
+    long depth = 0;
+    long temp = 0;
+    while(c){
+        temp = depthOfNivel(c->replies);
+        depth = (temp > depth) ? temp : depth;
+        c = c->prox;
+    }
+    return depth;
+}
+
+long depthOfNivel(Nivel n){
+    long depth = 0;
+    if(n){
+        depth = depths(n->replies);
+        depth++;
+    }
+    return depth;
+}
 
 long repliesC(Comentario c){
     long replies = 0;

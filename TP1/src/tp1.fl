@@ -31,15 +31,14 @@ time		datetime\ *=\ *\"
 
 <COMLIST>{
 {com}				{
-							if(profundidade > 0) addComment(com);
+							if(profundidade > 0){ addComment(com); com = addNivelToComment(com);}
 						printFieldStringPreDef("{\n");
 						printTimestamp();
 						printFieldStringPreDef("\"likes\": 0,\n");
 						yy_push_state(COM);
 					}
 \<\/ol\>			{
-							if(profundidade > 0) printFieldStringPreDef("]\n");
-							if(profundidade > 1) com = getAnt(com);
+							if(profundidade > 0) printFieldStringPreDef("],\n");
 						--profundidade;
 						yy_pop_state(); 
 					}
@@ -51,29 +50,18 @@ time		datetime\ *=\ *\"
 						printFieldStringPreDef("\"replies\": [\n");
 						++profundidade;
 							if(profundidade == 1) com = createNivel(com);
-							else com = addNivelToComment(com);
 						yy_push_state(COMLIST); 
 					}
 {id}				{yy_push_state(ID);}
 {time}				{yy_push_state(TIME);}
-\<\/li\>			{
-							
-							long nReplies = numberOfReplies(com);
-
-							if(nReplies > 0) {
-								printFieldNum("numberOfReplies", nReplies, 1);
-							}
-							else{
-								printFieldString("hasReplies", "FALSE", 0);
-								printFieldNum("numberOfReplies", numberOfReplies(com), 0);
-								printFieldString("replies", "[]", 1);
-							}
-
-							if(profundidade == 0) com = NULL;
-
-						printFieldStringPreDef("},\n");
-						yy_pop_state();
-					}
+\<\/li\>/{space}*\<\/ol\>			{
+										endComment();
+										printFieldStringPreDef("}\n");
+									}
+\<\/li\>/{space}*\<li				{
+										endComment();
+										printFieldStringPreDef("},\n");
+									}
 }
 
 <ID>{
@@ -98,7 +86,7 @@ void help(){
 
 	printf("\n");
 	printf("*--------------------------------HELP-----------------------------*\n");
-	printf("*                         	                                  *\n");
+	printf("*                         	                                  	  *\n");
 	printf("*    Utilização:                                                  *\n");
 	printf("*                 1- make                                         *\n");
 	printf("*                 2- ./program [nome do ficheiro a processar]     *\n");
@@ -107,8 +95,26 @@ void help(){
 
 }
 
+void endComment(){
+	long nReplies = numberOfReplies(com);
+
+	if(nReplies > 0) {
+		printFieldNum("numberOfReplies", nReplies, 1);
+	}
+	else{
+		printFieldString("hasReplies", "FALSE", 0);
+		printFieldNum("numberOfReplies", numberOfReplies(com), 0);
+		printFieldString("replies", "[]", 1);
+	}
+
+	if(profundidade > 0) com = getAnt(com);
+	else com = NULL;
+
+	yy_pop_state();
+}
+
 void printNTimes(int times, char print){
-	for(int i = 0; i < times; i++)
+	for(int i = -1; i < times; i++)
 		printf("%c", print);
 }
 
@@ -177,7 +183,7 @@ int main(int argc, char* argv[]){
 			yylex();
 	
 			// fechar o ficheiro
-			printf("]");
+			printf("]\n");
 
 			pclose(yyin);
 
