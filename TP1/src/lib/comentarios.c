@@ -12,20 +12,47 @@ struct comentario {
     struct nivel *replies;
 };
 
-long repliesV1(Comentario c){
+Nivel createNivel(Nivel ant){
+    Nivel r = (Nivel) malloc(sizeof(struct nivel));
+    r->ant = ant;
+    r->replies = NULL;
+
+    return r;
+}
+
+void addComment(Nivel atual){
+    Comentario c = (Comentario) malloc(sizeof(struct comentario));
+    c->replies = NULL;
+    c->prox = atual->replies;
+    atual->replies = c;
+}
+
+Nivel addNivelToComment(Nivel atual){
+    Nivel r = createNivel(atual);
+    atual->replies->replies = r;
+
+    return r;
+}
+
+Nivel getAnt(Nivel atual){
+    return atual->ant;
+}
+
+
+long repliesC(Comentario c){
     long replies = 0;
     while(c){
         ++replies;
-        replies += numberOfRepliesV1(c->replies);
+        replies += numberOfReplies(c->replies);
         c = c->prox;
     }
     return replies;
 }
 
-long numberOfRepliesV1(Nivel n){
+long numberOfReplies(Nivel n){
     long replies = 0;
     if(n){
-        replies = repliesV1(n->replies);
+        replies = repliesC(n->replies);
     }
     return replies;
 }

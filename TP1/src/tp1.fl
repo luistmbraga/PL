@@ -5,24 +5,90 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-
-void printTimestamp();
+long profundidade = 0;
+int contador = 0;
+Nivel com = NULL;
 %}
+%option stack
 /* Abreviaturas de ER */
 
+space		[\ \t \n]
 decimal 	[0-9]
 acentos 	\xc3[\x80-\xbf]
 alpha 		[a-zA-Z]
 letra 		{alpha}|{acentos}
 palavra		{letra}+
-oList 		\<ol\ +class=\"comments__list\"\ +id=\"approved-comments\"\>
-comentario	\<li
 
-%x OL LI
+comList		\<ol\ +class\ *=\ *\"comments__list\"
+com		\<li\ +class\ *=\ *\"comment\"
+id		data\-comment\-id=\"
+time		datetime\ *=\ *\"
+
+%x COMLIST COM ID TIME
 
 %%
-{palavra}	{ECHO; printf("\n");}
-.|\n		{}
+{comList}			{yy_push_state(COMLIST);}
+
+<COMLIST>{
+{com}				{
+							if(profundidade > 0) addComment(com);
+						printFieldStringPreDef("{\n");
+						printTimestamp();
+						printFieldStringPreDef("\"likes\": 0,\n");
+						yy_push_state(COM);
+					}
+\<\/ol\>			{
+							if(profundidade > 0) printFieldStringPreDef("]\n");
+							if(profundidade > 1) com = getAnt(com);
+						--profundidade;
+						yy_pop_state(); 
+					}
+}
+
+<COM>{
+{comList}			{
+						printFieldStringPreDef("\"hasReplies\": TRUE,\n");
+						printFieldStringPreDef("\"replies\": [\n");
+						++profundidade;
+							if(profundidade == 1) com = createNivel(com);
+							else com = addNivelToComment(com);
+						yy_push_state(COMLIST); 
+					}
+{id}				{yy_push_state(ID);}
+{time}				{yy_push_state(TIME);}
+\<\/li\>			{
+							
+							long nReplies = numberOfReplies(com);
+
+							if(nReplies > 0) {
+								printFieldNum("numberOfReplies", nReplies, 1);
+							}
+							else{
+								printFieldString("hasReplies", "FALSE", 0);
+								printFieldNum("numberOfReplies", numberOfReplies(com), 0);
+								printFieldString("replies", "[]", 1);
+							}
+
+							if(profundidade == 0) com = NULL;
+
+						printFieldStringPreDef("},\n");
+						yy_pop_state();
+					}
+}
+
+<ID>{
+({alpha}|{decimal}|\-)+ 	{printFieldString("id", yytext, 0);}
+\"							{yy_pop_state();}
+}
+
+<TIME>{
+({decimal}|[\-\:\.T])+		{
+								printFieldString("date", yytext, 0);
+							}
+\"							{yy_pop_state();}
+}
+
+<*>.|\n				{}
 %%
 
 int yywrap()
@@ -41,10 +107,39 @@ void help(){
 
 }
 
+void printNTimes(int times, char print){
+	for(int i = 0; i < times; i++)
+		printf("%c", print);
+}
+
+void printFieldStringPreDef(char* string){
+	printNTimes(profundidade, '\t');
+	printf("%s", string);
+}
+
+void printFieldString(char* field, char* yytext, int ultimo){
+	char string[50];
+	if(ultimo == 1)	sprintf(string, "\"%s\": \"%s\"\n", field, yytext);
+	else sprintf(string, "\"%s\": \"%s\",\n", field, yytext);
+	printNTimes(profundidade, '\t');
+	printf("%s", string);
+}
+
+void printFieldNum(char* field, long num, int ultimo){
+	char string[50];
+	if (ultimo == 1) sprintf(string, "\"%s\": %ld\n", field, num);
+	else sprintf(string, "\"%s\": %ld,\n", field, num);
+	printNTimes(profundidade, '\t');
+	printf("%s", string);	
+}
+
 void printTimestamp(){
+	char string[25];
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
-	printf("\"timestamp\":%d-%02d-%02d,\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+	//sprintf(string, "\"timestamp\":%d-%02d-%02d,\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+	sprintf(string, "\"timestamp\": %d,\n", t);
+	printFieldStringPreDef(string);	
 }
 
 int main(int argc, char* argv[]){ 
@@ -68,7 +163,10 @@ int main(int argc, char* argv[]){
 			strcat(nome, "JSON.json");
 			
 			// abrir o ficheiro a escrever
-
+			
+			// escrever nome da collection
+			printf("\"commentThread\": [\n");
+			
 			// abrir o ficheiro a ler
 			sprintf(com, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]);
 			yyin = popen(com, "r");
@@ -78,7 +176,10 @@ int main(int argc, char* argv[]){
 			// inicializar a leitura
 			yylex();
 	
-			fclose(yyin);
+			// fechar o ficheiro
+			printf("]");
+
+			pclose(yyin);
 
 			// printTimestamp();
 		}

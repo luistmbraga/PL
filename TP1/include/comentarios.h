@@ -6,8 +6,16 @@ typedef struct comentario *Comentario;
 
 Nivel testeInit();
 
-long numberOfRepliesV1(Nivel n);
+Nivel createNivel(Nivel ant);
 
-long repliesV1(Comentario c);
+void addComment(Nivel atual);
+
+Nivel addNivelToComment(Nivel atual);
+
+Nivel getAnt(Nivel atual);
+
+long numberOfReplies(Nivel n);
+
+long replies(Comentario c);
 
 #endif
