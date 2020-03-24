@@ -6,9 +6,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+
 long profundidade = 0;
 int contador = 0;
 Nivel com = NULL;
+
 void printTimestamp(); 
 void endComment();
 void printNTimes(int times, char print); 
@@ -29,14 +31,15 @@ palavra		{letra}+
 comList		\<ol\ +class\ *=\ *\"comments__list\"
 com		\<li\ +class\ *=\ *\"comment\"
 id		data\-comment\-id=\"
-time		datetime\ *=\ *\"
+time		\<time
+datetime 	datetime\ *=\ *\"
+nome		\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
+commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
 
-%x COMLIST COM ID TIME
+%x COMLIST COM ID TIME DATETIME NAME COMMENTEXT
 
 %%
-{comList}			{ 	printf("antes do push!\n");
-					  	yy_push_state(COMLIST);
-					  	printf("depois do push!\n");	}
+{comList}			{yy_push_state(COMLIST);}
 
 <COMLIST>{
 {com}				{
@@ -71,6 +74,8 @@ time		datetime\ *=\ *\"
 										endComment();
 										printFieldStringPreDef("},\n");
 									}
+{nome}								{yy_push_state(NAME);}
+{commentText}						{yy_push_state(COMMENTEXT);}
 }
 
 <ID>{
@@ -79,10 +84,27 @@ time		datetime\ *=\ *\"
 }
 
 <TIME>{
+{datetime}		{
+								yy_push_state(DATETIME);
+							}
+\>							{yy_pop_state();}
+}
+
+<DATETIME>{
 ({decimal}|[\-\:\.T])+		{
 								printFieldString("date", yytext, 0);
 							}
 \"							{yy_pop_state();}
+}
+
+<NAME>{
+.+/\<\/a\>					{printFieldString("user", yytext, 0);}
+\<\/a\>						{yy_pop_state();}
+}
+
+<COMMENTEXT>{
+.+/\<\/p\>					{printFieldString("commentText", yytext, 0);}
+\<\/p\>						{yy_pop_state();}
 }
 
 <*>.|\n				{}
@@ -133,7 +155,7 @@ void printFieldStringPreDef(char* string){
 }
 
 void printFieldString(char* field, char* yytext, int ultimo){
-	char string[50];
+	char string[1024];
 	if(ultimo == 1)	sprintf(string, "\"%s\": \"%s\"\n", field, yytext);
 	else sprintf(string, "\"%s\": \"%s\",\n", field, yytext);
 	printNTimes(profundidade, '\t');
