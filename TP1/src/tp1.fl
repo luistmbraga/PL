@@ -57,7 +57,7 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 					}
 }
 
-<COM>{
+<COM>{ 
 {comList}			{
 						printFieldStringPreDef("\"hasReplies\": true,\n");
 						printFieldStringPreDef("\"replies\": [\n");
@@ -75,7 +75,7 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 										endComment();
 										printFieldStringPreDef("},\n");
 									}
-#{nome}								{yy_push_state(NAME);}
+{nome}								{yy_push_state(NAME);}
 {commentText}						{printNTimes(profundidade, '\t'); printf("\"commentText\": \""); yy_push_state(COMMENTEXT);}
 }
 
@@ -136,7 +136,8 @@ void endComment(){
 		printFieldNum("numberOfReplies", nReplies, 1);
 	}
 	else{
-		printFieldString("hasReplies", "false", 0);
+		// para não imprimir como string
+		printFieldStringPreDef("\"hasReplies\": false,\n");
 		printFieldNum("numberOfReplies", numberOfReplies(com), 0);
 		printFieldStringPreDef("\"replies\": []\n");
 	}
