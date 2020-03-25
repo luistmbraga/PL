@@ -35,7 +35,8 @@ time		\<time
 datetime 	datetime\ *=\ *\"
 nome		\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
 commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
-texto		([a-zA-Z]|[\n\t\ ]|[!\",�\.]|[\xc3[\x80-\xbf]])+
+texto		(\x21-\x7e|{acentos}|\x(fffd))+
+
 %x COMLIST COM ID TIME DATETIME NAME COMMENTEXT
 
 %%
@@ -58,7 +59,7 @@ texto		([a-zA-Z]|[\n\t\ ]|[!\",�\.]|[\xc3[\x80-\xbf]])+
 
 <COM>{
 {comList}			{
-						printFieldStringPreDef("\"hasReplies\": TRUE,\n");
+						printFieldStringPreDef("\"hasReplies\": true,\n");
 						printFieldStringPreDef("\"replies\": [\n");
 						++profundidade;
 							if(profundidade == 1) com = createNivel(com);
@@ -74,8 +75,8 @@ texto		([a-zA-Z]|[\n\t\ ]|[!\",�\.]|[\xc3[\x80-\xbf]])+
 										endComment();
 										printFieldStringPreDef("},\n");
 									}
-{nome}								{yy_push_state(NAME);}
-{commentText}						{yy_push_state(COMMENTEXT);}
+#{nome}								{yy_push_state(NAME);}
+{commentText}						{printf("\"commentText\": \""); yy_push_state(COMMENTEXT);}
 }
 
 <ID>{
@@ -103,8 +104,9 @@ texto		([a-zA-Z]|[\n\t\ ]|[!\",�\.]|[\xc3[\x80-\xbf]])+
 }
 
 <COMMENTEXT>{
-{texto}/\<\/p\>					{printFieldString("commentText", yytext, 0);}
-\<\/p\>							{yy_pop_state();}
+\<\/p\>							{printf("\",\n"); yy_pop_state();}
+\"				{printf("\\\"");}
+.|\n			{ECHO;}
 }
 
 <*>.|\n				{}
@@ -133,7 +135,7 @@ void endComment(){
 		printFieldNum("numberOfReplies", nReplies, 1);
 	}
 	else{
-		printFieldString("hasReplies", "FALSE", 0);
+		printFieldString("hasReplies", "false", 0);
 		printFieldNum("numberOfReplies", numberOfReplies(com), 0);
 		printFieldString("replies", "[]", 1);
 	}
@@ -202,6 +204,8 @@ int main(int argc, char* argv[]){
 			nome[len-5] = '\0';
 			strcat(nome, "JSON.json");
 			*/
+
+
 
 			// abrir o ficheiro a escrever
 			
