@@ -10,6 +10,7 @@
 long profundidade = 0;
 int contador = 0;
 Nivel com = NULL;
+FILE *fptr;
 
 void printTimestamp(); 
 void endComment();
@@ -44,29 +45,29 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 
 <COMLIST>{
 {com}				{
-							if(profundidade > 0){ addComment(com); com = addNivelToComment(com);}
+						if(profundidade > 0){ addComment(com); com = addNivelToComment(com);}
 						printFieldStringPreDef("{\n");
 						printTimestamp();
 						printFieldStringPreDef("\"likes\": 0,\n");
 						yy_push_state(COM);
 					}
 \<\/ol\>			{
-							if(profundidade > 0) printFieldStringPreDef("],\n");
+						if(profundidade > 0) printFieldStringPreDef("],\n");
 						--profundidade;
 						yy_pop_state(); 
 					}
 }
 
 <COM>{ 
-{comList}			{
-						printFieldStringPreDef("\"hasReplies\": true,\n");
-						printFieldStringPreDef("\"replies\": [\n");
-						++profundidade;
-							if(profundidade == 1) com = createNivel(com);
-						yy_push_state(COMLIST); 
-					}
-{id}				{yy_push_state(ID);}
-{time}				{yy_push_state(TIME);}
+{comList}							{
+										printFieldStringPreDef("\"hasReplies\": true,\n");
+										printFieldStringPreDef("\"replies\": [\n");
+										++profundidade;
+										if(profundidade == 1) com = createNivel(com);
+										yy_push_state(COMLIST); 
+									}
+{id}								{yy_push_state(ID);}
+{time}								{yy_push_state(TIME);}
 \<\/li\>/{space}*\<\/ol\>			{
 										endComment();
 										printFieldStringPreDef("}\n");
@@ -76,7 +77,11 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 										printFieldStringPreDef("},\n");
 									}
 {nome}								{yy_push_state(NAME);}
-{commentText}						{printNTimes(profundidade, '\t'); printf("\"commentText\": \""); yy_push_state(COMMENTEXT);}
+{commentText}						{
+										printNTimes(profundidade, '\t'); 
+										fprintf(fptr, "\"commentText\": \""); 
+										yy_push_state(COMMENTEXT);
+									}
 }
 
 <ID>{
@@ -85,16 +90,12 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 }
 
 <TIME>{
-{datetime}		{
-								yy_push_state(DATETIME);
-							}
+{datetime}					{yy_push_state(DATETIME);}
 \>							{yy_pop_state();}
 }
 
 <DATETIME>{
-({decimal}|[\-\:\.T])+		{
-								printFieldString("date", yytext, 0);
-							}
+({decimal}|[\-\:\.T])+		{printFieldString("date", yytext, 0);}
 \"							{yy_pop_state();}
 }
 
@@ -104,10 +105,10 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 }
 
 <COMMENTEXT>{
-\<\/p\>							{printf("\",\n"); yy_pop_state();}
-\"				{printf("\\\"");}
-.			{ECHO;}
-\n 			{printf("\\n");}
+\<\/p\>							{fprintf(fptr, "\",\n"); yy_pop_state();}
+\"								{fprintf(fptr, "\\\"");}
+.								{fprintf(fptr, yytext);}
+\n 								{fprintf(fptr, "\\n");}
 }
 
 <*>.|\n				{}
@@ -150,88 +151,74 @@ void endComment(){
 
 void printNTimes(int times, char print){
 	for(int i = -1; i < times; i++)
-		printf("%c", print);
+		fprintf(fptr, "%c", print);
 }
 
 void printFieldStringPreDef(char* string){
 	printNTimes(profundidade, '\t');
-	printf("%s", string);
+	fprintf(fptr, "%s", string);
 }
 
 void printFieldString(char* field, char* yytext, int ultimo){
-	char string[yyleng+100];
-	if(ultimo == 1)	sprintf(string, "\"%s\": \"%s\"\n", field, yytext);
-	else sprintf(string, "\"%s\": \"%s\",\n", field, yytext);
 	printNTimes(profundidade, '\t');
-	printf("%s", string);
+	if(ultimo == 1)	fprintf(fptr, "\"%s\": \"%s\"\n", field, yytext);
+	else fprintf(fptr, "\"%s\": \"%s\",\n", field, yytext);
 }
 
 void printFieldNum(char* field, long num, int ultimo){
-	char string[yyleng+100];
-	if (ultimo == 1) sprintf(string, "\"%s\": %ld\n", field, num);
-	else sprintf(string, "\"%s\": %ld,\n", field, num);
 	printNTimes(profundidade, '\t');
-	printf("%s", string);	
+	if (ultimo == 1) fprintf(fptr, "\"%s\": %ld\n", field, num);
+	else fprintf(fptr, "\"%s\": %ld,\n", field, num);
 }
 
 void printTimestamp(){
-	char string[25];
 	time_t t = time(NULL);
-	//struct tm tm = *localtime(&t);
-	//sprintf(string, "\"timestamp\":%d-%02d-%02d,\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
-	sprintf(string, "\"timestamp\": %d,\n", t);
-	printFieldStringPreDef(string);	
+	printFieldNum("timestamp", t, 0);	
 }
 
 int main(int argc, char* argv[]){ 
-	
 	
 	if(argc < 2){
 		help();
 		return 0;
 	}
 	
-
 	if(access(argv[1], F_OK) != -1){
 
 		if(access(argv[1], R_OK) != -1){
-			char comm[200];
-			
-			/*
-			int len = strlen(argv[1]);
 
-			// definir nome do novo ficheiro
-			char nome[len+3];
-			strcpy(nome, argv[1]);
-			nome[len-5] = '\0';
-			strcat(nome, "JSON.json");
-			*/
+			// abrir o ficheiro temporário para escrever
+			fptr = fopen("TEMP.json", "w");
 
-
-
-			// abrir o ficheiro a escrever
-			
 			// escrever nome da collection
-			printf("{\"commentThread\": [\n");
+			fprintf(fptr, "{\"commentThread\": [\n");
 			
 			// abrir o ficheiro a ler
-			//sprintf(comm, "iconv -f cp1252 -t utf8 \"%s\"", argv[1]); 
-			//yyin = popen(comm, "r"); 
-			//yyin = NULL;
-
 			yyin = fopen(argv[1], "r");
 
 			// inicializar a leitura
 			yylex();
 	
-			// fechar o ficheiro
-			printf("]}\n");
+			// fechar a collection
+			fprintf(fptr, "]}\n");
 
-			fclose(yyin); 
+			fclose(yyin);
+			fclose(fptr);
 
-			// falta fazer system para transformar a saída 
+			int len = strlen(argv[1]);
 
-	
+			// definir nome do ficheiro final
+			char CP1252toUTF8[45+len];
+			char nome[len+3];
+			strcpy(nome, argv[1]);
+			nome[len-5] = '\0';
+			strcat(nome, "JSON.json");
+			
+			// Como o ficheiro de input (yyin) tem o encoding CP1252 tem se passar para UTF8
+			sprintf(CP1252toUTF8, "iconv -f cp1252 -t utf8 TEMP.json > \"%s\"", nome); 
+			system(CP1252toUTF8);
+			system("rm TEMP.json");
+
 		}
 		else{
 			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
@@ -240,11 +227,6 @@ int main(int argc, char* argv[]){
 	else{
 		printf("O ficheiro dado como argumento não existe !\n");
 	}
-	
-
-	// Nivel r = testeInit();
-
-	// printf("Número total de filhos de forma acumulativa: %ld\n", numberOfRepliesV1(r));
 
 	return 0;
 }
