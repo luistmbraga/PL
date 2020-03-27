@@ -1,14 +1,12 @@
 %{
 /* Declaracoes C diversas */
-#define _GNU_SOURCE
 #include <comentarios.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <time.h>
+int fileno(FILE *stream);
 
 long profundidade = 0;
-int contador = 0;
 Nivel com = NULL;
 FILE *fptr;
 
@@ -19,24 +17,34 @@ void printFieldStringPreDef(char* string);
 void printFieldString(char* field, char* yytext, int ultimo);
 void printFieldNum(char* field, long num, int ultimo); 
 %}
-%option stack
+%option stack noinput nounput noyy_top_state
 /* Abreviaturas de ER */
 
+/* Gerais */
 space		[\ \t \n]
 decimal 	[0-9]
-acentos 	\xc3[\x80-\xbf]
 alpha 		[a-zA-Z]
-letra 		{alpha}|{acentos}
-palavra		{letra}+
 
-comList		\<ol\ +class\ *=\ *\"comments__list\"
-com		\<li\ +class\ *=\ *\"comment\"
-id		data\-comment\-id=\"
-time		\<time
-datetime 	datetime\ *=\ *\"
-nome		\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
-commentText \<div\ *class=\"comment__content\"\>{space}*\<p\>
-texto		(\x21-\x7e|{acentos}|\x(fffd))+
+comList			\<ol\ +class\ *=\ *\"comments__list\"
+endOL			\<\/ol\>
+
+com				\<li\ +class\ *=\ *\"comment\"
+endLI			\<\/li\>
+comListEnd 		{space}*{endOL}
+otherLI			{space}*\<li
+
+id				data\-comment\-id=\"
+idValue			({alpha}|{decimal}|\-)+
+
+time			\<time
+datetime 		datetime\ *=\ *\"
+datetimeValue	({decimal}|[\-\:\.T])+
+
+nome			\<h5\ *class=\"comment__author\"\ *\>{space}*\<a[^\>]+\>
+endAnchor		\<\/a\>
+
+commentText 	\<div\ *class=\"comment__content\"\>{space}*\<p\>
+endParagraph	\<\/p\>	
 
 %x COMLIST COM ID TIME DATETIME NAME COMMENTEXT
 
@@ -51,7 +59,7 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 						printFieldStringPreDef("\"likes\": 0,\n");
 						yy_push_state(COM);
 					}
-\<\/ol\>			{
+{endOL}				{
 						if(profundidade > 0) printFieldStringPreDef("],\n");
 						--profundidade;
 						yy_pop_state(); 
@@ -59,56 +67,55 @@ texto		(\x21-\x7e|{acentos}|\x(fffd))+
 }
 
 <COM>{ 
-{comList}							{
-										printFieldStringPreDef("\"hasReplies\": true,\n");
-										printFieldStringPreDef("\"replies\": [\n");
-										++profundidade;
-										if(profundidade == 1) com = createNivel(com);
-										yy_push_state(COMLIST); 
-									}
-{id}								{yy_push_state(ID);}
-{time}								{yy_push_state(TIME);}
-\<\/li\>/{space}*\<\/ol\>			{
-										endComment();
-										printFieldStringPreDef("}\n");
-									}
-\<\/li\>/{space}*\<li				{
-										endComment();
-										printFieldStringPreDef("},\n");
-									}
-{nome}								{yy_push_state(NAME);}
-{commentText}						{
-										printNTimes(profundidade, '\t'); 
-										fprintf(fptr, "\"commentText\": \""); 
-										yy_push_state(COMMENTEXT);
-									}
+{comList}					{
+								printFieldStringPreDef("\"hasReplies\": true,\n");
+								printFieldStringPreDef("\"replies\": [\n");
+								++profundidade;
+								if(profundidade == 1) com = createNivel(com);
+								yy_push_state(COMLIST); 
+							}
+{id}						{yy_push_state(ID);}
+{time}						{yy_push_state(TIME);}
+{endLI}/{comListEnd}		{
+								endComment();
+								printFieldStringPreDef("}\n");
+							}
+{endLI}/{otherLI}			{
+								endComment();
+								printFieldStringPreDef("},\n");
+							}
+{nome}						{yy_push_state(NAME);}
+{commentText}				{
+								printFieldStringPreDef("\"commentText\": \"");
+								yy_push_state(COMMENTEXT);
+							}
 }
 
 <ID>{
-({alpha}|{decimal}|\-)+ 	{printFieldString("id", yytext, 0);}
-\"							{yy_pop_state();}
+{idValue}			{printFieldString("id", yytext, 0);}
+\"					{yy_pop_state();}
 }
 
 <TIME>{
-{datetime}					{yy_push_state(DATETIME);}
-\>							{yy_pop_state();}
+{datetime}			{yy_push_state(DATETIME);}
+\>					{yy_pop_state();}
 }
 
 <DATETIME>{
-({decimal}|[\-\:\.T])+		{printFieldString("date", yytext, 0);}
-\"							{yy_pop_state();}
+{datetimeValue}		{printFieldString("date", yytext, 0);}
+\"					{yy_pop_state();}
 }
 
 <NAME>{
-.+/\<\/a\>					{printFieldString("user", yytext, 0);}
-\<\/a\>						{yy_pop_state();}
+.+/\<\/a\>			{printFieldString("user", yytext, 0);}
+{endAnchor}			{yy_pop_state();}
 }
 
 <COMMENTEXT>{
-\<\/p\>							{fprintf(fptr, "\",\n"); yy_pop_state();}
-\"								{fprintf(fptr, "\\\"");}
-.								{fprintf(fptr, yytext);}
-\n 								{fprintf(fptr, "\\n");}
+{endParagraph}		{fprintf(fptr, "\",\n"); yy_pop_state();}
+\"					{fprintf(fptr, "\\\"");}
+\n 					{fprintf(fptr, "\\n");}
+.					{fprintf(fptr, "%s", yytext);}
 }
 
 <*>.|\n				{}
@@ -129,7 +136,7 @@ void help(){
 	printf("*--------------------------------HELP-----------------------------*\n");
 
 }
-
+int contador = 0;
 void endComment(){
 	long nReplies = numberOfReplies(com);
 
@@ -144,7 +151,7 @@ void endComment(){
 	}
 
 	if(profundidade > 0) com = getAnt(com);
-	else com = NULL;
+	else {freeAll(com); com = NULL;}
 
 	yy_pop_state();
 }

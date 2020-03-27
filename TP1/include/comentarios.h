@@ -4,8 +4,6 @@ typedef struct nivel *Nivel;
 
 typedef struct comentario *Comentario;
 
-Nivel testeInit();
-
 Nivel createNivel(Nivel ant);
 
 void addComment(Nivel atual);
@@ -19,5 +17,9 @@ long depthOfNivel(Nivel n);
 long numberOfReplies(Nivel n);
 
 long replies(Comentario c);
+
+void freeAll(Nivel n);
+
+void freeC(Comentario c);
 
 #endif

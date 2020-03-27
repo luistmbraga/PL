@@ -366,7 +366,7 @@ static const flex_int16_t yy_accept[236] =
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
         0,    0,    0,    0,    0,    0,   25,   23,   23,   23,
        23,   23,   12,   11,   14,   23,   16,   15,   23,   23,
-       21,   22,   20,   21,    0,    0,    0,    0,    0,    0,
+       22,   21,   20,   22,    0,    0,    0,    0,    0,    0,
         0,    0,    0,   11,    0,   15,    0,    0,    0,    0,
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -602,15 +602,13 @@ char *yytext;
 #line 1 "tp1.fl"
 #line 2 "tp1.fl"
 /* Declaracoes C diversas */
-#define _GNU_SOURCE
 #include <comentarios.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <time.h>
+int fileno(FILE *stream);
 
 long profundidade = 0;
-int contador = 0;
 Nivel com = NULL;
 FILE *fptr;
 
@@ -620,8 +618,10 @@ void printNTimes(int times, char print);
 void printFieldStringPreDef(char* string);  
 void printFieldString(char* field, char* yytext, int ultimo);
 void printFieldNum(char* field, long num, int ultimo); 
-#line 624 "main.c"
+#line 622 "main.c"
+#define YY_NO_INPUT 1
 /* Abreviaturas de ER */
+/* Gerais */
 
 #line 627 "main.c"
 
@@ -691,8 +691,6 @@ extern int yywrap ( void );
 
 #ifndef YY_NO_UNPUT
     
-    static void yyunput ( int c, char *buf_ptr  );
-    
 #endif
 
 #ifndef yytext_ptr
@@ -719,8 +717,6 @@ static int input ( void );
     static void yy_push_state ( int _new_state );
     
     static void yy_pop_state ( void );
-    
-    static int yy_top_state ( void );
     
 /* Amount of stuff to slurp up with each read. */
 #ifndef YY_READ_BUF_SIZE
@@ -857,9 +853,9 @@ YY_DECL
 		}
 
 	{
-#line 43 "tp1.fl"
+#line 51 "tp1.fl"
 
-#line 863 "main.c"
+#line 859 "main.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -918,13 +914,13 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 44 "tp1.fl"
+#line 52 "tp1.fl"
 {yy_push_state(COMLIST);}
 	YY_BREAK
 
 case 2:
 YY_RULE_SETUP
-#line 47 "tp1.fl"
+#line 55 "tp1.fl"
 {
 						if(profundidade > 0){ addComment(com); com = addNivelToComment(com);}
 						printFieldStringPreDef("{\n");
@@ -935,7 +931,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 54 "tp1.fl"
+#line 62 "tp1.fl"
 {
 						if(profundidade > 0) printFieldStringPreDef("],\n");
 						--profundidade;
@@ -946,23 +942,23 @@ YY_RULE_SETUP
 
 case 4:
 YY_RULE_SETUP
-#line 62 "tp1.fl"
+#line 70 "tp1.fl"
 {
-										printFieldStringPreDef("\"hasReplies\": true,\n");
-										printFieldStringPreDef("\"replies\": [\n");
-										++profundidade;
-										if(profundidade == 1) com = createNivel(com);
-										yy_push_state(COMLIST); 
-									}
+								printFieldStringPreDef("\"hasReplies\": true,\n");
+								printFieldStringPreDef("\"replies\": [\n");
+								++profundidade;
+								if(profundidade == 1) com = createNivel(com);
+								yy_push_state(COMLIST); 
+							}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 69 "tp1.fl"
+#line 77 "tp1.fl"
 {yy_push_state(ID);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 70 "tp1.fl"
+#line 78 "tp1.fl"
 {yy_push_state(TIME);}
 	YY_BREAK
 case 7:
@@ -972,11 +968,11 @@ YY_LINENO_REWIND_TO(yy_bp + 5);
 (yy_c_buf_p) = yy_cp = yy_bp + 5;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 71 "tp1.fl"
+#line 79 "tp1.fl"
 {
-										endComment();
-										printFieldStringPreDef("}\n");
-									}
+								endComment();
+								printFieldStringPreDef("}\n");
+							}
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
@@ -985,62 +981,61 @@ YY_LINENO_REWIND_TO(yy_bp + 5);
 (yy_c_buf_p) = yy_cp = yy_bp + 5;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 75 "tp1.fl"
+#line 83 "tp1.fl"
 {
-										endComment();
-										printFieldStringPreDef("},\n");
-									}
+								endComment();
+								printFieldStringPreDef("},\n");
+							}
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 79 "tp1.fl"
+#line 87 "tp1.fl"
 {yy_push_state(NAME);}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 80 "tp1.fl"
+#line 88 "tp1.fl"
 {
-										printNTimes(profundidade, '\t'); 
-										fprintf(fptr, "\"commentText\": \""); 
-										yy_push_state(COMMENTEXT);
-									}
+								printFieldStringPreDef("\"commentText\": \"");
+								yy_push_state(COMMENTEXT);
+							}
 	YY_BREAK
 
 
 case 11:
 YY_RULE_SETUP
-#line 88 "tp1.fl"
+#line 95 "tp1.fl"
 {printFieldString("id", yytext, 0);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 89 "tp1.fl"
+#line 96 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 13:
 YY_RULE_SETUP
-#line 93 "tp1.fl"
+#line 100 "tp1.fl"
 {yy_push_state(DATETIME);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 94 "tp1.fl"
+#line 101 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 15:
 YY_RULE_SETUP
-#line 98 "tp1.fl"
+#line 105 "tp1.fl"
 {printFieldString("date", yytext, 0);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 99 "tp1.fl"
+#line 106 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
@@ -1050,50 +1045,50 @@ case 17:
 (yy_c_buf_p) = yy_cp -= 4;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 103 "tp1.fl"
+#line 110 "tp1.fl"
 {printFieldString("user", yytext, 0);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 104 "tp1.fl"
+#line 111 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 19:
 YY_RULE_SETUP
-#line 108 "tp1.fl"
+#line 115 "tp1.fl"
 {fprintf(fptr, "\",\n"); yy_pop_state();}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 109 "tp1.fl"
+#line 116 "tp1.fl"
 {fprintf(fptr, "\\\"");}
 	YY_BREAK
 case 21:
+/* rule 21 can match eol */
 YY_RULE_SETUP
-#line 110 "tp1.fl"
-{fprintf(fptr, yytext);}
+#line 117 "tp1.fl"
+{fprintf(fptr, "\\n");}
 	YY_BREAK
 case 22:
-/* rule 22 can match eol */
 YY_RULE_SETUP
-#line 111 "tp1.fl"
-{fprintf(fptr, "\\n");}
+#line 118 "tp1.fl"
+{fprintf(fptr, "%s", yytext);}
 	YY_BREAK
 
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 114 "tp1.fl"
+#line 121 "tp1.fl"
 {}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 115 "tp1.fl"
+#line 122 "tp1.fl"
 ECHO;
 	YY_BREAK
-#line 1097 "main.c"
+#line 1092 "main.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMLIST):
 case YY_STATE_EOF(COM):
@@ -1435,43 +1430,6 @@ static int yy_get_next_buffer (void)
 }
 
 #ifndef YY_NO_UNPUT
-
-    static void yyunput (int c, char * yy_bp )
-{
-	char *yy_cp;
-    
-    yy_cp = (yy_c_buf_p);
-
-	/* undo effects of setting up yytext */
-	*yy_cp = (yy_hold_char);
-
-	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
-		{ /* need to shift things up to make room */
-		/* +2 for EOB chars. */
-		int number_to_move = (yy_n_chars) + 2;
-		char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
-					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
-		char *source =
-				&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move];
-
-		while ( source > YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
-			*--dest = *--source;
-
-		yy_cp += (int) (dest - source);
-		yy_bp += (int) (dest - source);
-		YY_CURRENT_BUFFER_LVALUE->yy_n_chars =
-			(yy_n_chars) = (int) YY_CURRENT_BUFFER_LVALUE->yy_buf_size;
-
-		if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
-			YY_FATAL_ERROR( "flex scanner push-back overflow" );
-		}
-
-	*--yy_cp = (char) c;
-
-	(yytext_ptr) = yy_bp;
-	(yy_hold_char) = *yy_cp;
-	(yy_c_buf_p) = yy_cp;
-}
 
 #endif
 
@@ -1931,11 +1889,6 @@ YY_BUFFER_STATE yy_scan_bytes  (const char * yybytes, int  _yybytes_len )
 	BEGIN((yy_start_stack)[(yy_start_stack_ptr)]);
 }
 
-    static int yy_top_state  (void)
-{
-    	return (yy_start_stack)[(yy_start_stack_ptr) - 1];
-}
-
 #ifndef YY_EXIT_FAILURE
 #define YY_EXIT_FAILURE 2
 #endif
@@ -2151,7 +2104,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 115 "tp1.fl"
+#line 122 "tp1.fl"
 
 
 int yywrap()
@@ -2169,7 +2122,7 @@ void help(){
 	printf("*--------------------------------HELP-----------------------------*\n");
 
 }
-
+int contador = 0;
 void endComment(){
 	long nReplies = numberOfReplies(com);
 
@@ -2184,7 +2137,7 @@ void endComment(){
 	}
 
 	if(profundidade > 0) com = getAnt(com);
-	else com = NULL;
+	else {freeAll(com); com = NULL;}
 
 	yy_pop_state();
 }
