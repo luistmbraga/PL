@@ -114,7 +114,7 @@ endParagraph	\<\/p\>
 <COMMENTEXT>{
 {endParagraph}		{fprintf(fptr, "\",\n"); yy_pop_state();}
 \"					{fprintf(fptr, "\\\"");}
-\n 					{fprintf(fptr, "\\n");}
+" " 				{fprintf(fptr, " ");}
 .					{fprintf(fptr, "%s", yytext);}
 }
 
