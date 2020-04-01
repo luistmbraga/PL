@@ -610,7 +610,7 @@ int fileno(FILE *stream);
 
 long profundidade = 0;
 Nivel com = NULL;
-FILE *fptr;
+//FILE *fptr;
 
 void printTimestamp(); 
 void endComment();
@@ -1058,23 +1058,23 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 #line 115 "tp1.fl"
-{fprintf(fptr, "\",\n"); yy_pop_state();}
+{fprintf(yyout, "\",\n"); yy_pop_state();}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 116 "tp1.fl"
-{fprintf(fptr, "\\\"");}
+{fprintf(yyout, "\\\"");}
 	YY_BREAK
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
 #line 117 "tp1.fl"
-{fprintf(fptr, "\\n");}
+{fprintf(yyout, " ");}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 118 "tp1.fl"
-{fprintf(fptr, "%s", yytext);}
+{fprintf(yyout, "%s", yytext);}
 	YY_BREAK
 
 case 23:
@@ -2144,24 +2144,24 @@ void endComment(){
 
 void printNTimes(int times, char print){
 	for(int i = -1; i < times; i++)
-		fprintf(fptr, "%c", print);
+		fprintf(yyout, "%c", print);
 }
 
 void printFieldStringPreDef(char* string){
 	printNTimes(profundidade, '\t');
-	fprintf(fptr, "%s", string);
+	fprintf(yyout, "%s", string);
 }
 
 void printFieldString(char* field, char* yytext, int ultimo){
 	printNTimes(profundidade, '\t');
-	if(ultimo == 1)	fprintf(fptr, "\"%s\": \"%s\"\n", field, yytext);
-	else fprintf(fptr, "\"%s\": \"%s\",\n", field, yytext);
+	if(ultimo == 1)	fprintf(yyout, "\"%s\": \"%s\"\n", field, yytext);
+	else fprintf(yyout, "\"%s\": \"%s\",\n", field, yytext);
 }
 
 void printFieldNum(char* field, long num, int ultimo){
 	printNTimes(profundidade, '\t');
-	if (ultimo == 1) fprintf(fptr, "\"%s\": %ld\n", field, num);
-	else fprintf(fptr, "\"%s\": %ld,\n", field, num);
+	if (ultimo == 1) fprintf(yyout, "\"%s\": %ld\n", field, num);
+	else fprintf(yyout, "\"%s\": %ld,\n", field, num);
 }
 
 void printTimestamp(){
@@ -2181,10 +2181,10 @@ int main(int argc, char* argv[]){
 		if(access(argv[1], R_OK) != -1){
 
 			// abrir o ficheiro temporário para escrever
-			fptr = fopen("TEMP.json", "w");
+			yyout = fopen("TEMP.json", "w");
 
 			// escrever nome da collection
-			fprintf(fptr, "{\"commentThread\": [\n");
+			fprintf(yyout, "{\"commentThread\": [\n");
 			
 			// abrir o ficheiro a ler
 			yyin = fopen(argv[1], "r");
@@ -2193,10 +2193,10 @@ int main(int argc, char* argv[]){
 			yylex();
 	
 			// fechar a collection
-			fprintf(fptr, "]}\n");
+			fprintf(yyout, "]}\n");
 
 			fclose(yyin);
-			fclose(fptr);
+			fclose(yyout);
 
 			int len = strlen(argv[1]);
 
