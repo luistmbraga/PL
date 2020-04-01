@@ -8,7 +8,6 @@ int fileno(FILE *stream);
 
 long profundidade = 0;
 Nivel com = NULL;
-//FILE *fptr;
 
 void printTimestamp(); 
 void endComment();
