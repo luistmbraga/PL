@@ -126,13 +126,23 @@ int yywrap()
 void help(){
 
 	printf("\n");
-	printf("*--------------------------------HELP-----------------------------*\n");
-	printf("*                         	                                  	  *\n");
-	printf("*    Utilização:                                                  *\n");
-	printf("*                 1- make                                         *\n");
-	printf("*                 2- ./program [nome do ficheiro a processar]     *\n");
-	printf("*                                                                 *\n");
-	printf("*--------------------------------HELP-----------------------------*\n");
+	printf("****************************Publico2NetLang**************************\n");
+	printf("**                                                                 **\n");
+	printf("**    Bem-vindo ao Publico2NetLang, esperamos que lhe seja útil !  **\n");
+	printf("**                                                                 **\n");
+	printf("**                                                                 **\n");
+	printf("**********************************HELP*******************************\n");
+	printf("**                                                                 **\n");
+	printf("**    Utilização:                                                  **\n");
+	printf("**                 1- make                                         **\n");
+	printf("**                 2- ./program [nome do ficheiro a processar]     **\n");
+	printf("**                                                                 **\n");
+	printf("**    Notas:                                                       **\n");
+	printf("**    O ficheiro resultante vai para a mesma pasta com o mesmo     **\n");
+	printf("**       nome do original, apenas com a modificação de ter         **\n");
+	printf("**       \"JSON.json\" no final.                                     **\n");
+	printf("**                                                                 **\n");
+	printf("**********************************HELP*******************************\n");
 
 }
 int contador = 0;

@@ -1,5 +1,0 @@
-verificar se o ficheiro está correcto
-
-apagar espaço ocupado desnecessário
-
-limpar strings antes de usar
