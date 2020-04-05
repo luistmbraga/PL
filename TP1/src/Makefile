@@ -1,7 +1,7 @@
 IDIR=../include
 
 CC = cc
-CFLAGS = -Wall -g -I$(IDIR)
+CFLAGS = -Wall -std=c11 -g -I$(IDIR)
 
 program: flex
 	$(CC) $(CFLAGS) -o program main.c lib/*.c -ll
