@@ -606,6 +606,7 @@ char *yytext;
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> 
+#include <string.h>
 int fileno(FILE *stream);
 
 long profundidade = 0;
@@ -617,12 +618,12 @@ void printNTimes(int times, char print);
 void printFieldStringPreDef(char* string);  
 void printFieldString(char* field, char* yytext, int ultimo);
 void printFieldNum(char* field, long num, int ultimo); 
-#line 621 "main.c"
+#line 622 "main.c"
 #define YY_NO_INPUT 1
 /* Abreviaturas de ER */
 /* Gerais */
 
-#line 626 "main.c"
+#line 627 "main.c"
 
 #define INITIAL 0
 #define COMLIST 1
@@ -852,9 +853,9 @@ YY_DECL
 		}
 
 	{
-#line 50 "tp1.fl"
+#line 51 "tp1.fl"
 
-#line 858 "main.c"
+#line 859 "main.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -913,13 +914,13 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 51 "tp1.fl"
+#line 52 "tp1.fl"
 {yy_push_state(COMLIST);}
 	YY_BREAK
 
 case 2:
 YY_RULE_SETUP
-#line 54 "tp1.fl"
+#line 55 "tp1.fl"
 {
 						if(profundidade > 0){ addComment(com); com = addNivelToComment(com);}
 						printFieldStringPreDef("{\n");
@@ -930,7 +931,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 61 "tp1.fl"
+#line 62 "tp1.fl"
 {
 						if(profundidade > 0) printFieldStringPreDef("],\n");
 						--profundidade;
@@ -941,7 +942,7 @@ YY_RULE_SETUP
 
 case 4:
 YY_RULE_SETUP
-#line 69 "tp1.fl"
+#line 70 "tp1.fl"
 {
 								printFieldStringPreDef("\"hasReplies\": true,\n");
 								printFieldStringPreDef("\"replies\": [\n");
@@ -952,12 +953,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 76 "tp1.fl"
+#line 77 "tp1.fl"
 {yy_push_state(ID);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 77 "tp1.fl"
+#line 78 "tp1.fl"
 {yy_push_state(TIME);}
 	YY_BREAK
 case 7:
@@ -967,7 +968,7 @@ YY_LINENO_REWIND_TO(yy_bp + 5);
 (yy_c_buf_p) = yy_cp = yy_bp + 5;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 78 "tp1.fl"
+#line 79 "tp1.fl"
 {
 								endComment();
 								printFieldStringPreDef("}\n");
@@ -980,7 +981,7 @@ YY_LINENO_REWIND_TO(yy_bp + 5);
 (yy_c_buf_p) = yy_cp = yy_bp + 5;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 82 "tp1.fl"
+#line 83 "tp1.fl"
 {
 								endComment();
 								printFieldStringPreDef("},\n");
@@ -989,13 +990,13 @@ YY_RULE_SETUP
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 86 "tp1.fl"
+#line 87 "tp1.fl"
 {yy_push_state(NAME);}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 87 "tp1.fl"
+#line 88 "tp1.fl"
 {
 								printFieldStringPreDef("\"commentText\": \"");
 								yy_push_state(COMMENTEXT);
@@ -1005,36 +1006,36 @@ YY_RULE_SETUP
 
 case 11:
 YY_RULE_SETUP
-#line 94 "tp1.fl"
+#line 95 "tp1.fl"
 {printFieldString("id", yytext, 0);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 95 "tp1.fl"
+#line 96 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 13:
 YY_RULE_SETUP
-#line 99 "tp1.fl"
+#line 100 "tp1.fl"
 {yy_push_state(DATETIME);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 100 "tp1.fl"
+#line 101 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 15:
 YY_RULE_SETUP
-#line 104 "tp1.fl"
+#line 105 "tp1.fl"
 {printFieldString("date", yytext, 0);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 105 "tp1.fl"
+#line 106 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
@@ -1044,50 +1045,50 @@ case 17:
 (yy_c_buf_p) = yy_cp -= 4;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 109 "tp1.fl"
+#line 110 "tp1.fl"
 {printFieldString("user", yytext, 0);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 110 "tp1.fl"
+#line 111 "tp1.fl"
 {yy_pop_state();}
 	YY_BREAK
 
 
 case 19:
 YY_RULE_SETUP
-#line 114 "tp1.fl"
+#line 115 "tp1.fl"
 {fprintf(yyout, "\",\n"); yy_pop_state();}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 115 "tp1.fl"
+#line 116 "tp1.fl"
 {fprintf(yyout, "\\\"");}
 	YY_BREAK
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 116 "tp1.fl"
+#line 117 "tp1.fl"
 {fprintf(yyout, " ");}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 117 "tp1.fl"
+#line 118 "tp1.fl"
 {fprintf(yyout, "%s", yytext);}
 	YY_BREAK
 
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 120 "tp1.fl"
+#line 121 "tp1.fl"
 {}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 121 "tp1.fl"
+#line 122 "tp1.fl"
 ECHO;
 	YY_BREAK
-#line 1091 "main.c"
+#line 1092 "main.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMLIST):
 case YY_STATE_EOF(COM):
@@ -2103,7 +2104,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 121 "tp1.fl"
+#line 122 "tp1.fl"
 
 
 int yywrap()
@@ -2212,7 +2213,7 @@ int main(int argc, char* argv[]){
 
 			// definir nome do ficheiro final
 			char CP1252toUTF8[45+len];
-			char nome[len+3];
+			char nome[len+10];
 			strcpy(nome, argv[1]);
 			nome[len-5] = '\0';
 			strcat(nome, "JSON.json");

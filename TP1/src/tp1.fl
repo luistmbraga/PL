@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> 
+#include <string.h>
 int fileno(FILE *stream);
 
 long profundidade = 0;
@@ -226,7 +227,7 @@ int main(int argc, char* argv[]){
 
 			// definir nome do ficheiro final
 			char CP1252toUTF8[45+len];
-			char nome[len+3];
+			char nome[len+10];
 			strcpy(nome, argv[1]);
 			nome[len-5] = '\0';
 			strcat(nome, "JSON.json");
