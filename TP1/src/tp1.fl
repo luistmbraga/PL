@@ -3,7 +3,7 @@
 #include <comentarios.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <time.h> 
 int fileno(FILE *stream);
 
 long profundidade = 0;
@@ -202,6 +202,7 @@ int main(int argc, char* argv[]){
 			// abrir o ficheiro a ler
 			yyin = fopen(argv[1], "r");
 
+			clock_t start = clock();
 			// inicializar a leitura
 			yylex();
 	
@@ -224,7 +225,9 @@ int main(int argc, char* argv[]){
 			sprintf(CP1252toUTF8, "iconv -f cp1252 -t utf8 TEMP.json > \"%s\"", nome); 
 			system(CP1252toUTF8);
 			system("rm TEMP.json");
-
+			clock_t end = clock(); 
+			float seconds = (float)(end - start) / CLOCKS_PER_SEC; 
+			printf("Programa demorou: %fs\n", seconds);
 		}
 		else{
 			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
