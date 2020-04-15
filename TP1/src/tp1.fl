@@ -20,7 +20,7 @@ void printFieldNum(char* field, long num, int ultimo);
 /* Abreviaturas de ER */
 
 /* Gerais */
-space		[\ \t \n]
+space		[\ \t\r\n]
 decimal 	[0-9]
 alpha 		[a-zA-Z]
 
@@ -113,11 +113,11 @@ endParagraph	\<\/p\>
 <COMMENTEXT>{
 {endParagraph}		{fprintf(yyout, "\",\n"); yy_pop_state();}
 \"					{fprintf(yyout, "\\\"");}
-\n  				{fprintf(yyout, " ");}
+\n|\r  				{fprintf(yyout, " ");}
 .					{fprintf(yyout, "%s", yytext);}
 }
 
-<*>.|\n				{}
+<*>.|\n|\r				{}
 %%
 
 int yywrap()
@@ -145,7 +145,7 @@ void help(){
 	printf("**********************************HELP*******************************\n");
 
 }
-int contador = 0;
+
 void endComment(){
 	long nReplies = numberOfReplies(com);
 
