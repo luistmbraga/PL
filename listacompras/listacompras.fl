@@ -1,0 +1,11 @@
+%{
+%}
+%option noyywrap
+%%
+[,:()\n\r]          { return(yytext[0]); }
+[a-zA-Z]+           { yylval.txt = strdup(yytext); return(TEXTO); }
+[0-9]+              { yylval.it = atoi(yytext); return(INT);}
+[0-9]+\.[0-9]+      { yylval.flot = atof(yytext); return(FLOAT); }
+
+.                   { ; }
+%%
