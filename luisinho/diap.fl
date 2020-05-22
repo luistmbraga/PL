@@ -1,0 +1,68 @@
+
+
+%{
+
+#include <stdio.h>
+#include <string.h>
+
+%}
+
+%option noyywrap
+%option yylineno
+
+%x TIME CH BARRA
+
+%%
+
+<*>pag[1-9][0-9]*	            { yylval.nome = strdup(yytext);
+				      printf("%s\n", yylval.nome);
+				      BEGIN BARRA;
+            		      return NOME;}
+
+<*>PAGINICIAL\[              {return yytext[10];};
+
+<*>LISTA\[                   { return yytext[5]; };
+
+<*>\]                        { return yytext[0]; };
+
+<*>TITULO.+ 			{ yylval.atributo = strdup(yytext+7);
+            			printf("%s\n", yylval.atributo);
+            			return TITULO; };
+
+<*>AUDIO.+ 			{ yylval.atributo = strdup(yytext+6);
+                              printf("%s\n", yylval.atributo);
+            			return AUDIO; };
+
+<*>VIDEO.+ 			{ yylval.atributo = strdup(yytext+6);
+            			printf("%s\n", yylval.atributo);
+            			return VIDEO; };
+
+<*>IMAGEM.+ 			{ yylval.atributo = strdup(yytext+7);
+            			printf("%s\n", yylval.atributo);
+            			return IMAGEM; };
+
+<*>TEXTO.+                   { yylval.atributo = strdup(yytext+6);
+                              printf("%s\n", yylval.atributo);
+                              return TEXTO; };
+
+<*>PAGCREDITOS\[              {return yytext[11];};
+
+<*>\} 				{ return yytext[0]; };
+
+
+<BARRA>\/                     { BEGIN TIME;
+                              printf("%s\n", yytext);
+                              return yytext[0];}
+
+<TIME>tempo[1-9][0-9]*        { yylval.tempo = strdup(yytext+5);
+                              printf("%s\n", yylval.tempo);
+                              BEGIN CH;
+                              return TEMPO;}
+
+<TIME>final                  {BEGIN CH;
+                             return FINAL; }
+
+<CH>\{                        {return yytext[0];};
+
+
+%%
