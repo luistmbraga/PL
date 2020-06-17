@@ -1,0 +1,27 @@
+- talvez usar espaços múltiplos para separar portugues de ingles
+- guardar variavel antes de ':' 
+lógica:
+
+nome:
+qualquer -       portugues
+- qualquer       portugues
+outra
+
+depois de um ':' o próximo sem '-' já é outra palavra e pode-se deitar o array fora talvez
+
+- usar conhecimentos de SO para aumentar a velocidade de processamento ? (outras optimizações)
+- talvez gerar html com as traduções
+
+DicFinance : Capitulos
+
+Capitulos : Capitulos Capitulo
+
+Capitulo : Letra Definicoes
+
+Letra : CHAR
+
+Definicoes : Definicoes Definicao
+
+Definicao : Equivalente Equivalente
+          | Palavra ':' 
+
