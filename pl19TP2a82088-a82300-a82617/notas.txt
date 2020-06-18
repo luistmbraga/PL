@@ -25,3 +25,19 @@ Definicoes : Definicoes Definicao
 Definicao : Equivalente Equivalente
           | Palavra ':' 
 
+
+
+linha 384 -pay -> erro
+temos de obrigar a dar espaço em caso de substituição
+
+linha 672 sale sem -
+
+
+Regras:
+- o que vier depois de coisas do tipo "def:" tem de
+        - ter um espaço antes ou um ou dois tabs
+        - se o "-" estiver junto da palavra então é erro exemplo: "-pay" (se que excluir simbolos)
+
+- inicio de um capitulo tem apenas uma letra maiuscula ou minuscula
+- no caso de traducoes multi linha temos varios tabs em vez espaços
+- no caso de originais multi linha temos o original seguido de "\n"
