@@ -18,4 +18,14 @@ lex.yy.c :  $(lfile) y.tab.h
 
 dot:
 	yacc -g $(yfile)
-	dot -Tpdf y.dot > automato.pdf
+	dot -Tpdf y.dot > automato.pdf 
+
+clean: 
+	rm lex.yy.c 
+	rm lex.yy.o 
+	rm y.tab.c 
+	rm y.tab.h 
+	rm y.tab.o 
+	rm y.dot 
+	rm automato.pdf 
+	rm tp2
