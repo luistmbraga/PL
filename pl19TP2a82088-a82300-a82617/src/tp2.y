@@ -22,6 +22,8 @@ void erroSem(char*);
 %type <svalue> Original
 %type <svalue> Significado
 %type <cvalue> Letra
+%type <svalue> TraducaoSimples
+%type <svalue> TraducoesIncompletas
 %%
 
 DicFinance
@@ -42,13 +44,27 @@ Letra
     ;
 
 Traducoes
-    : Traducoes Traducao
+    : Original { printf("Original - %s    ", $1); } Traducao Traducoes 
     |
     ;
-         
 
 Traducao
-    : Original Significado { printf("%s -> %s\n", $1, $2); }
+    : TraducaoSimples       { printf("Trad Simples - %s\n", $1);    }
+    | ':' TraducaoComplexa
+    ;
+
+TraducaoSimples
+    : Significado { $$ = $1; }
+    ;
+
+TraducaoComplexa
+    : Significado TraducoesIncompletas
+    | TraducoesIncompletas
+    ;
+
+TraducoesIncompletas
+    : TraducoesIncompletas ' ' Original TraducaoSimples { $$ = strcat($3, $4); }
+    | ' ' Original TraducaoSimples  { printf("Trad Comp 1 - %s     traducoes -   %s\n", $2, $3); }
     ;
 
 Original
@@ -56,9 +72,9 @@ Original
     ;
 
 Significado
-    : Significado ';' PALAVRAS  { $$ = $3; }
-    | Significado ',' PALAVRAS  { $$ = $3; }
-    | PALAVRAS
+    : Significado ';' PALAVRAS  { $$ = strcat($1, $3); }
+    | Significado ',' PALAVRAS  { $$ = strcat($1, $3); }
+    | PALAVRAS  { $$ = $1; }
     ;
 
 %%
