@@ -3,15 +3,22 @@
 %}
 
 %option yylineno
-%%
 
-[\n\r\ ]    ;
+acentos    \xc3[\x80-\xbf]       
+letra      [a-zA-Z\(\)]|{acentos}      
+
+%%
 
 [A-Za-z]    { yylval.cvalue = *yytext; return CHAR; }
 
-[a-zA-Z]+(\ [a-zA-Z\(\)]+\n)* { yylval.svalue = strdup(yytext); return PALAVRAS; }
+[,;]        return *yytext;
+
+{letra}+(\ \n*\t*{letra}+)*  { yylval.svalue = strdup(yytext); return PALAVRAS; }
+
 
 \ + ;
+
+
 
 .   return ERRO;
 

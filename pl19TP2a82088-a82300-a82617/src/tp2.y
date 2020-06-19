@@ -56,7 +56,9 @@ Original
     ;
 
 Significado
-    : PALAVRAS  { $$ = $1; } 
+    : Significado ';' PALAVRAS  { $$ = $3; }
+    | Significado ',' PALAVRAS  { $$ = $3; }
+    | PALAVRAS
     ;
 
 %%
