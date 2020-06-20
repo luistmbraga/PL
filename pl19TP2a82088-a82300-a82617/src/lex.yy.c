@@ -631,10 +631,16 @@ char *yytext;
 
 void strip_linebreak(char* str);
 void strip_extra_spaces(char* str);
+void push(char);
+int pop();
+int find_top();
+int checkParentesis(char * a);
 
+int top = -1;
+char stack[100];
 int beginread = 0;
-#line 637 "lex.yy.c"
-#line 638 "lex.yy.c"
+#line 643 "lex.yy.c"
+#line 644 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -860,10 +866,10 @@ YY_DECL
 		}
 
 	{
-#line 19 "tp2.l"
+#line 25 "tp2.l"
 
 
-#line 867 "lex.yy.c"
+#line 873 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -956,70 +962,70 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 21 "tp2.l"
+#line 27 "tp2.l"
 { beginread = 1; }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 23 "tp2.l"
+#line 29 "tp2.l"
 { if(beginread) {yylval.cvalue = *yytext; return CHAR; } }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 25 "tp2.l"
+#line 31 "tp2.l"
 ;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "tp2.l"
+#line 33 "tp2.l"
 { if(beginread){return *yytext;} } 
 	YY_BREAK
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 29 "tp2.l"
-{ if(beginread){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
+#line 35 "tp2.l"
+{ if(beginread && checkParentesis(yytext) ){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 31 "tp2.l"
+#line 37 "tp2.l"
 ;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 33 "tp2.l"
+#line 39 "tp2.l"
 { if(beginread){ yylval.svalue = strdup(yytext); return PALAVRAS;} }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 35 "tp2.l"
+#line 41 "tp2.l"
 { if(beginread){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "tp2.l"
+#line 44 "tp2.l"
 { if(beginread){ yylval.svalue = strdup(yytext); return PALAVRASINC; } }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 40 "tp2.l"
+#line 46 "tp2.l"
 ;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 43 "tp2.l"
+#line 49 "tp2.l"
 { if(beginread){  return ERRO; } }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 45 "tp2.l"
+#line 51 "tp2.l"
 ECHO;
 	YY_BREAK
-#line 1023 "lex.yy.c"
+#line 1029 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -2011,7 +2017,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 45 "tp2.l"
+#line 51 "tp2.l"
 
 
 void strip_linebreak(char* str) {
@@ -2033,4 +2039,93 @@ void strip_extra_spaces(char* str) {
   str[x] = '\0';
 }
 
+int checkParentesis(char * a){
+    int i;
 
+    int result = 1;
+    
+	
+	for (i = 0; a[i] != '\0';i++)
+
+	{
+
+		if (a[i] == '(')
+
+		{
+
+			push(a[i]);
+
+		}
+
+		else if (a[i] == ')')
+
+		{
+
+			result = pop();
+
+		}
+
+	}
+
+
+    if(result)
+	    result = find_top();
+	
+	return result;
+}
+
+// to push elements in stack
+
+void push(char a)
+
+{
+
+	stack[top] = a;
+
+	top++;
+
+}
+
+ 
+
+// to pop elements from stack
+
+int pop()
+
+{
+
+	if (top == -1)
+
+	{
+
+		return 0;
+
+	}	
+
+	else
+
+	{		
+
+		top--;
+
+	}
+
+}
+
+ 
+
+// to find top element of stack
+
+int find_top()
+
+{
+
+	if (top == -1)
+
+		return 1;
+
+	else
+
+		return 0;
+
+}

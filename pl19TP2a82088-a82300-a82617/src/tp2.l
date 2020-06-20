@@ -5,8 +5,16 @@
 
 void strip_linebreak(char* str);
 void strip_extra_spaces(char* str);
+void push(char);
+int pop();
+int find_top();
+int checkParentesis(char * a);
 
+int top = -1;
+char stack[100];
 int beginread = 0;
+int parentesisok = 1;
+char parentesis
 %}
 
 %option yylineno
@@ -20,22 +28,22 @@ palavrasinc ((\ {0,1}{letra}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 (?i:__BEGIN__)       { beginread = 1; }
 
-[A-Za-z]\ *[\r\n]+    { if(beginread) {yylval.cvalue = *yytext; return CHAR; } }
+[A-Za-z]\ *[\r\n]+    { if(beginread && parentesisok) {yylval.cvalue = *yytext; return CHAR; } }
 
 [\r\n] ;
 
-[,;:]       { if(beginread){return *yytext;} } 
+[,;:]       { if(beginread && parentesisok){return *yytext;} } 
 
-^{palavras}((\r\n)\ {1,2}{palavras})* { if(beginread){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
+^{palavras}((\r\n)\ {1,2}{palavras})* { if(beginread && parentesisok && checkParentesis(yytext) ){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
 
 ^{palavras}\:(\r\n)+/{palavras}  ;
 
-{palavras}  { if(beginread){ yylval.svalue = strdup(yytext); return PALAVRAS;} }
+{palavras}  { if(beginread && parentesisok){ yylval.svalue = strdup(yytext); return PALAVRAS;} }
 
-{palavras}([\r\n]+[\ \t]{8,}{palavras})+  { if(beginread){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
+{palavras}([\r\n]+[\ \t]{8,}{palavras})+  { if(beginread && parentesisok){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
 
 
-^\ {1,4}{palavrasinc} { if(beginread){ yylval.svalue = strdup(yytext); return PALAVRASINC; } }
+^\ {1,4}{palavrasinc} { if(beginread && parentesisok){ yylval.svalue = strdup(yytext); return PALAVRASINC; } }
 
 \ + ;
 
@@ -63,3 +71,93 @@ void strip_extra_spaces(char* str) {
   str[x] = '\0';
 }
 
+int checkParentesis(char * a){
+    int i;
+
+    int result = 1;
+    
+	
+	for (i = 0; a[i] != '\0';i++)
+
+	{
+
+		if (a[i] == '(')
+
+		{
+
+			push(a[i]);
+
+		}
+
+		else if (a[i] == ')')
+
+		{
+
+			result = pop();
+
+		}
+
+	}
+
+
+    if(result)
+	    result = find_top();
+	
+	return result;
+}
+
+// to push elements in stack
+
+void push(char a)
+
+{
+
+	stack[top] = a;
+
+	top++;
+
+}
+
+ 
+
+// to pop elements from stack
+
+int pop()
+
+{
+
+	if (top == -1)
+
+	{
+
+		return 0;
+
+	}	
+
+	else
+
+	{		
+
+		top--;
+
+	}
+
+}
+
+ 
+
+// to find top element of stack
+
+int find_top()
+
+{
+
+	if (top == -1)
+
+		return 1;
+
+	else
+
+		return 0;
+
+}
