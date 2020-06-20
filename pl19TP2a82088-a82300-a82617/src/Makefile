@@ -11,7 +11,7 @@ lex.yy.o : lex.yy.c
 	gcc -c lex.yy.c
 
 y.tab.c y.tab.h : $(yfile)
-	yacc -d $(yfile)
+	yacc -d -v $(yfile)
 
 lex.yy.c :  $(lfile) y.tab.h
 	flex $(lfile)

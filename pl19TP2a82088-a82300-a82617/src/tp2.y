@@ -5,6 +5,7 @@
 extern int yylex();
 extern int yylineno;
 extern char* yytext;
+extern int yy_flex_debug;
 
 void yyerror();
 void erroSem(char*);
@@ -17,13 +18,16 @@ void erroSem(char*);
 
 %token ERRO
 %token <svalue> PALAVRAS
+%token <svalue> PALAVRASINC
 %token <cvalue> CHAR
 %token <svalue> BEGI
 %type <svalue> Original
 %type <svalue> Significado
+%type <svalue> OriginalIncompleto
 %type <cvalue> Letra
 %type <svalue> TraducaoSimples
 %type <svalue> TraducoesIncompletas
+%type <svalue> TraducaoIncompleta
 %%
 
 DicFinance
@@ -50,7 +54,7 @@ Traducoes
 
 Traducao
     : TraducaoSimples       { printf("Trad Simples - %s\n", $1);    }
-    | ':' TraducaoComplexa
+    | ':' TraducaoComplexa  { printf("Trad Complex"); }
     ;
 
 TraducaoSimples
@@ -58,13 +62,21 @@ TraducaoSimples
     ;
 
 TraducaoComplexa
-    : Significado TraducoesIncompletas
-    | TraducoesIncompletas
+    : Significado TraducoesIncompletas   { printf("Trad Inc %s    %s\n", $1, $2); }
+    | TraducoesIncompletas               { printf("Trad Inc     %s\n", $1); }
     ;
 
 TraducoesIncompletas
-    : TraducoesIncompletas ' ' Original TraducaoSimples { $$ = strcat($3, $4); }
-    | ' ' Original TraducaoSimples  { printf("Trad Comp 1 - %s     traducoes -   %s\n", $2, $3); }
+    : TraducoesIncompletas TraducaoIncompleta { $$ = strcat($1, $2); }
+    | TraducaoIncompleta                      { $$ = $1; }
+    ;
+
+TraducaoIncompleta
+    : OriginalIncompleto Significado  { $$ = strcat($1, $2); }
+    ; 
+
+OriginalIncompleto
+    : PALAVRASINC      { $$ = $1; }
     ;
 
 Original
@@ -79,6 +91,7 @@ Significado
 
 %%
 int main(){
+    yy_flex_debug = 1;
     yyparse();
     return 0;
 }
