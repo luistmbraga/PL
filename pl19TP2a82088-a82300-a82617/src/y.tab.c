@@ -1263,80 +1263,74 @@ yyreduce:
 #line 1264 "y.tab.c" /* yacc.c:1646  */
     break;
 
-  case 12:
-#line 57 "tp2.y" /* yacc.c:1646  */
-    { printf("Trad Complex"); }
-#line 1270 "y.tab.c" /* yacc.c:1646  */
-    break;
-
   case 13:
 #line 61 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1276 "y.tab.c" /* yacc.c:1646  */
+#line 1270 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 65 "tp2.y" /* yacc.c:1646  */
     { printf("Trad Inc %s    %s\n", (yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1282 "y.tab.c" /* yacc.c:1646  */
+#line 1276 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
 #line 66 "tp2.y" /* yacc.c:1646  */
     { printf("Trad Inc     %s\n", (yyvsp[0].svalue)); }
-#line 1288 "y.tab.c" /* yacc.c:1646  */
+#line 1282 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 70 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = strcat((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1294 "y.tab.c" /* yacc.c:1646  */
+#line 1288 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 71 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1300 "y.tab.c" /* yacc.c:1646  */
+#line 1294 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 75 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = strcat((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1306 "y.tab.c" /* yacc.c:1646  */
+#line 1300 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 79 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1312 "y.tab.c" /* yacc.c:1646  */
+#line 1306 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 83 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1318 "y.tab.c" /* yacc.c:1646  */
+#line 1312 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 87 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = strcat((yyvsp[-2].svalue), (yyvsp[0].svalue)); }
-#line 1324 "y.tab.c" /* yacc.c:1646  */
+#line 1318 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 88 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = strcat((yyvsp[-2].svalue), (yyvsp[0].svalue)); }
-#line 1330 "y.tab.c" /* yacc.c:1646  */
+#line 1324 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 89 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1336 "y.tab.c" /* yacc.c:1646  */
+#line 1330 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1340 "y.tab.c" /* yacc.c:1646  */
+#line 1334 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

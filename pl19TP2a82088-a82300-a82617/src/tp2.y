@@ -54,7 +54,7 @@ Traducoes
 
 Traducao
     : TraducaoSimples       { printf("Trad Simples - %s\n", $1);    }
-    | ':' TraducaoComplexa  { printf("Trad Complex"); }
+    | ':' TraducaoComplexa  
     ;
 
 TraducaoSimples

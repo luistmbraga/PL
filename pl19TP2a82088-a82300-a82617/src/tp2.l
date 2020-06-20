@@ -7,7 +7,7 @@
 acentos    \xc3[\x80-\xbf]       
 letra      [a-zA-Z\(\)-]|{acentos}
 palavras   {letra}{1,}(\ {letra}{1,})*
-palavrasinc ((\ {0,7}{letra}{1,})|(\ {0,7}(\-(\ {1,2}))))*
+palavrasinc ((\ {0,2}{letra}{1,})|(\ {0,2}(\-(\ {1,2}))))*
 
 %%
 
@@ -23,10 +23,10 @@ palavrasinc ((\ {0,7}{letra}{1,})|(\ {0,7}(\-(\ {1,2}))))*
 
 {palavras}  { yylval.svalue = strdup(yytext); return PALAVRAS; }
 
-{palavras}([\r\n]+[\ \t]{3,}{palavras})+  { yylval.svalue = strdup(yytext); return PALAVRAS; }
+{palavras}([\r\n]+[\ \t]{8,}{palavras})+  { yylval.svalue = strdup(yytext); return PALAVRAS; }
 
 
-^\ {palavrasinc} { yylval.svalue = strdup(yytext); return PALAVRASINC; }
+^\ {1,4}{palavrasinc} { yylval.svalue = strdup(yytext); return PALAVRASINC; }
 
 \ + ;
 
