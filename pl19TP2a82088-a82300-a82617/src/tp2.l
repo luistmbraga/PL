@@ -14,7 +14,7 @@ int top = -1;
 char stack[100];
 int beginread = 0;
 int parentesisok = 1;
-char parentesis
+char parentesis[500];
 %}
 
 %option yylineno
