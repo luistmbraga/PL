@@ -9,6 +9,8 @@ void push(char);
 int pop();
 int find_top();
 int checkParentesis(char * a);
+void initParentesis();
+void initStack();
 
 int top = -1;
 char stack[100];
@@ -28,22 +30,78 @@ palavrasinc ((\ {0,1}{letra}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 (?i:__BEGIN__)       { beginread = 1; }
 
-[A-Za-z]\ *[\r\n]+    { if(beginread && parentesisok) {yylval.cvalue = *yytext; return CHAR; } }
+[A-Za-z]\ *[\r\n]+    { 
+						if(beginread){
+							if(parentesisok){
+								yylval.cvalue = *yytext; 
+								return CHAR; 
+							}
+						}
+					  }
 
 [\r\n] ;
 
-[,;:]       { if(beginread && parentesisok){return *yytext;} } 
+[,;:]       { 
+				if(beginread && parentesisok){
+					return *yytext;
+				} 
+			} 
 
-^{palavras}((\r\n)\ {1,2}{palavras})* { if(beginread && parentesisok && checkParentesis(yytext) ){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
+^{palavras}((\r\n)\ {1,2}{palavras})* { 
+										if(beginread){
+											if(parentesisok){
+												if(checkParentesis(yytext) ){ 
+													strip_linebreak(yytext); 
+													strip_extra_spaces(yytext);
+													yylval.svalue = strdup(yytext); 
+													return PALAVRAS; 
+												}
+												else{
+													strncpy(parentesis, yytext, yyleng);
+													printf("%s\n", parentesis);
+												}
+											}
+											else{
+												strncat(parentesis, yytext, yyleng);
+												printf("%s ", parentesis);
+												printf("valor check: %d\n", checkParentesis(parentesis));
+											}
+
+										}
+									  }
 
 ^{palavras}\:(\r\n)+/{palavras}  ;
 
-{palavras}  { if(beginread && parentesisok){ yylval.svalue = strdup(yytext); return PALAVRAS;} }
+{palavras}  { 
+				if(beginread){
+					if(parentesisok){ 
+						yylval.svalue = strdup(yytext); 
+						return PALAVRAS;
+					} 
+				}
+			}
 
-{palavras}([\r\n]+[\ \t]{8,}{palavras})+  { if(beginread && parentesisok){ strip_linebreak(yytext); strip_extra_spaces(yytext); yylval.svalue = strdup(yytext); return PALAVRAS; } }
+{palavras}([\r\n]+[\ \t]{8,}{palavras})+  { 
+											if(beginread){
+												if(parentesisok){ 
+													strip_linebreak(yytext); 
+													strip_extra_spaces(yytext); 
+													yylval.svalue = strdup(yytext); return PALAVRAS; 
+												} 
+											}
+									
+										  }
 
 
-^\ {1,4}{palavrasinc} { if(beginread && parentesisok){ yylval.svalue = strdup(yytext); return PALAVRASINC; } }
+^\ {1,4}{palavrasinc}([\r\n]+[\ \t]{1,4}{palavrasinc})*  { 
+															if(beginread){
+																if(parentesisok){ 
+																	yylval.svalue = strdup(yytext); 
+																	return PALAVRASINC; 
+																}
+															}
+														}
+
 
 \ + ;
 
@@ -71,38 +129,44 @@ void strip_extra_spaces(char* str) {
   str[x] = '\0';
 }
 
+void initParentesis(){
+	for(int j = 0; j < 500; j++)
+		parentesis[j] = 0;
+}
+
+void initStack(){
+	for(int j = 0; j < 100; j++)
+		stack[j] = 0;
+}
+
 int checkParentesis(char * a){
+
+	initStack();
+
     int i;
 
     int result = 1;
     
-	
 	for (i = 0; a[i] != '\0';i++)
-
 	{
-
 		if (a[i] == '(')
-
 		{
-
 			push(a[i]);
-
 		}
-
 		else if (a[i] == ')')
-
 		{
-
 			result = pop();
-
 		}
-
 	}
-
-
     if(result)
 	    result = find_top();
 	
+	parentesisok = result;
+
+	if(result) initParentesis();
+
+	top = -1;
+
 	return result;
 }
 
@@ -122,42 +186,26 @@ void push(char a)
 
 // to pop elements from stack
 
-int pop()
-
-{
-
+int pop(){
 	if (top == -1)
-
 	{
-
 		return 0;
-
 	}	
-
 	else
-
 	{		
-
 		top--;
-
 	}
-
 }
 
  
 
 // to find top element of stack
 
-int find_top()
-
-{
-
-	if (top == -1)
-
+int find_top(){
+	if (top == -1){
 		return 1;
-
-	else
-
+	}
+	else{
 		return 0;
-
+	}
 }
