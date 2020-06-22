@@ -84,9 +84,7 @@ Original
     ;
 
 Significado
-    : Significado ';' PALAVRAS  { $$ = strcat($1, $3); }
-    | Significado ',' PALAVRAS  { $$ = strcat($1, $3); }
-    | PALAVRAS  { $$ = $1; }
+    : PALAVRAS  { $$ = $1; }
     ;
 
 %%
@@ -103,5 +101,5 @@ void erroSem(char *s){
 
 void yyerror(){
     printf("Erro Sintático ou Léxico na linha: %d, com o texto: %s\n", yylineno, yytext);
-    yyparse();
+    //yyparse();
 }

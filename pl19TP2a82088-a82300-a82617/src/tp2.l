@@ -16,19 +16,24 @@ int top = -1;
 char stack[100];
 int beginread = 0;
 int parentesisok = 1;
+int skipline = 0;
+int skipcomposto = 0;
 char parentesis[500];
 %}
 
 %option yylineno
 
-acentos    \xc3[\x80-\xbf]       
-letra      [a-zA-Z\(\)-\/'0-9]|{acentos}
-palavras   {letra}{1,}(\ {letra}{1,})*
-palavrasinc ((\ {0,1}{letra}{1,})|(\ {0,2}(\-(\ {0,1}))))*
+acentos    \xc3[\x80-\xbf]
+hifen1     {letra}\-(\ )?({letra}|[\r\n]+)
+hifen2     {letra}(\ )?\-{letra}
+letra      [a-zA-Z\(\)\+\/'0-9,;\.\_]|{acentos}
+letras     {letra}|{hifen1}|{hifen2}
+palavras   {letras}{1,}(\ {letras}{1,})*
+palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 %%
 
-(?i:__BEGIN__)       { beginread = 1; }
+(__BEGIN__)       { beginread = 1; }               
 
 [A-Za-z]\ *[\r\n]+    { 
 						if(beginread){
@@ -41,19 +46,36 @@ palavrasinc ((\ {0,1}{letra}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 [\r\n] ;
 
-[,;:]       { 
+[:]         { 
 				if(beginread && parentesisok){
+                    skipcomposto = 1;
 					return *yytext;
 				} 
 			} 
 
-^{palavras}((\r\n)\ {1,2}{palavras})* { 
+^{palavras}[\r\n]+/\ {1,2}{palavras}{palavrasinc} ;
+
+{palavras}\-/[\r\n]+\ {1,4}{palavrasinc}   {
+												if(beginread){
+													if(parentesisok){ 
+														if(!skipline){
+															skipline = 1;
+															yylval.svalue = strdup(yytext); 
+															return PALAVRAS;
+														}
+													} 
+												}
+										   }
+
+^{palavras}([\r\n]+\ {1,2}{palavras})* { 
 										if(beginread){
 											if(parentesisok){
 												if(checkParentesis(yytext) ){ 
 													strip_linebreak(yytext); 
 													strip_extra_spaces(yytext);
 													yylval.svalue = strdup(yytext); 
+													skipcomposto = 0;
+													skipline = 0;
 													return PALAVRAS; 
 												}
 												else{
@@ -72,11 +94,16 @@ palavrasinc ((\ {0,1}{letra}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 ^{palavras}\:(\r\n)+/{palavras}  ;
 
-{palavras}  { 
+
+
+{palavras} { 
 				if(beginread){
 					if(parentesisok){ 
-						yylval.svalue = strdup(yytext); 
-						return PALAVRAS;
+						if(!skipline){
+							skipline = 1;
+							yylval.svalue = strdup(yytext); 
+							return PALAVRAS;
+						}
 					} 
 				}
 			}
@@ -84,23 +111,43 @@ palavrasinc ((\ {0,1}{letra}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 {palavras}([\r\n]+[\ \t]{8,}{palavras})+  { 
 											if(beginread){
 												if(parentesisok){ 
-													strip_linebreak(yytext); 
-													strip_extra_spaces(yytext); 
-													yylval.svalue = strdup(yytext); return PALAVRAS; 
+													if(!skipline){
+														skipline = 1;
+														strip_linebreak(yytext); 
+														strip_extra_spaces(yytext); 
+														yylval.svalue = strdup(yytext); return PALAVRAS; 
+													}
 												} 
 											}
 									
 										  }
 
 
-^\ {1,4}{palavrasinc}([\r\n]+[\ \t]{1,4}{palavrasinc})*  { 
+^\ {1,4}{palavrasinc}([\r\n]+\ {1,4}{palavrasinc})*  { 
 															if(beginread){
-																if(parentesisok){ 
-																	yylval.svalue = strdup(yytext); 
-																	return PALAVRASINC; 
+																if(parentesisok){
+																	if(skipcomposto){ 
+																		skipline = 0;
+																		yylval.svalue = strdup(yytext); 
+																		return PALAVRASINC; 
+																	}
+																	else
+																		skipline = 1;
 																}
 															}
 														}
+
+{palavrasinc}                   {
+									if(beginread && parentesisok){
+										skipline = 1;
+									}
+								}
+
+^\ {1,4}{palavrasinc}[\r\n]+/{palavras}    ;
+
+\ {palavras}[\r\n]+       ;
+
+^{palavras}(\r\n)+     ;
 
 
 \ + ;
@@ -161,6 +208,8 @@ int checkParentesis(char * a){
     if(result)
 	    result = find_top();
 	
+	result = 1;
+
 	parentesisok = result;
 
 	if(result) initParentesis();
