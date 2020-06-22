@@ -1,11 +1,15 @@
 %{
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h> 
+#include <unistd.h>
 
 extern int yylex();
 extern int yylineno;
 extern char* yytext;
 extern int yy_flex_debug;
+extern FILE *yyin;
 
 void yyerror();
 void erroSem(char*);
@@ -15,8 +19,10 @@ int findSep(char * sig, char sep);
 char *replaceWord(const char *s, const char *oldW, 
 								const char *newW);
 void printTradIncompleto(char* orig, char* sig);
+void help();
 
 char* originalstr;
+FILE *yyout;
 %}
 
 %union{
@@ -28,14 +34,10 @@ char* originalstr;
 %token <svalue> PALAVRAS
 %token <svalue> PALAVRASINC
 %token <cvalue> CHAR
-%token <svalue> BEGI
 %type <svalue> Original
 %type <svalue> Significado
 %type <svalue> OriginalIncompleto
 %type <cvalue> Letra
-%type <svalue> TraducaoSimples
-%type <svalue> TraducoesIncompletas
-%type <svalue> TraducaoIncompleta
 %%
 
 DicFinance
@@ -48,7 +50,7 @@ Capitulos
     ;
 
 Capitulo
-    : Letra { printf("%c\n\n", $1); } Traducoes
+    : Letra { fprintf(yyout, "%c\n\n", $1); } Traducoes
     ;
 
 Letra
@@ -96,22 +98,88 @@ Significado
     ;
 
 %%
-int main(){
-    yy_flex_debug = 1;
-    yyparse();
-    return 0;
+int main(int argc, char* argv[]){
+
+    if(argc < 2){
+		help();
+		return 0;
+	}
+	
+	if(access(argv[1], F_OK) != -1){
+
+		if(access(argv[1], R_OK) != -1){
+
+            int len = strlen(argv[1]);
+
+			// definir nome do ficheiro final
+			char* nome = (char *) malloc(9 + len + 1);
+			
+            strcpy(nome, argv[1]);
+            nome[len-4] = '\0';
+
+			strcat(nome, "Saida.txt");
+
+            yyout = fopen(nome, "w");
+			
+			// abrir o ficheiro a ler
+			yyin = fopen(argv[1], "r");
+
+			clock_t start = clock();
+            
+			// inicializar a leitura
+            //yy_flex_debug = 1;
+            yyparse();
+
+			fclose(yyin);
+			fclose(yyout);
+			
+			
+			clock_t end = clock(); 
+			float seconds = (float)(end - start) / CLOCKS_PER_SEC; 
+			printf("Programa demorou: %fs\n", seconds);
+            free(nome);
+		}
+		else{
+			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
+		}
+	}
+	else{
+		printf("O ficheiro dado como argumento não existe !\n");
+	}
+
+	return 0;
+    
 }
 
-void erroSem(char *s){
-    printf("Erro Semântico na linha: %d: %s\n", yylineno, s);
+
+void help(){
+
+	printf("\n");
+	printf("****************************Reverse Engineering dum Dicionario Financeiro**************************\n");
+	printf("**                                                                                               **\n");
+	printf("**                                                                                               **\n");
+	printf("***********************************************HELP************************************************\n");
+	printf("**                                                                                               **\n");
+	printf("**    Utilização:                                                                                **\n");
+	printf("**                 1- make                                                                       **\n");
+	printf("**                 2- ./tp2 [nome do ficheiro a processar]                                       **\n");
+	printf("**                                                                                               **\n");
+	printf("**    Notas:                                                                                     **\n");
+	printf("**    O ficheiro resultante vai para a mesma pasta com o mesmo                                   **\n");
+	printf("**       nome do original, apenas com a modificação de ter                                       **\n");
+	printf("**       \"JSON.txt\" no final.                                                                **\n");
+	printf("**                                                                                               **\n");
+	printf("***********************************************HELP************************************************\n");
+
 }
+
 
 void yyerror(){
     printf("Erro Sintático ou Léxico na linha: %d, com o texto: %s\n", yylineno, yytext);
 }
 
 void printTradSimples(char* sig){
-    printf("EN %s\n", originalstr);
+    fprintf(yyout, "EN %s\n", originalstr);
 
     if(findSep(sig, ','))
         splitSignificado(sig, ",");
@@ -130,8 +198,8 @@ void printTradIncompleto(char* orig, char* sig){
 
     result = replaceWord(orig, " - ", comespacos);
 
-    printf("EN %s\n", result);
-    printf("+base %s\n", originalstr);
+    fprintf(yyout, "EN %s\n", result);
+    fprintf(yyout, "+base %s\n", originalstr);
 
     free(result);
     free(comespacos);
@@ -147,10 +215,10 @@ void splitSignificado(char* sig, char* simb){
    char * token = strtok(sig, simb);
    
    while( token != NULL ) {
-      printf( "PT %s\n", token );
+      fprintf(yyout, "PT %s\n", token );
       token = strtok(NULL, simb);
    }
-   printf("\n");
+   fprintf(yyout, "%s", "\n");
 }
 
 int findSep(char * sig, char sep){

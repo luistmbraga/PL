@@ -1,0 +1,106 @@
+ERRO NA LINHA: 139
+COM O TEXTO: accountant:
+
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 544
+COM O TEXTO: measurement)
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 675
+COM O TEXTO:  (CWM)
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 931
+COM O TEXTO: corporate:
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 945
+COM O TEXTO:  salary progression -
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 994
+COM O TEXTO: declared
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 1190
+COM O TEXTO: munity)
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 1643
+COM O TEXTO: management)
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 1991
+COM O TEXTO: MIS (management information
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 1993
+COM O TEXTO: MRA (multiple regression
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 2335
+COM O TEXTO: O and M (organisation and
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 2412
+COM O TEXTO: organisation
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 2493
+COM O TEXTO: _sec:part_ part-analysis training     treinamento (m) e avaliação de funções
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 2903
+COM O TEXTO:  development
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 3293
+COM O TEXTO:  staff:
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 3391
+COM O TEXTO:  structuring:
+
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 3394
+COM O TEXTO:  study:
+
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 3395
+COM O TEXTO:   case:                   estudo (m) de      caso
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 3687
+COM O TEXTO: variance
+
+CODIGO DE ERRO: 1
+
+ERRO NA LINHA: 3714
+COM O TEXTO:  sales -
+
+
+
+
+CODIGO DE ERRO: 1
+

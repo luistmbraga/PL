@@ -66,11 +66,15 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h> 
+#include <unistd.h>
 
 extern int yylex();
 extern int yylineno;
 extern char* yytext;
 extern int yy_flex_debug;
+extern FILE *yyin;
 
 void yyerror();
 void erroSem(char*);
@@ -80,10 +84,12 @@ int findSep(char * sig, char sep);
 char *replaceWord(const char *s, const char *oldW, 
 								const char *newW);
 void printTradIncompleto(char* orig, char* sig);
+void help();
 
 char* originalstr;
+FILE *yyout;
 
-#line 87 "y.tab.c" /* yacc.c:339  */
+#line 93 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -121,8 +127,7 @@ extern int yydebug;
     ERRO = 258,
     PALAVRAS = 259,
     PALAVRASINC = 260,
-    CHAR = 261,
-    BEGI = 262
+    CHAR = 261
   };
 #endif
 /* Tokens.  */
@@ -130,19 +135,18 @@ extern int yydebug;
 #define PALAVRAS 259
 #define PALAVRASINC 260
 #define CHAR 261
-#define BEGI 262
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 22 "tp2.y" /* yacc.c:355  */
+#line 28 "tp2.y" /* yacc.c:355  */
 
     char* svalue;
     char cvalue;
 
-#line 146 "y.tab.c" /* yacc.c:355  */
+#line 150 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -159,7 +163,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 163 "y.tab.c" /* yacc.c:358  */
+#line 167 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -404,7 +408,7 @@ union yyalloc
 #define YYLAST   14
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  9
+#define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  16
 /* YYNRULES -- Number of rules.  */
@@ -415,7 +419,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   262
+#define YYMAXUTOK   261
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -429,7 +433,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     8,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     7,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -450,16 +454,16 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7
+       5,     6
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    42,    42,    46,    47,    51,    51,    55,    59,    59,
-      60,    64,    65,    69,    73,    74,    78,    79,    83,    87,
-      91,    95
+       0,    44,    44,    48,    49,    53,    53,    57,    61,    61,
+      62,    66,    67,    71,    75,    76,    80,    81,    85,    89,
+      93,    97
 };
 #endif
 
@@ -469,8 +473,8 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "ERRO", "PALAVRAS", "PALAVRASINC",
-  "CHAR", "BEGI", "':'", "$accept", "DicFinance", "Capitulos", "Capitulo",
-  "$@1", "Letra", "Traducoes", "$@2", "Traducao", "TraducaoSimples",
+  "CHAR", "':'", "$accept", "DicFinance", "Capitulos", "Capitulo", "$@1",
+  "Letra", "Traducoes", "$@2", "Traducao", "TraducaoSimples",
   "TraducaoComplexa", "TraducoesIncompletas", "TraducaoIncompleta",
   "OriginalIncompleto", "Original", "Significado", YY_NULLPTR
 };
@@ -481,7 +485,7 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260,   261,   262,    58
+       0,   256,   257,   258,   259,   260,   261,    58
 };
 # endif
 
@@ -499,9 +503,9 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -18,     6,     1,   -18,   -18,   -18,   -18,     7,   -18,   -18,
-     -18,    -3,   -18,    -1,     7,   -18,   -18,   -18,   -18,     5,
-     -18,     8,     5,   -18,   -18,   -18,     5
+     -18,     3,     4,   -18,   -18,   -18,   -18,     7,   -18,   -18,
+     -18,    -3,   -18,     1,     7,   -18,   -18,   -18,   -18,     2,
+     -18,     8,     2,   -18,   -18,   -18,     2
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -517,8 +521,8 @@ static const yytype_uint8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -18,   -18,   -18,   -18,   -18,   -18,     0,   -18,   -18,   -18,
-     -18,    -9,   -17,   -18,   -18,   -13
+     -18,   -18,   -18,   -18,   -18,   -18,    -1,   -18,   -18,   -18,
+     -18,    -8,   -17,   -18,   -18,   -13
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -533,31 +537,31 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      22,    12,    24,    12,    17,    13,     3,     4,    25,    24,
-      17,     8,    12,    26,    23
+      22,    12,    24,     3,    13,    12,    17,    17,    25,    24,
+       4,     8,    12,    23,    26
 };
 
 static const yytype_uint8 yycheck[] =
 {
-      13,     4,    19,     4,     5,     8,     0,     6,    21,    26,
-       5,     4,     4,    22,    14
+      13,     4,    19,     0,     7,     4,     5,     5,    21,    26,
+       6,     4,     4,    14,    22
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    10,    11,     0,     6,    12,    14,    13,     4,    15,
-      23,    16,     4,     8,    17,    18,    24,     5,    19,    20,
-      21,    22,    24,    15,    21,    24,    20
+       0,     9,    10,     0,     6,    11,    13,    12,     4,    14,
+      22,    15,     4,     7,    16,    17,    23,     5,    18,    19,
+      20,    21,    23,    14,    20,    23,    19
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,     9,    10,    11,    11,    13,    12,    14,    16,    15,
-      15,    17,    17,    18,    19,    19,    20,    20,    21,    22,
-      23,    24
+       0,     8,     9,    10,    10,    12,    11,    13,    15,    14,
+      14,    16,    16,    17,    18,    18,    19,    19,    20,    21,
+      22,    23
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1242,55 +1246,55 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 51 "tp2.y" /* yacc.c:1646  */
-    { printf("%c\n\n", (yyvsp[0].cvalue)); }
-#line 1248 "y.tab.c" /* yacc.c:1646  */
+#line 53 "tp2.y" /* yacc.c:1646  */
+    { fprintf(yyout, "%c\n\n", (yyvsp[0].cvalue)); }
+#line 1252 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 55 "tp2.y" /* yacc.c:1646  */
+#line 57 "tp2.y" /* yacc.c:1646  */
     { (yyval.cvalue) = (yyvsp[0].cvalue);}
-#line 1254 "y.tab.c" /* yacc.c:1646  */
+#line 1258 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 59 "tp2.y" /* yacc.c:1646  */
+#line 61 "tp2.y" /* yacc.c:1646  */
     { originalstr = strdup((yyvsp[0].svalue)); }
-#line 1260 "y.tab.c" /* yacc.c:1646  */
+#line 1264 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 69 "tp2.y" /* yacc.c:1646  */
+#line 71 "tp2.y" /* yacc.c:1646  */
     { printTradSimples((yyvsp[0].svalue));  }
-#line 1266 "y.tab.c" /* yacc.c:1646  */
+#line 1270 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 83 "tp2.y" /* yacc.c:1646  */
+#line 85 "tp2.y" /* yacc.c:1646  */
     { printTradIncompleto((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1272 "y.tab.c" /* yacc.c:1646  */
+#line 1276 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 87 "tp2.y" /* yacc.c:1646  */
+#line 89 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1278 "y.tab.c" /* yacc.c:1646  */
+#line 1282 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 91 "tp2.y" /* yacc.c:1646  */
+#line 93 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1284 "y.tab.c" /* yacc.c:1646  */
+#line 1288 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 95 "tp2.y" /* yacc.c:1646  */
+#line 97 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1290 "y.tab.c" /* yacc.c:1646  */
+#line 1294 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1294 "y.tab.c" /* yacc.c:1646  */
+#line 1298 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1518,24 +1522,90 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 98 "tp2.y" /* yacc.c:1906  */
+#line 100 "tp2.y" /* yacc.c:1906  */
 
-int main(){
-    yy_flex_debug = 1;
-    yyparse();
-    return 0;
+int main(int argc, char* argv[]){
+
+    if(argc < 2){
+		help();
+		return 0;
+	}
+	
+	if(access(argv[1], F_OK) != -1){
+
+		if(access(argv[1], R_OK) != -1){
+
+            int len = strlen(argv[1]);
+
+			// definir nome do ficheiro final
+			char* nome = (char *) malloc(9 + len + 1);
+			
+            strcpy(nome, argv[1]);
+            nome[len-4] = '\0';
+
+			strcat(nome, "Saida.txt");
+
+            yyout = fopen(nome, "w");
+			
+			// abrir o ficheiro a ler
+			yyin = fopen(argv[1], "r");
+
+			clock_t start = clock();
+            
+			// inicializar a leitura
+            //yy_flex_debug = 1;
+            yyparse();
+
+			fclose(yyin);
+			fclose(yyout);
+			
+			
+			clock_t end = clock(); 
+			float seconds = (float)(end - start) / CLOCKS_PER_SEC; 
+			printf("Programa demorou: %fs\n", seconds);
+            free(nome);
+		}
+		else{
+			printf("Não possui permissão de leitura sobre o ficheiro fornecido!\n");
+		}
+	}
+	else{
+		printf("O ficheiro dado como argumento não existe !\n");
+	}
+
+	return 0;
+    
 }
 
-void erroSem(char *s){
-    printf("Erro Semântico na linha: %d: %s\n", yylineno, s);
+
+void help(){
+
+	printf("\n");
+	printf("****************************Reverse Engineering dum Dicionario Financeiro**************************\n");
+	printf("**                                                                                               **\n");
+	printf("**                                                                                               **\n");
+	printf("***********************************************HELP************************************************\n");
+	printf("**                                                                                               **\n");
+	printf("**    Utilização:                                                                                **\n");
+	printf("**                 1- make                                                                       **\n");
+	printf("**                 2- ./tp2 [nome do ficheiro a processar]                                       **\n");
+	printf("**                                                                                               **\n");
+	printf("**    Notas:                                                                                     **\n");
+	printf("**    O ficheiro resultante vai para a mesma pasta com o mesmo                                   **\n");
+	printf("**       nome do original, apenas com a modificação de ter                                       **\n");
+	printf("**       \"JSON.txt\" no final.                                                                **\n");
+	printf("**                                                                                               **\n");
+	printf("***********************************************HELP************************************************\n");
+
 }
+
 
 void yyerror(){
     printf("Erro Sintático ou Léxico na linha: %d, com o texto: %s\n", yylineno, yytext);
 }
 
 void printTradSimples(char* sig){
-    printf("EN %s\n", originalstr);
+    fprintf(yyout, "EN %s\n", originalstr);
 
     if(findSep(sig, ','))
         splitSignificado(sig, ",");
@@ -1554,8 +1624,8 @@ void printTradIncompleto(char* orig, char* sig){
 
     result = replaceWord(orig, " - ", comespacos);
 
-    printf("EN %s\n", result);
-    printf("+base %s\n", originalstr);
+    fprintf(yyout, "EN %s\n", result);
+    fprintf(yyout, "+base %s\n", originalstr);
 
     free(result);
     free(comespacos);
@@ -1571,10 +1641,10 @@ void splitSignificado(char* sig, char* simb){
    char * token = strtok(sig, simb);
    
    while( token != NULL ) {
-      printf( "PT %s\n", token );
+      fprintf(yyout, "PT %s\n", token );
       token = strtok(NULL, simb);
    }
-   printf("\n");
+   fprintf(yyout, "%s", "\n");
 }
 
 int findSep(char * sig, char sep){

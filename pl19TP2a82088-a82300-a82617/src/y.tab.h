@@ -48,8 +48,7 @@ extern int yydebug;
     ERRO = 258,
     PALAVRAS = 259,
     PALAVRASINC = 260,
-    CHAR = 261,
-    BEGI = 262
+    CHAR = 261
   };
 #endif
 /* Tokens.  */
@@ -57,19 +56,18 @@ extern int yydebug;
 #define PALAVRAS 259
 #define PALAVRASINC 260
 #define CHAR 261
-#define BEGI 262
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 22 "tp2.y" /* yacc.c:1909  */
+#line 28 "tp2.y" /* yacc.c:1909  */
 
     char* svalue;
     char cvalue;
 
-#line 73 "y.tab.h" /* yacc.c:1909  */
+#line 71 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

@@ -1,7 +1,6 @@
 Terminals unused in grammar
 
    ERRO
-   BEGI
 
 
 Grammar
@@ -53,42 +52,41 @@ ERRO (258)
 PALAVRAS (259) 19 20
 PALAVRASINC (260) 18
 CHAR (261) 6
-BEGI (262)
 
 
 Nonterminals, with rules where they appear
 
-$accept (9)
+$accept (8)
     on left: 0
-DicFinance (10)
+DicFinance (9)
     on left: 1, on right: 0
-Capitulos (11)
+Capitulos (10)
     on left: 2 3, on right: 1 2
-Capitulo (12)
+Capitulo (11)
     on left: 5, on right: 2
-$@1 (13)
+$@1 (12)
     on left: 4, on right: 5
-Letra (14)
+Letra (13)
     on left: 6, on right: 5
-Traducoes (15)
+Traducoes (14)
     on left: 8 9, on right: 5 8
-$@2 (16)
+$@2 (15)
     on left: 7, on right: 8
-Traducao (17)
+Traducao (16)
     on left: 10 11, on right: 8
-TraducaoSimples (18)
+TraducaoSimples (17)
     on left: 12, on right: 10
-TraducaoComplexa (19)
+TraducaoComplexa (18)
     on left: 13 14, on right: 11
-TraducoesIncompletas (20)
+TraducoesIncompletas (19)
     on left: 15 16, on right: 13 14 15
-TraducaoIncompleta (21)
+TraducaoIncompleta (20)
     on left: 17, on right: 15 16
-OriginalIncompleto (22)
+OriginalIncompleto (21)
     on left: 18, on right: 17
-Original (23)
+Original (22)
     on left: 19, on right: 8
-Significado (24)
+Significado (23)
     on left: 20, on right: 12 13 17
 
 

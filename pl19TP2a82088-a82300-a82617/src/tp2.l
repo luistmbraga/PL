@@ -2,23 +2,18 @@
 #include "y.tab.h"
 #include <ctype.h>
 #include <stdio.h>
+#include <time.h> 
 
 void strip_linebreak(char* str);
 void strip_extra_spaces(char* str);
-void push(char);
-int pop();
-int find_top();
-int checkParentesis(char * a);
-void initParentesis();
-void initStack();
+void createLogFile();
+void printError(int cod);
 
-int top = -1;
-char stack[100];
 int beginread = 0;
-int parentesisok = 1;
 int skipline = 0;
 int skipcomposto = 0;
-char parentesis[500];
+
+FILE *exceptions;
 %}
 
 %option yylineno
@@ -34,21 +29,19 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 %%
 
-(__BEGIN__)(\r\n)+       { beginread = 1; }               
+(__BEGIN__)(\r\n)+       { beginread = 1; createLogFile(); }               
 
 [A-Za-z]\ *[\r\n]+    { 
 						if(beginread){
-							if(parentesisok){
-								yylval.cvalue = *yytext; 
-								return CHAR; 
-							}
+							yylval.cvalue = *yytext; 
+							return CHAR; 
 						}
 					  }
 
 [\r\n] ;
 
 [:]         { 
-				if(beginread && parentesisok){
+				if(beginread){
                     skipcomposto = 1;
 					return *yytext;
 				} 
@@ -57,100 +50,91 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 ^{palavras}[\r\n]+\ {1,2}{palavras}{palavrasinc} { if(beginread) skipline = 1;   }
 
 {palavras}\-/[\r\n]+\ {1,4}{palavrasinc}   {
-												if(beginread){
-													if(parentesisok){ 
-														if(!skipline){
-															skipline = 1;
-															yylval.svalue = strdup(yytext); 
-															return PALAVRAS;
-														}
-													} 
+												if(beginread && !skipline){
+													skipline = 1;
+													yylval.svalue = strdup(yytext); 
+													return PALAVRAS;
 												}
 										   }
 
 ^{palavras}([\r\n]+\ {1,2}{palavras})* { 
 										if(beginread){
-											if(parentesisok){
-												if(checkParentesis(yytext) ){ 
-													strip_linebreak(yytext); 
-													strip_extra_spaces(yytext);
-													yylval.svalue = strdup(yytext); 
-													skipcomposto = 0;
-													skipline = 0;
-													return PALAVRAS; 
-												}
-												else{
-													strncpy(parentesis, yytext, yyleng);
-													printf("%s\n", parentesis);
-												}
-											}
-											else{
-												strncat(parentesis, yytext, yyleng);
-												printf("%s ", parentesis);
-												printf("valor check: %d\n", checkParentesis(parentesis));
-											}
-
+											strip_linebreak(yytext); 
+											strip_extra_spaces(yytext);
+											yylval.svalue = strdup(yytext); 
+											skipcomposto = 0;
+											skipline = 0;
+											return PALAVRAS; 	
 										}
 									  }
 
-^{palavras}\:(\r\n)+/{palavras}  ;
+^{palavras}\:(\r\n)+/{palavras}  {
+									if(beginread){
+										printError(1);
+									}
+                                 }
 
-^\ {1,2}{palavras}\:(\ +{palavras}\ +{palavras})?(\r\n)+/\ {1,4}{palavrasinc}  ;
+^\ {1,2}{palavras}\:(\ +{palavras}\ +{palavras})?(\r\n)+/\ {1,4}{palavrasinc}  {
+																					if(beginread) 
+																						printError(1);
+																				}
 
-^{palavras}\:{palavras}\ +{palavras}[\r\n]+/{palavras}  ;
+^{palavras}\:{palavras}\ +{palavras}[\r\n]+/{palavras} 	{
+															if(beginread) 
+																printError(1);
+														}
 
 {palavras} { 
-				if(beginread){
-					if(parentesisok){ 
-						if(!skipline){
+				if(beginread && !skipline){
 							skipline = 1;
 							yylval.svalue = strdup(yytext); 
 							return PALAVRAS;
-						}
-					} 
 				}
 			}
 
 {palavras}([\r\n]+[\ \t]{8,}{palavras})+  { 
-											if(beginread){
-												if(parentesisok){ 
-													if(!skipline){
-														skipline = 1;
-														strip_linebreak(yytext); 
-														strip_extra_spaces(yytext); 
-														yylval.svalue = strdup(yytext); return PALAVRAS; 
-													}
-												} 
+											if(beginread && !skipline){
+												skipline = 1;
+												strip_linebreak(yytext); 
+												strip_extra_spaces(yytext); 
+												yylval.svalue = strdup(yytext); return PALAVRAS; 
 											}
 									
 										  }
 
 
-^\ {1,4}{palavrasinc}([\r\n]+\ {1,4}{palavrasinc})*  { 
-															if(beginread){
-																if(parentesisok){
-																	if(skipcomposto){ 
-																		skipline = 0;
-																		yylval.svalue = strdup(yytext); 
-																		return PALAVRASINC; 
-																	}
-																	else
-																		skipline = 1;
-																}
+^\ {1,4}{palavrasinc}([\r\n]+\ {1,4}{palavrasinc})* { 
+														if(beginread){
+															if(skipcomposto){ 
+																skipline = 0;
+																yylval.svalue = strdup(yytext); 
+																return PALAVRASINC; 
 															}
+															else
+																skipline = 1;
 														}
+													}
 
 {palavrasinc}                   {
-									if(beginread && parentesisok){
+									if(beginread){
 										skipline = 1;
 									}
 								}
 
-^\ {1,4}{palavrasinc}[\r\n]+/{palavras}    ;
+^\ {1,4}{palavrasinc}[\r\n]+/{palavras}    	{
+												if(beginread) 
+													printError(1);
+											}
 
-\ {palavras}[\r\n]+       ;
+\ {palavras}[\r\n]+    	{
+							if(beginread) 
+								printError(1);
+						}
 
-^{palavras}(\r\n)+     ;
+^{palavras}(\r\n)+     	{
+							if(beginread) 
+								printError(1);
+						}
 
 
 \ + ;
@@ -159,6 +143,12 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 .   { if(beginread){  return ERRO; } }
 
 %%
+
+void printError(int cod){
+	fprintf(exceptions, "ERRO NA LINHA: %d\n", yylineno);
+	fprintf(exceptions, "COM O TEXTO: %s\n", yytext);
+	fprintf(exceptions, "CODIGO DE ERRO: %d\n\n", cod);
+}
 
 void strip_linebreak(char* str) {
     int i;
@@ -179,85 +169,20 @@ void strip_extra_spaces(char* str) {
   str[x] = '\0';
 }
 
-void initParentesis(){
-	for(int j = 0; j < 500; j++)
-		parentesis[j] = 0;
-}
 
-void initStack(){
-	for(int j = 0; j < 100; j++)
-		stack[j] = 0;
-}
+void createLogFile(){
 
-int checkParentesis(char * a){
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	char nomeFich[100];
+	sprintf(nomeFich,"%d-%d-%dT%d_%d_%d", tm.tm_year + 1900, tm.tm_mon +1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-	initStack();
+	char* file = malloc(50);
 
-    int i;
+	strcpy(file, "../errorLogs/");
+	strcat(file, "ERRORLOG_");
+	strcat(file, nomeFich);
+	strcat(file, ".txt");
 
-    int result = 1;
-    
-	for (i = 0; a[i] != '\0';i++)
-	{
-		if (a[i] == '(')
-		{
-			push(a[i]);
-		}
-		else if (a[i] == ')')
-		{
-			result = pop();
-		}
-	}
-    if(result)
-	    result = find_top();
-	
-	result = 1;
-
-	parentesisok = result;
-
-	if(result) initParentesis();
-
-	top = -1;
-
-	return result;
-}
-
-// to push elements in stack
-
-void push(char a)
-
-{
-
-	stack[top] = a;
-
-	top++;
-
-}
-
- 
-
-// to pop elements from stack
-
-int pop(){
-	if (top == -1)
-	{
-		return 0;
-	}	
-	else
-	{		
-		top--;
-	}
-}
-
- 
-
-// to find top element of stack
-
-int find_top(){
-	if (top == -1){
-		return 1;
-	}
-	else{
-		return 0;
-	}
+	exceptions = fopen(file, "w");
 }

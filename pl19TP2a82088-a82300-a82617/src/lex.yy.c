@@ -10391,25 +10391,20 @@ char *yytext;
 #include "y.tab.h"
 #include <ctype.h>
 #include <stdio.h>
+#include <time.h> 
 
 void strip_linebreak(char* str);
 void strip_extra_spaces(char* str);
-void push(char);
-int pop();
-int find_top();
-int checkParentesis(char * a);
-void initParentesis();
-void initStack();
+void createLogFile();
+void printError(int cod);
 
-int top = -1;
-char stack[100];
 int beginread = 0;
-int parentesisok = 1;
 int skipline = 0;
 int skipcomposto = 0;
-char parentesis[500];
-#line 10412 "lex.yy.c"
-#line 10413 "lex.yy.c"
+
+FILE *exceptions;
+#line 10407 "lex.yy.c"
+#line 10408 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -10635,10 +10630,10 @@ YY_DECL
 		}
 
 	{
-#line 35 "tp2.l"
+#line 30 "tp2.l"
 
 
-#line 10642 "lex.yy.c"
+#line 10637 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -10732,33 +10727,31 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 37 "tp2.l"
-{ beginread = 1; }               
+#line 32 "tp2.l"
+{ beginread = 1; createLogFile(); }               
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 39 "tp2.l"
+#line 34 "tp2.l"
 { 
 						if(beginread){
-							if(parentesisok){
-								yylval.cvalue = *yytext; 
-								return CHAR; 
-							}
+							yylval.cvalue = *yytext; 
+							return CHAR; 
 						}
 					  }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 48 "tp2.l"
+#line 41 "tp2.l"
 ;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 50 "tp2.l"
+#line 43 "tp2.l"
 { 
-				if(beginread && parentesisok){
+				if(beginread){
                     skipcomposto = 1;
 					return *yytext;
 				} 
@@ -10767,102 +10760,86 @@ YY_RULE_SETUP
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 57 "tp2.l"
+#line 50 "tp2.l"
 { if(beginread) skipline = 1;   }
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 59 "tp2.l"
+#line 52 "tp2.l"
 {
-												if(beginread){
-													if(parentesisok){ 
-														if(!skipline){
-															skipline = 1;
-															yylval.svalue = strdup(yytext); 
-															return PALAVRAS;
-														}
-													} 
+												if(beginread && !skipline){
+													skipline = 1;
+													yylval.svalue = strdup(yytext); 
+													return PALAVRAS;
 												}
 										   }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 71 "tp2.l"
+#line 60 "tp2.l"
 { 
 										if(beginread){
-											if(parentesisok){
-												if(checkParentesis(yytext) ){ 
-													strip_linebreak(yytext); 
-													strip_extra_spaces(yytext);
-													yylval.svalue = strdup(yytext); 
-													skipcomposto = 0;
-													skipline = 0;
-													return PALAVRAS; 
-												}
-												else{
-													strncpy(parentesis, yytext, yyleng);
-													printf("%s\n", parentesis);
-												}
-											}
-											else{
-												strncat(parentesis, yytext, yyleng);
-												printf("%s ", parentesis);
-												printf("valor check: %d\n", checkParentesis(parentesis));
-											}
-
+											strip_linebreak(yytext); 
+											strip_extra_spaces(yytext);
+											yylval.svalue = strdup(yytext); 
+											skipcomposto = 0;
+											skipline = 0;
+											return PALAVRAS; 	
 										}
 									  }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 96 "tp2.l"
-;
+#line 71 "tp2.l"
+{
+									if(beginread){
+										printError(1);
+									}
+                                 }
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 98 "tp2.l"
-;
+#line 77 "tp2.l"
+{
+																					if(beginread) 
+																						printError(1);
+																				}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 100 "tp2.l"
-;
+#line 82 "tp2.l"
+{
+															if(beginread) 
+																printError(1);
+														}
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 102 "tp2.l"
+#line 87 "tp2.l"
 { 
-				if(beginread){
-					if(parentesisok){ 
-						if(!skipline){
+				if(beginread && !skipline){
 							skipline = 1;
 							yylval.svalue = strdup(yytext); 
 							return PALAVRAS;
-						}
-					} 
 				}
 			}
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 114 "tp2.l"
+#line 95 "tp2.l"
 { 
-											if(beginread){
-												if(parentesisok){ 
-													if(!skipline){
-														skipline = 1;
-														strip_linebreak(yytext); 
-														strip_extra_spaces(yytext); 
-														yylval.svalue = strdup(yytext); return PALAVRAS; 
-													}
-												} 
+											if(beginread && !skipline){
+												skipline = 1;
+												strip_linebreak(yytext); 
+												strip_extra_spaces(yytext); 
+												yylval.svalue = strdup(yytext); return PALAVRAS; 
 											}
 									
 										  }
@@ -10870,27 +10847,25 @@ YY_RULE_SETUP
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 129 "tp2.l"
+#line 106 "tp2.l"
 { 
-															if(beginread){
-																if(parentesisok){
-																	if(skipcomposto){ 
-																		skipline = 0;
-																		yylval.svalue = strdup(yytext); 
-																		return PALAVRASINC; 
-																	}
-																	else
-																		skipline = 1;
-																}
+														if(beginread){
+															if(skipcomposto){ 
+																skipline = 0;
+																yylval.svalue = strdup(yytext); 
+																return PALAVRASINC; 
 															}
+															else
+																skipline = 1;
 														}
+													}
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 143 "tp2.l"
+#line 118 "tp2.l"
 {
-									if(beginread && parentesisok){
+									if(beginread){
 										skipline = 1;
 									}
 								}
@@ -10898,37 +10873,46 @@ YY_RULE_SETUP
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 149 "tp2.l"
-;
+#line 124 "tp2.l"
+{
+												if(beginread) 
+													printError(1);
+											}
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 151 "tp2.l"
-;
+#line 129 "tp2.l"
+{
+							if(beginread) 
+								printError(1);
+						}
 	YY_BREAK
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 153 "tp2.l"
-;
+#line 134 "tp2.l"
+{
+							if(beginread) 
+								printError(1);
+						}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 156 "tp2.l"
+#line 140 "tp2.l"
 ;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 159 "tp2.l"
+#line 143 "tp2.l"
 { if(beginread){  return ERRO; } }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 161 "tp2.l"
+#line 145 "tp2.l"
 ECHO;
 	YY_BREAK
-#line 10932 "lex.yy.c"
+#line 10916 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -11920,8 +11904,14 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 161 "tp2.l"
+#line 145 "tp2.l"
 
+
+void printError(int cod){
+	fprintf(exceptions, "ERRO NA LINHA: %d\n", yylineno);
+	fprintf(exceptions, "COM O TEXTO: %s\n", yytext);
+	fprintf(exceptions, "CODIGO DE ERRO: %d\n\n", cod);
+}
 
 void strip_linebreak(char* str) {
     int i;
@@ -11942,85 +11932,20 @@ void strip_extra_spaces(char* str) {
   str[x] = '\0';
 }
 
-void initParentesis(){
-	for(int j = 0; j < 500; j++)
-		parentesis[j] = 0;
-}
 
-void initStack(){
-	for(int j = 0; j < 100; j++)
-		stack[j] = 0;
-}
+void createLogFile(){
 
-int checkParentesis(char * a){
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	char nomeFich[100];
+	sprintf(nomeFich,"%d-%d-%dT%d_%d_%d", tm.tm_year + 1900, tm.tm_mon +1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 
-	initStack();
+	char* file = malloc(50);
 
-    int i;
+	strcpy(file, "../errorLogs/");
+	strcat(file, "ERRORLOG_");
+	strcat(file, nomeFich);
+	strcat(file, ".txt");
 
-    int result = 1;
-    
-	for (i = 0; a[i] != '\0';i++)
-	{
-		if (a[i] == '(')
-		{
-			push(a[i]);
-		}
-		else if (a[i] == ')')
-		{
-			result = pop();
-		}
-	}
-    if(result)
-	    result = find_top();
-	
-	result = 1;
-
-	parentesisok = result;
-
-	if(result) initParentesis();
-
-	top = -1;
-
-	return result;
-}
-
-// to push elements in stack
-
-void push(char a)
-
-{
-
-	stack[top] = a;
-
-	top++;
-
-}
-
- 
-
-// to pop elements from stack
-
-int pop(){
-	if (top == -1)
-	{
-		return 0;
-	}	
-	else
-	{		
-		top--;
-	}
-}
-
- 
-
-// to find top element of stack
-
-int find_top(){
-	if (top == -1){
-		return 1;
-	}
-	else{
-		return 0;
-	}
+	exceptions = fopen(file, "w");
 }
