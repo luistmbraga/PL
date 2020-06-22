@@ -14,7 +14,7 @@ y.tab.c y.tab.h : $(yfile)
 	yacc -d -v $(yfile)
 
 lex.yy.c :  $(lfile) y.tab.h
-	flex -d $(lfile)
+	flex -d -w $(lfile)
 
 dot:
 	yacc -g $(yfile)

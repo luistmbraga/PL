@@ -103,3 +103,71 @@ void yyerror(){
     printf("Erro Sintático ou Léxico na linha: %d, com o texto: %s\n", yylineno, yytext);
     //yyparse();
 }
+
+void splitSignificado(char* sig, char* simb){
+   // Extract the first token
+   char * token = strtok(sig, simb);
+   // loop through the string to extract all other tokens
+   while( token != NULL ) {
+      printf( " %s\n", token ); //printing each token
+      token = strtok(NULL, simb);
+   }
+}
+
+int findSep(char * sig, char sep){
+    
+    int result = 0;
+
+    int len = strlen(sig);
+    
+    for(int i = 0; i < len && result!=1; i++)
+        if(sig[i] == sep) result = 1;
+
+    printf("%d\n", result);
+
+    return result;
+}
+
+
+
+char *replaceWord(const char *s, const char *oldW, 
+								const char *newW) 
+{ 
+	char *result; 
+	int i, cnt = 0; 
+	int newWlen = strlen(newW); 
+	int oldWlen = strlen(oldW); 
+
+	// Counting the number of times old word 
+	// occur in the string 
+	for (i = 0; s[i] != '\0'; i++) 
+	{ 
+		if (strstr(&s[i], oldW) == &s[i]) 
+		{ 
+			cnt++; 
+
+			// Jumping to index after the old word. 
+			i += oldWlen - 1; 
+		} 
+	} 
+
+	// Making new string of enough length 
+	result = (char *)malloc(i + cnt * (newWlen - oldWlen) + 1); 
+
+	i = 0; 
+	while (*s) 
+	{ 
+		// compare the substring with the result 
+		if (strstr(s, oldW) == s) 
+		{ 
+			strcpy(&result[i], newW); 
+			i += newWlen; 
+			s += oldWlen; 
+		} 
+		else
+			result[i++] = *s++; 
+	} 
+
+	result[i] = '\0'; 
+	return result; 
+} 
