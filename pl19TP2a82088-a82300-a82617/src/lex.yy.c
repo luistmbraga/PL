@@ -10483,6 +10483,8 @@ YY_RULE_SETUP
 														if(beginread){
 															if(skipcomposto){ 
 																skipline = 0;
+																strip_linebreak(yytext);
+																//strip_extra_spaces(yytext);
 																yylval.svalue = strdup(yytext); 
 																return PALAVRASINC; 
 															}
@@ -10496,7 +10498,7 @@ YY_RULE_SETUP
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 129 "tp2.l"
+#line 131 "tp2.l"
 {
 									if(beginread){
 										skipline = 1;
@@ -10506,7 +10508,7 @@ YY_RULE_SETUP
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 135 "tp2.l"
+#line 137 "tp2.l"
 {
 												if(beginread) 
 													printError(1);
@@ -10515,7 +10517,7 @@ YY_RULE_SETUP
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 140 "tp2.l"
+#line 142 "tp2.l"
 {
 							if(beginread) 
 								printError(1);
@@ -10524,7 +10526,7 @@ YY_RULE_SETUP
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 145 "tp2.l"
+#line 147 "tp2.l"
 {
 							if(beginread) 
 								printError(1);
@@ -10532,20 +10534,20 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 151 "tp2.l"
+#line 153 "tp2.l"
 ;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 154 "tp2.l"
+#line 156 "tp2.l"
 { if(beginread){  return ERRO; } }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 156 "tp2.l"
+#line 158 "tp2.l"
 ECHO;
 	YY_BREAK
-#line 10549 "lex.yy.c"
+#line 10551 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -11537,7 +11539,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 156 "tp2.l"
+#line 158 "tp2.l"
 
 
 void printError(int cod){

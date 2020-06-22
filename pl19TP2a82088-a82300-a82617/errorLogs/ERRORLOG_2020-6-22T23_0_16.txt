@@ -1,0 +1,1674 @@
+{ERRO NA LINHA:139
+COM O TEXTO:accountant:
+
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:534
+COM O TEXTO:COBOL (comon business
+ oriented language)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:535
+COM O TEXTO:Cobol, linguagem (f) comum para
+                                     negócios
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:538
+COM O TEXTO:COINS (computerised information
+ system)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:538
+COM O TEXTO:sistema (m) computadorizado de dados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:544
+COM O TEXTO:measurement)
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:589
+COM O TEXTO:capital (m) de risco
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:625
+COM O TEXTO:contabilidade (f) por centros de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:675
+COM O TEXTO: (CWM)
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:834
+COM O TEXTO: - advertising
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:834
+COM O TEXTO:publicidade (f) empresarial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:835
+COM O TEXTO: - growth
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:835
+COM O TEXTO:crescimento (m) da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:836
+COM O TEXTO: - image
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:836
+COM O TEXTO:imagem (f) da companhia
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:837
+COM O TEXTO: - model
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:837
+COM O TEXTO:modelo (m) da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:838
+COM O TEXTO: - planning
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:838
+COM O TEXTO:planejamento (m) empresarial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:839
+COM O TEXTO: - strategy
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:839
+COM O TEXTO:estratégia (f) empresarial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:840
+COM O TEXTO: -structure
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:840
+COM O TEXTO:estrutura (f) da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:882
+COM O TEXTO:(mpl)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:882
+COM O TEXTO:controlados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:883
+COM O TEXTO:(mpl)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:883
+COM O TEXTO:de fundação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:884
+COM O TEXTO:(mpl)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:884
+COM O TEXTO:padrão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:885
+COM O TEXTO:(mpl)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:885
+COM O TEXTO:variáveis
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:886
+COM O TEXTO:(mpl)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:886
+COM O TEXTO:semi-variáveis
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:888
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:888
+COM O TEXTO:de absorção
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:889
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:889
+COM O TEXTO:direto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:890
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:890
+COM O TEXTO:funcional
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:891
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:891
+COM O TEXTO:marginal
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:892
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:892
+COM O TEXTO:do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:893
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:893
+COM O TEXTO:padrão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:894
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:894
+COM O TEXTO:variável
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:931
+COM O TEXTO:corporate:
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:945
+COM O TEXTO: salary progression -
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:994
+COM O TEXTO:declared
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1038
+COM O TEXTO:description
+ job - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1038
+COM O TEXTO:descrição (f) das atribuições do cargo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1107
+COM O TEXTO:deseconomia (f) de escala
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1178
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1178
+COM O TEXTO:de grupo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1179
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1179
+COM O TEXTO:industrial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1180
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1180
+COM O TEXTO:do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1181
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1181
+COM O TEXTO:do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1188
+COM O TEXTO:Mercado (m) Comum Europeu (MCE)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1190
+COM O TEXTO:munity)
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1193
+COM O TEXTO: - income
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1193
+COM O TEXTO:salário (m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1194
+COM O TEXTO:  - surplus
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1194
+COM O TEXTO:lucro (m) excedente
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1278
+COM O TEXTO:environmental
+ forecasting
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1278
+COM O TEXTO:previsão (f) sobre o meio ambiente
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1312
+COM O TEXTO:posto na doca (f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1313
+COM O TEXTO:posto na fábrica (f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1314
+COM O TEXTO:posto no depósito (m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1335
+COM O TEXTO:competência (f) do executivo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1336
+COM O TEXTO:formação (f) de executivos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1337
+COM O TEXTO:diretor (m) executivo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1339
+COM O TEXTO:estratégia (f) para o
+                           quadro executivo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1643
+COM O TEXTO:management)
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1704
+COM O TEXTO:espionagem (f) industrial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1705
+COM O TEXTO:bens (mpl) industriais
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1706
+COM O TEXTO:psicologia (f) industrial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1707
+COM O TEXTO:relações (fpl) industriais
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1708
+COM O TEXTO:contra-espionagem (f) industrial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1773
+COM O TEXTO:em trânsito (m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1813
+COM O TEXTO:ampliação (f) de tarefas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1814
+COM O TEXTO:enriquecimento (m) do trabalho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1815
+COM O TEXTO:avaliação (f) de cargos e tarefas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1816
+COM O TEXTO:expectativas (fpl) do cargo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1817
+COM O TEXTO:aperfeiçoamento (m) do cargo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1818
+COM O TEXTO:atração (f) do cargo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1819
+COM O TEXTO:desempenho (m) do cargo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1820
+COM O TEXTO:rotação (f) de cargos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1821
+COM O TEXTO:satisfação (f) no trabalho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1822
+COM O TEXTO:simplificação (f) de tarefas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1824
+COM O TEXTO:descrição (f) das atribuições do
+                                 cargo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1851
+COM O TEXTO:Americana de Livre Comércio)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1870
+COM O TEXTO:  Association (LAFTA)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1870
+COM O TEXTO:Livre Comércio (ALALC)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1991
+COM O TEXTO:MIS (management information
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1991
+COM O TEXTO:system)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1991
+COM O TEXTO:sistema (m) de dados para gestão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1993
+COM O TEXTO:MRA (multiple regression
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1993
+COM O TEXTO:analysis)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:1993
+COM O TEXTO:análise (f) de regressão múltipla
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2011
+COM O TEXTO:sistematizada
+                                 gerência (f), administração (f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2020
+COM O TEXTO:formação (f) da direção
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2021
+COM O TEXTO:simulação (f) de direção
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2022
+COM O TEXTO:dados (mpl) para gestão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2023
+COM O TEXTO:sistema (m) de dados para gestão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2024
+COM O TEXTO:potencial (m) para gerência
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2025
+COM O TEXTO:métodos (mpl) para gestão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2027
+COM O TEXTO:quociente (m) gerência/quadros
+                                 inferiores
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2037
+COM O TEXTO:administração (f) de empresas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2038
+COM O TEXTO:controle (m) de caixa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2039
+COM O TEXTO:administração (f) de crédito
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2040
+COM O TEXTO:controle (m) por setores
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2042
+COM O TEXTO:modelo (m) dinâmico de
+                                administração
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2043
+COM O TEXTO:administração (f) eficaz
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2044
+COM O TEXTO:administração (f) financeira
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2045
+COM O TEXTO:administração (f) funcional
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2046
+COM O TEXTO:direção (f) geral
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2047
+COM O TEXTO:gestão (f) intuitiva
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2048
+COM O TEXTO:administração (f) de investimentos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2050
+COM O TEXTO:estrutura (f) de linhas de
+                                 administração
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2051
+COM O TEXTO:administração (f) de mão-de-obra
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2052
+COM O TEXTO:gestão (f) de mercados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2053
+COM O TEXTO:organização (f) de matriz
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2054
+COM O TEXTO:gerência (f) de segundo escalão
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2055
+COM O TEXTO:gestão (f) múltipla
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2056
+COM O TEXTO:administração (f) do escritório
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2057
+COM O TEXTO:gestão (f) operativa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2058
+COM O TEXTO:gestão (f) de operações
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2059
+COM O TEXTO:gestão (f) participativa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2060
+COM O TEXTO:administração (f) de pessoal
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2138
+COM O TEXTO:gestão (f) de mercados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2139
+COM O TEXTO:oportunidade (f) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2140
+COM O TEXTO:penetração (f) do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2141
+COM O TEXTO:plano (m) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2145
+COM O TEXTO:perfil (m) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2146
+COM O TEXTO:perspectivas (fpl) do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2147
+COM O TEXTO:avaliação (f) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2148
+COM O TEXTO:pesquisa (f) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2149
+COM O TEXTO:saturação (f) do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2151
+COM O TEXTO:segmento (m) do mercado, fatia (f)
+                         do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2152
+COM O TEXTO:segmentação (f) do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2153
+COM O TEXTO:fatia (f) do mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2154
+COM O TEXTO:estrutura (f) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2155
+COM O TEXTO:estudo (m) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2156
+COM O TEXTO:teste (m) de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2230
+COM O TEXTO:de investimentos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2232
+COM O TEXTO:de atividades
+                             de marketing
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2233
+COM O TEXTO:de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2235
+COM O TEXTO:de atividades
+                             de promoção
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2335
+COM O TEXTO:O and M (organisation and
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2412
+COM O TEXTO:organisation
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2412
+COM O TEXTO: - and methods (O and M)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2412
+COM O TEXTO:organização (f) e métodos (mpl)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2413
+COM O TEXTO: - chart
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2413
+COM O TEXTO:organograma (m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2414
+COM O TEXTO: - planning
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2414
+COM O TEXTO:planejamento (m) da organização
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2415
+COM O TEXTO: - structure
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2415
+COM O TEXTO:estrutura (f) da organização
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2416
+COM O TEXTO: - theory
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2416
+COM O TEXTO:teoria (f) de organização
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2417
+COM O TEXTO: functional - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2417
+COM O TEXTO:organização (f) funcional
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2418
+COM O TEXTO: informal - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2418
+COM O TEXTO:organização (f) informal
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2419
+COM O TEXTO: line - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2419
+COM O TEXTO:organização (f) linear
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2420
+COM O TEXTO: staff - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2420
+COM O TEXTO:organização (f) de recursos humanos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2465
+COM O TEXTO: and review technique)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2465
+COM O TEXTO:programas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2467
+COM O TEXTO: time system)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2467
+COM O TEXTO:pré-determinados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2469
+COM O TEXTO: Budgeting system)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2469
+COM O TEXTO:planejamento e programação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2473
+COM O TEXTO: - deal
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2474
+COM O TEXTO:oferta (f) combinada, pacote (m) de
+                                negociações
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2493
+COM O TEXTO:_sec:part_ part-analysis training     treinamento (m) e avaliação de funções
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2505
+COM O TEXTO: - period
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2506
+COM O TEXTO:período (m) de reembolso
+                            (de investimentos)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2524
+COM O TEXTO:avaliação (f) de desempenho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2525
+COM O TEXTO:medição (f) de desempenho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2526
+COM O TEXTO:classificação (f) de desempenho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2528
+COM O TEXTO:padrões (mpl) de desempenho, normas
+                             (fpl) de desempenho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2573
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2573
+COM O TEXTO:empresarial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2574
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2574
+COM O TEXTO:empresarial
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2575
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2575
+COM O TEXTO:departamental
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2576
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2576
+COM O TEXTO:de distribuição
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2577
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2577
+COM O TEXTO:financeiro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2578
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2578
+COM O TEXTO:para o futuro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2579
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2579
+COM O TEXTO:de longo alcance
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2580
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2580
+COM O TEXTO:a longo prazo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2581
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2581
+COM O TEXTO:de mão-de-obra
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2582
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2582
+COM O TEXTO:operacional
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2583
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2583
+COM O TEXTO:da organização
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2584
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2584
+COM O TEXTO:de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2585
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2585
+COM O TEXTO:de produção
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2586
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2587
+COM O TEXTO:e controle da
+                               produção
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2595
+COM O TEXTO:negociação (f) a nível de fábrica
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2596
+COM O TEXTO:capacidade (f) das instalações
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2597
+COM O TEXTO:aluguel (m) de equipamento
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2599
+COM O TEXTO:estudo (m) do esquema de uma
+                        instalação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2642
+COM O TEXTO:poder (m) aquisitivo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2647
+COM O TEXTO: system (PMTS)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2647
+COM O TEXTO:pré-determinados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2660
+COM O TEXTO:redução (f) de preços
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2661
+COM O TEXTO:determinação (f) de preços
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2662
+COM O TEXTO:disparidade (f) de preços
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2664
+COM O TEXTO:índice (m) de capitalização
+                                de benefícios
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2705
+COM O TEXTO:(m) por batelada, em
+                            lote
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2706
+COM O TEXTO:(m) de dados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2708
+COM O TEXTO:(m) automático de
+                             dados (PAD)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2710
+COM O TEXTO:(m) eletrônico de dados
+                             (PED)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2722
+COM O TEXTO:diferenciação (f) entre produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2723
+COM O TEXTO:diversificação (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2724
+COM O TEXTO:dinâmica (f) do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2725
+COM O TEXTO:geração (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2726
+COM O TEXTO:grupo (m) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2727
+COM O TEXTO:imagem (f) do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2732
+COM O TEXTO:gestão (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2733
+COM O TEXTO:gerente (m) de produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2734
+COM O TEXTO:combinação (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2735
+COM O TEXTO:desempenho (m) do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2736
+COM O TEXTO:planejamento (m) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2737
+COM O TEXTO:perfil (m) do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2738
+COM O TEXTO:rentabilidade (f) do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2739
+COM O TEXTO:série (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2740
+COM O TEXTO:pesquisa (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2741
+COM O TEXTO:estratégia (f) de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2743
+COM O TEXTO:teste (m) de produtos, avaliação (f)
+                           de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2775
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2775
+COM O TEXTO:de aquisição
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2776
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2776
+COM O TEXTO:da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2777
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2777
+COM O TEXTO:dos consumidores
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2778
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2778
+COM O TEXTO:dos consumidores
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2779
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2779
+COM O TEXTO:do produto
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2782
+COM O TEXTO:lucro (m) e perda (f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2783
+COM O TEXTO:conta (f) de lucros e perdas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2784
+COM O TEXTO:centro (m) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2785
+COM O TEXTO:contabilidade (f) por centros de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2786
+COM O TEXTO:análise (f) de elementos de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2787
+COM O TEXTO:objetivo (m) de lucro, meta (f) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2788
+COM O TEXTO:incidência (f) sobre o lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2789
+COM O TEXTO:implicação (f) sobre o lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2790
+COM O TEXTO:melhora (f) do lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2791
+COM O TEXTO:margem (f) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2792
+COM O TEXTO:maximização (f) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2793
+COM O TEXTO:motivo (m) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2794
+COM O TEXTO:otimização (f) do lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2795
+COM O TEXTO:perspectiva (f) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2796
+COM O TEXTO:planejamento (m) dos lucros
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2797
+COM O TEXTO:participação (f) em lucros
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2798
+COM O TEXTO:estratégia (f) de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2800
+COM O TEXTO:objetivo (m) de lucro, meta (f) de lucro
+                           índice (m) de rentabilidade sobre o
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2826
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2826
+COM O TEXTO:de computador
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2827
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2827
+COM O TEXTO:dinâmica
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2828
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2828
+COM O TEXTO:linear
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2829
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2829
+COM O TEXTO:matemática
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2880
+COM O TEXTO: total quality control
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2880
+COM O TEXTO:controle (m) geral de qualidade
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2903
+COM O TEXTO: development
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2904
+COM O TEXTO:ROCE (return on capital
+ employed)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2904
+COM O TEXTO:rendimento (m) do capital investido
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2919
+COM O TEXTO:câmbio
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2920
+COM O TEXTO:juros
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2921
+COM O TEXTO:de crescimento
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2922
+COM O TEXTO:rendimento
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2923
+COM O TEXTO:rendimento interno
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2985
+COM O TEXTO: multiple - analysis (MPA)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:2985
+COM O TEXTO:análise (f) de regressão múltipla
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3121
+COM O TEXTO:esforço (m) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3122
+COM O TEXTO:estimativa (f) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3123
+COM O TEXTO:esforço (m) para aumentar vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3124
+COM O TEXTO:expectativas (fpl) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3125
+COM O TEXTO:equipe (m) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3126
+COM O TEXTO:previsão (f) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3128
+COM O TEXTO:objetivo (m) de vendas, meta (f)
+                         de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3135
+COM O TEXTO:planejamento (m) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3136
+COM O TEXTO:política (f) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3137
+COM O TEXTO:potencial (m) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3138
+COM O TEXTO:promoção (f) de vendas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3291
+COM O TEXTO:squeeze
+ credit - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3291
+COM O TEXTO:aperto (m) de crédito
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3293
+COM O TEXTO: staff:
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3293
+COM O TEXTO: - and line
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3294
+COM O TEXTO:quadros (mpl) inferiores e gerência
+                                    (staff e linha)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3295
+COM O TEXTO: - assistant
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3295
+COM O TEXTO:assistente (m) consultivo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3296
+COM O TEXTO: - inspection
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3296
+COM O TEXTO:vistoria (f) do quadro de empregados
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3297
+COM O TEXTO: - management
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3297
+COM O TEXTO:administração (f) de recursos humanos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3298
+COM O TEXTO: - mobility
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3298
+COM O TEXTO:mobilidade (f) de funcionários
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3299
+COM O TEXTO: - organisation
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3299
+COM O TEXTO:organização (f) de recursos humanos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3300
+COM O TEXTO: - transfers
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3300
+COM O TEXTO:translado (m) de pessoal
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3361
+COM O TEXTO:mercadológica
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3362
+COM O TEXTO:de negociação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3363
+COM O TEXTO:de preços
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3364
+COM O TEXTO:de produtos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3365
+COM O TEXTO:de lucro
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3366
+COM O TEXTO:de sobrevivência
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3367
+COM O TEXTO:de consumidores
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3378
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3378
+COM O TEXTO:de autoridade
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3379
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3379
+COM O TEXTO:de capital
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3380
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3380
+COM O TEXTO:da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3381
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3381
+COM O TEXTO:de custos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3382
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3382
+COM O TEXTO:de grade
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3383
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3383
+COM O TEXTO:administrativa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3384
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3384
+COM O TEXTO:de mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3385
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3385
+COM O TEXTO:da organização
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3386
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3386
+COM O TEXTO:de preços
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3387
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3387
+COM O TEXTO:de salários
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3388
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3388
+COM O TEXTO:de salários
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3391
+COM O TEXTO: structuring:
+
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3394
+COM O TEXTO: study:
+
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3395
+COM O TEXTO:  case:                   estudo (m) de      caso
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3395
+COM O TEXTO:viabilidade
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3396
+COM O TEXTO:intervalos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3397
+COM O TEXTO:mercado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3398
+COM O TEXTO:métodos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3399
+COM O TEXTO:métodos e tempos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3400
+COM O TEXTO:movimentos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3401
+COM O TEXTO:tempos e movimentos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3403
+COM O TEXTO:esquema de uma
+                           instalação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3404
+COM O TEXTO:tempos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3405
+COM O TEXTO:trabalho
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3461
+COM O TEXTO: estimating systems costs
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3461
+COM O TEXTO:avaliação (f) de custos de sistemas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3530
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3530
+COM O TEXTO:de administração
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3531
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3531
+COM O TEXTO:da comunicação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3532
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3532
+COM O TEXTO:das decisões
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3533
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3533
+COM O TEXTO:dos jogos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3534
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3534
+COM O TEXTO:da informação
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3535
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3535
+COM O TEXTO:da política administrativa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3536
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3536
+COM O TEXTO:da organização
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3537
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3537
+COM O TEXTO:das probabilidades
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3538
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3538
+COM O TEXTO:de filas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3539
+COM O TEXTO:(f)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3539
+COM O TEXTO:de sistemas
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3552
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3552
+COM O TEXTO:compartilhado
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3553
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3553
+COM O TEXTO:máximo discrecional
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3554
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3554
+COM O TEXTO:de tempos
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3555
+COM O TEXTO:(m)
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3555
+COM O TEXTO:ocioso
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3590
+COM O TEXTO:(m) em grupo
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3591
+COM O TEXTO:(m) interno
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3592
+COM O TEXTO:(m) fora da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3593
+COM O TEXTO:(m) dentro da empresa
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3595
+COM O TEXTO:(m) e avaliação de
+                             funções
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3687
+COM O TEXTO:variance
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3714
+COM O TEXTO: sales -
+
+
+
+
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3763
+COM O TEXTO:worth
+ net - 
+CODIGO DE ERRO:1}
+
+{ERRO NA LINHA:3763
+COM O TEXTO:patrimônio (m) líquido
+CODIGO DE ERRO:1}
+

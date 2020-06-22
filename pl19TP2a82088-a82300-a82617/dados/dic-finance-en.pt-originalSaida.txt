@@ -1306,8 +1306,7 @@ EN  capital employed
 +base capital
 PT capital (m) investido
 
-EN  return on -
-   employed (ROCE)
+EN  return on capital     employed (ROCE)
 +base capital
 PT rendimento (m) do capital investido
 
@@ -5891,8 +5890,7 @@ EN  methods study
 +base method
 PT estudo (m) de métodos
 
-EN  organisation and methods
- (O and M)
+EN  organisation and methods   (O and M)
 +base method
 PT organização (f) e métodos (mpl)
 
@@ -6249,8 +6247,7 @@ EN  overall objective
 +base objective
 PT objetivos (mpl) globais da empresa
 
-EN  management by objectives
- (MBO)
+EN  management by objectives   (MBO)
 +base objective
 PT gestão por objetivos
 
@@ -7601,8 +7598,7 @@ EN  profit
 +base profit
 PT target
 
-EN  profit volume ratio (P/V)
-    
+EN  profit volume ratio (P/V)      
 +base profit
 PT movimento
 
@@ -8332,8 +8328,7 @@ EN  return on capital
 PT rendimento (m)
 PT  receita (f)
 
-EN  return on capital
-   employed (ROCE)
+EN  return on capital     employed (ROCE)
 +base return
 PT rendimento (m) de capital investido
 
@@ -9392,13 +9387,11 @@ EN  information system
 +base system
 PT sistema (m) de dados
 
-EN  computerised information -
-  (COINS)
+EN  computerised information system    (COINS)
 +base system
 PT sistema (m) computadorizado de dados
 
-EN  management information -
-  (MIS)
+EN  management information system    (MIS)
 +base system
 PT sistema (m) de dados para gestão
 

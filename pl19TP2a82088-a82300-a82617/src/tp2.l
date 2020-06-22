@@ -116,6 +116,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 														if(beginread){
 															if(skipcomposto){ 
 																skipline = 0;
+																strip_linebreak(yytext);
 																yylval.svalue = strdup(yytext); 
 																return PALAVRASINC; 
 															}
