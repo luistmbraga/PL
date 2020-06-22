@@ -28,19 +28,21 @@ Grammar
 
    12 TraducaoSimples: Significado
 
-   13 TraducaoComplexa: Significado TraducoesIncompletas
-   14                 | TraducoesIncompletas
+   13 $@3: %empty
 
-   15 TraducoesIncompletas: TraducoesIncompletas TraducaoIncompleta
-   16                     | TraducaoIncompleta
+   14 TraducaoComplexa: Significado $@3 TraducoesIncompletas
+   15                 | TraducoesIncompletas
 
-   17 TraducaoIncompleta: OriginalIncompleto Significado
+   16 TraducoesIncompletas: TraducoesIncompletas TraducaoIncompleta
+   17                     | TraducaoIncompleta
 
-   18 OriginalIncompleto: PALAVRASINC
+   18 TraducaoIncompleta: OriginalIncompleto Significado
 
-   19 Original: PALAVRAS
+   19 OriginalIncompleto: PALAVRASINC
 
-   20 Significado: PALAVRAS
+   20 Original: PALAVRAS
+
+   21 Significado: PALAVRAS
 
 
 Terminals, with rules where they appear
@@ -49,8 +51,8 @@ $end (0) 0
 ':' (58) 11
 error (256)
 ERRO (258)
-PALAVRAS (259) 19 20
-PALAVRASINC (260) 18
+PALAVRAS (259) 20 21
+PALAVRASINC (260) 19
 CHAR (261) 6
 
 
@@ -77,17 +79,19 @@ Traducao (16)
 TraducaoSimples (17)
     on left: 12, on right: 10
 TraducaoComplexa (18)
-    on left: 13 14, on right: 11
-TraducoesIncompletas (19)
-    on left: 15 16, on right: 13 14 15
-TraducaoIncompleta (20)
-    on left: 17, on right: 15 16
-OriginalIncompleto (21)
-    on left: 18, on right: 17
-Original (22)
-    on left: 19, on right: 8
-Significado (23)
-    on left: 20, on right: 12 13 17
+    on left: 14 15, on right: 11
+$@3 (19)
+    on left: 13, on right: 14
+TraducoesIncompletas (20)
+    on left: 16 17, on right: 14 15 16
+TraducaoIncompleta (21)
+    on left: 18, on right: 16 17
+OriginalIncompleto (22)
+    on left: 19, on right: 18
+Original (23)
+    on left: 20, on right: 8
+Significado (24)
+    on left: 21, on right: 12 14 18
 
 
 State 0
@@ -164,9 +168,9 @@ State 7
 
 State 8
 
-   19 Original: PALAVRAS .
+   20 Original: PALAVRAS .
 
-    $default  reduce using rule 19 (Original)
+    $default  reduce using rule 20 (Original)
 
 
 State 9
@@ -199,9 +203,9 @@ State 11
 
 State 12
 
-   20 Significado: PALAVRAS .
+   21 Significado: PALAVRAS .
 
-    $default  reduce using rule 20 (Significado)
+    $default  reduce using rule 21 (Significado)
 
 
 State 13
@@ -246,9 +250,9 @@ State 16
 
 State 17
 
-   18 OriginalIncompleto: PALAVRASINC .
+   19 OriginalIncompleto: PALAVRASINC .
 
-    $default  reduce using rule 18 (OriginalIncompleto)
+    $default  reduce using rule 19 (OriginalIncompleto)
 
 
 State 18
@@ -260,12 +264,12 @@ State 18
 
 State 19
 
-   14 TraducaoComplexa: TraducoesIncompletas .
-   15 TraducoesIncompletas: TraducoesIncompletas . TraducaoIncompleta
+   15 TraducaoComplexa: TraducoesIncompletas .
+   16 TraducoesIncompletas: TraducoesIncompletas . TraducaoIncompleta
 
     PALAVRASINC  shift, and go to state 17
 
-    $default  reduce using rule 14 (TraducaoComplexa)
+    $default  reduce using rule 15 (TraducaoComplexa)
 
     TraducaoIncompleta  go to state 24
     OriginalIncompleto  go to state 21
@@ -273,14 +277,14 @@ State 19
 
 State 20
 
-   16 TraducoesIncompletas: TraducaoIncompleta .
+   17 TraducoesIncompletas: TraducaoIncompleta .
 
-    $default  reduce using rule 16 (TraducoesIncompletas)
+    $default  reduce using rule 17 (TraducoesIncompletas)
 
 
 State 21
 
-   17 TraducaoIncompleta: OriginalIncompleto . Significado
+   18 TraducaoIncompleta: OriginalIncompleto . Significado
 
     PALAVRAS  shift, and go to state 12
 
@@ -289,13 +293,11 @@ State 21
 
 State 22
 
-   13 TraducaoComplexa: Significado . TraducoesIncompletas
+   14 TraducaoComplexa: Significado . $@3 TraducoesIncompletas
 
-    PALAVRASINC  shift, and go to state 17
+    $default  reduce using rule 13 ($@3)
 
-    TraducoesIncompletas  go to state 26
-    TraducaoIncompleta    go to state 20
-    OriginalIncompleto    go to state 21
+    $@3  go to state 26
 
 
 State 23
@@ -307,26 +309,37 @@ State 23
 
 State 24
 
-   15 TraducoesIncompletas: TraducoesIncompletas TraducaoIncompleta .
+   16 TraducoesIncompletas: TraducoesIncompletas TraducaoIncompleta .
 
-    $default  reduce using rule 15 (TraducoesIncompletas)
+    $default  reduce using rule 16 (TraducoesIncompletas)
 
 
 State 25
 
-   17 TraducaoIncompleta: OriginalIncompleto Significado .
+   18 TraducaoIncompleta: OriginalIncompleto Significado .
 
-    $default  reduce using rule 17 (TraducaoIncompleta)
+    $default  reduce using rule 18 (TraducaoIncompleta)
 
 
 State 26
 
-   13 TraducaoComplexa: Significado TraducoesIncompletas .
-   15 TraducoesIncompletas: TraducoesIncompletas . TraducaoIncompleta
+   14 TraducaoComplexa: Significado $@3 . TraducoesIncompletas
 
     PALAVRASINC  shift, and go to state 17
 
-    $default  reduce using rule 13 (TraducaoComplexa)
+    TraducoesIncompletas  go to state 27
+    TraducaoIncompleta    go to state 20
+    OriginalIncompleto    go to state 21
+
+
+State 27
+
+   14 TraducaoComplexa: Significado $@3 TraducoesIncompletas .
+   16 TraducoesIncompletas: TraducoesIncompletas . TraducaoIncompleta
+
+    PALAVRASINC  shift, and go to state 17
+
+    $default  reduce using rule 14 (TraducaoComplexa)
 
     TraducaoIncompleta  go to state 24
     OriginalIncompleto  go to state 21

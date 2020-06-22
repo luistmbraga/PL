@@ -29,7 +29,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 %%
 
-(__BEGIN__)(\r\n)+       { beginread = 1; createLogFile(); }               
+(__BEGIN__)[\r\n]+       { beginread = 1; createLogFile(); }               
 
 [A-Za-z]\ *[\r\n]+    { 
 						if(beginread){
@@ -71,13 +71,13 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 										}
 									  }
 
-^{palavras}\:(\r\n)+/{palavras}  {
+^{palavras}\:[\r\n]+/{palavras}  {
 									if(beginread){
 										printError(1);
 									}
                                  }
 
-^\ {1,2}{palavras}\:(\ +{palavras}\ +{palavras})?(\r\n)+/\ {1,4}{palavrasinc}  {
+^\ {1,2}{palavras}\:(\ +{palavras}\ +{palavras})?[\r\n]+/\ {1,4}{palavrasinc}  {
 																					if(beginread) 
 																						printError(1);
 																				}
@@ -142,7 +142,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 								printError(1);
 						}
 
-^{palavras}(\r\n)+     	{
+^{palavras}[\r\n]+     	{
 							if(beginread) 
 								printError(1);
 						}

@@ -85,11 +85,14 @@ char *replaceWord(const char *s, const char *oldW,
 								const char *newW);
 void printTradIncompleto(char* orig, char* sig);
 void help();
+void initHTML(char* nomefic, int len);
+void closeHTML();
 
 char* originalstr;
 FILE *yyout;
+FILE *yyoutHTML;
 
-#line 93 "y.tab.c" /* yacc.c:339  */
+#line 96 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -141,12 +144,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 28 "tp2.y" /* yacc.c:355  */
+#line 31 "tp2.y" /* yacc.c:355  */
 
     char* svalue;
     char cvalue;
 
-#line 150 "y.tab.c" /* yacc.c:355  */
+#line 153 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -163,7 +166,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 167 "y.tab.c" /* yacc.c:358  */
+#line 170 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -410,11 +413,11 @@ union yyalloc
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  16
+#define YYNNTS  17
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  21
+#define YYNRULES  22
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  27
+#define YYNSTATES  28
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -461,9 +464,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    44,    44,    48,    49,    53,    53,    57,    61,    61,
-      62,    66,    67,    71,    75,    76,    80,    81,    85,    89,
-      93,    97
+       0,    47,    47,    51,    52,    56,    56,    60,    64,    64,
+      65,    69,    70,    74,    78,    78,    79,    83,    84,    88,
+      92,    96,   100
 };
 #endif
 
@@ -475,7 +478,7 @@ static const char *const yytname[] =
   "$end", "error", "$undefined", "ERRO", "PALAVRAS", "PALAVRASINC",
   "CHAR", "':'", "$accept", "DicFinance", "Capitulos", "Capitulo", "$@1",
   "Letra", "Traducoes", "$@2", "Traducao", "TraducaoSimples",
-  "TraducaoComplexa", "TraducoesIncompletas", "TraducaoIncompleta",
+  "TraducaoComplexa", "$@3", "TraducoesIncompletas", "TraducaoIncompleta",
   "OriginalIncompleto", "Original", "Significado", YY_NULLPTR
 };
 #endif
@@ -489,10 +492,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -18
+#define YYPACT_NINF -20
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-18)))
+  (!!((Yystate) == (-20)))
 
 #define YYTABLE_NINF -1
 
@@ -503,9 +506,9 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -18,     3,     4,   -18,   -18,   -18,   -18,     7,   -18,   -18,
-     -18,    -3,   -18,     1,     7,   -18,   -18,   -18,   -18,     2,
-     -18,     8,     2,   -18,   -18,   -18,     2
+     -20,     6,     1,   -20,   -20,   -20,   -20,     7,   -20,   -20,
+     -20,    -2,   -20,    -1,     7,   -20,   -20,   -20,   -20,     5,
+     -20,     8,   -20,   -20,   -20,   -20,     5,     5
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -513,23 +516,23 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       4,     0,     2,     1,     7,     3,     5,    10,    20,     6,
-       8,     0,    21,     0,    10,    11,    13,    19,    12,    15,
-      17,     0,     0,     9,    16,    18,    14
+       4,     0,     2,     1,     7,     3,     5,    10,    21,     6,
+       8,     0,    22,     0,    10,    11,    13,    20,    12,    16,
+      18,     0,    14,     9,    17,    19,     0,    15
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -18,   -18,   -18,   -18,   -18,   -18,    -1,   -18,   -18,   -18,
-     -18,    -8,   -17,   -18,   -18,   -13
+     -20,   -20,   -20,   -20,   -20,   -20,     0,   -20,   -20,   -20,
+     -20,   -20,   -13,   -19,   -20,   -20,   -12
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
       -1,     1,     2,     5,     7,     6,     9,    11,    14,    15,
-      18,    19,    20,    21,    10,    16
+      18,    26,    19,    20,    21,    10,    16
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -537,14 +540,14 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      22,    12,    24,     3,    13,    12,    17,    17,    25,    24,
-       4,     8,    12,    23,    26
+      24,    22,    12,    12,    17,    13,     3,     4,    24,    25,
+      17,     8,    12,    27,    23
 };
 
 static const yytype_uint8 yycheck[] =
 {
-      13,     4,    19,     0,     7,     4,     5,     5,    21,    26,
-       6,     4,     4,    14,    22
+      19,    13,     4,     4,     5,     7,     0,     6,    27,    21,
+       5,     4,     4,    26,    14
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -552,24 +555,24 @@ static const yytype_uint8 yycheck[] =
 static const yytype_uint8 yystos[] =
 {
        0,     9,    10,     0,     6,    11,    13,    12,     4,    14,
-      22,    15,     4,     7,    16,    17,    23,     5,    18,    19,
-      20,    21,    23,    14,    20,    23,    19
+      23,    15,     4,     7,    16,    17,    24,     5,    18,    20,
+      21,    22,    24,    14,    21,    24,    19,    20
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
        0,     8,     9,    10,    10,    12,    11,    13,    15,    14,
-      14,    16,    16,    17,    18,    18,    19,    19,    20,    21,
-      22,    23
+      14,    16,    16,    17,    19,    18,    18,    20,    20,    21,
+      22,    23,    24
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     1,     2,     0,     0,     3,     1,     0,     4,
-       0,     1,     2,     1,     2,     1,     2,     1,     2,     1,
-       1,     1
+       0,     1,     2,     1,     0,     3,     1,     2,     1,     2,
+       1,     1,     1
 };
 
 
@@ -1246,55 +1249,61 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 53 "tp2.y" /* yacc.c:1646  */
+#line 56 "tp2.y" /* yacc.c:1646  */
     { fprintf(yyout, "%c\n\n", (yyvsp[0].cvalue)); }
-#line 1252 "y.tab.c" /* yacc.c:1646  */
+#line 1255 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 57 "tp2.y" /* yacc.c:1646  */
+#line 60 "tp2.y" /* yacc.c:1646  */
     { (yyval.cvalue) = (yyvsp[0].cvalue);}
-#line 1258 "y.tab.c" /* yacc.c:1646  */
+#line 1261 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 61 "tp2.y" /* yacc.c:1646  */
+#line 64 "tp2.y" /* yacc.c:1646  */
     { originalstr = strdup((yyvsp[0].svalue)); }
-#line 1264 "y.tab.c" /* yacc.c:1646  */
+#line 1267 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 71 "tp2.y" /* yacc.c:1646  */
+#line 74 "tp2.y" /* yacc.c:1646  */
     { printTradSimples((yyvsp[0].svalue));  }
-#line 1270 "y.tab.c" /* yacc.c:1646  */
+#line 1273 "y.tab.c" /* yacc.c:1646  */
     break;
 
-  case 18:
-#line 85 "tp2.y" /* yacc.c:1646  */
-    { printTradIncompleto((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1276 "y.tab.c" /* yacc.c:1646  */
+  case 14:
+#line 78 "tp2.y" /* yacc.c:1646  */
+    { fprintf(yyout, "EN %s\n", originalstr); fprintf(yyout, "PT %s\n\n", (yyvsp[0].svalue)); fprintf(yyoutHTML, "<tr><td>%s</td><td><ul><li>%s</li></ul></td></tr>", originalstr, (yyvsp[0].svalue)); }
+#line 1279 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 89 "tp2.y" /* yacc.c:1646  */
-    { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1282 "y.tab.c" /* yacc.c:1646  */
+#line 88 "tp2.y" /* yacc.c:1646  */
+    { printTradIncompleto((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
+#line 1285 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 93 "tp2.y" /* yacc.c:1646  */
+#line 92 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1288 "y.tab.c" /* yacc.c:1646  */
+#line 1291 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 97 "tp2.y" /* yacc.c:1646  */
+#line 96 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1294 "y.tab.c" /* yacc.c:1646  */
+#line 1297 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 22:
+#line 100 "tp2.y" /* yacc.c:1646  */
+    { (yyval.svalue) = (yyvsp[0].svalue); }
+#line 1303 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1298 "y.tab.c" /* yacc.c:1646  */
+#line 1307 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1522,7 +1531,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 100 "tp2.y" /* yacc.c:1906  */
+#line 103 "tp2.y" /* yacc.c:1906  */
 
 int main(int argc, char* argv[]){
 
@@ -1539,14 +1548,15 @@ int main(int argc, char* argv[]){
 
 			// definir nome do ficheiro final
 			char* nome = (char *) malloc(9 + len + 1);
-			
             strcpy(nome, argv[1]);
             nome[len-4] = '\0';
-
 			strcat(nome, "SAIDA.txt");
 
             yyout = fopen(nome, "w");
 			
+            // abrir o ficheiro html
+            initHTML(argv[1], len);
+
 			// abrir o ficheiro a ler
 			yyin = fopen(argv[1], "r");
 
@@ -1556,6 +1566,7 @@ int main(int argc, char* argv[]){
             //yy_flex_debug = 1;
             yyparse();
 
+            closeHTML();
 			fclose(yyin);
 			fclose(yyout);
 			
@@ -1605,12 +1616,17 @@ void yyerror(){
 }
 
 void printTradSimples(char* sig){
+    fprintf(yyoutHTML, "<tr><td>%s</td><td><ul>", originalstr);
+
     fprintf(yyout, "EN %s\n", originalstr);
 
     if(findSep(sig, ','))
         splitSignificado(sig, ",");
     else
         splitSignificado(sig, ";");
+    
+    fprintf(yyoutHTML, "%s", "</ul></td></tr>");
+
 }
 
 void printTradIncompleto(char* orig, char* sig){
@@ -1627,6 +1643,8 @@ void printTradIncompleto(char* orig, char* sig){
     fprintf(yyout, "EN %s\n", result);
     fprintf(yyout, "+base %s\n", originalstr);
 
+    fprintf(yyoutHTML, "<tr><td>%s</td><td><ul>", result);
+
     free(result);
     free(comespacos);
 
@@ -1634,17 +1652,21 @@ void printTradIncompleto(char* orig, char* sig){
         splitSignificado(sig, ",");
     else
         splitSignificado(sig, ";");
+
+    fprintf(yyoutHTML, "%s", "</ul></td></tr>");
 }
 
 void splitSignificado(char* sig, char* simb){
 
    char * token = strtok(sig, simb);
-   
+
    while( token != NULL ) {
+      fprintf(yyoutHTML, "<li>%s</li>", token);
       fprintf(yyout, "PT %s\n", token );
       token = strtok(NULL, simb);
    }
    fprintf(yyout, "%s", "\n");
+
 }
 
 int findSep(char * sig, char sep){
@@ -1699,3 +1721,21 @@ char *replaceWord(const char *s, const char *oldW,
 	result[i] = '\0'; 
 	return result; 
 } 
+
+
+void initHTML(char* nomefic, int len){
+
+    char* nome = (char *) malloc(10 + len + 1);
+    strcpy(nome, nomefic);
+    nome[len-4] = '\0';
+    strcat(nome, "SAIDA.html");
+
+    yyoutHTML = fopen(nome, "w");
+
+    fprintf(yyoutHTML,"%s", "<!DOCTYPE html><html><head><style>#erros {font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}#erros td, #customers th {border: 1px solid#ddd;padding: 8px;}#erros tr:nth-child(even){background-color:#f2f2f2;}      #erros tr:hover {background-color: #ddd;}#erros th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: Gray;color: white;}</style></head><body><center><h1>Reverse Engineering dum Dicionário Financeiro</h1></center><table id='erros'><tr><th>Original</th><th>Traduções</th></tr>");
+}
+
+void closeHTML(){
+    fprintf(yyoutHTML, "%s", "</table></body></html>");
+    fclose(yyoutHTML);
+}

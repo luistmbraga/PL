@@ -62,7 +62,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 28 "tp2.y" /* yacc.c:1909  */
+#line 31 "tp2.y" /* yacc.c:1909  */
 
     char* svalue;
     char cvalue;

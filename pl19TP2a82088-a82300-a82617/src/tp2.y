@@ -20,9 +20,12 @@ char *replaceWord(const char *s, const char *oldW,
 								const char *newW);
 void printTradIncompleto(char* orig, char* sig);
 void help();
+void initHTML(char* nomefic, int len);
+void closeHTML();
 
 char* originalstr;
 FILE *yyout;
+FILE *yyoutHTML;
 %}
 
 %union{
@@ -72,7 +75,7 @@ TraducaoSimples
     ;
 
 TraducaoComplexa
-    : Significado TraducoesIncompletas
+    : Significado { fprintf(yyout, "EN %s\n", originalstr); fprintf(yyout, "PT %s\n\n", $1); fprintf(yyoutHTML, "<tr><td>%s</td><td><ul><li>%s</li></ul></td></tr>", originalstr, $1); } TraducoesIncompletas
     | TraducoesIncompletas
     ;
 
@@ -113,14 +116,15 @@ int main(int argc, char* argv[]){
 
 			// definir nome do ficheiro final
 			char* nome = (char *) malloc(9 + len + 1);
-			
             strcpy(nome, argv[1]);
             nome[len-4] = '\0';
-
 			strcat(nome, "SAIDA.txt");
 
             yyout = fopen(nome, "w");
 			
+            // abrir o ficheiro html
+            initHTML(argv[1], len);
+
 			// abrir o ficheiro a ler
 			yyin = fopen(argv[1], "r");
 
@@ -130,6 +134,7 @@ int main(int argc, char* argv[]){
             //yy_flex_debug = 1;
             yyparse();
 
+            closeHTML();
 			fclose(yyin);
 			fclose(yyout);
 			
@@ -179,12 +184,17 @@ void yyerror(){
 }
 
 void printTradSimples(char* sig){
+    fprintf(yyoutHTML, "<tr><td>%s</td><td><ul>", originalstr);
+
     fprintf(yyout, "EN %s\n", originalstr);
 
     if(findSep(sig, ','))
         splitSignificado(sig, ",");
     else
         splitSignificado(sig, ";");
+    
+    fprintf(yyoutHTML, "%s", "</ul></td></tr>");
+
 }
 
 void printTradIncompleto(char* orig, char* sig){
@@ -201,6 +211,8 @@ void printTradIncompleto(char* orig, char* sig){
     fprintf(yyout, "EN %s\n", result);
     fprintf(yyout, "+base %s\n", originalstr);
 
+    fprintf(yyoutHTML, "<tr><td>%s</td><td><ul>", result);
+
     free(result);
     free(comespacos);
 
@@ -208,17 +220,21 @@ void printTradIncompleto(char* orig, char* sig){
         splitSignificado(sig, ",");
     else
         splitSignificado(sig, ";");
+
+    fprintf(yyoutHTML, "%s", "</ul></td></tr>");
 }
 
 void splitSignificado(char* sig, char* simb){
 
    char * token = strtok(sig, simb);
-   
+
    while( token != NULL ) {
+      fprintf(yyoutHTML, "<li>%s</li>", token);
       fprintf(yyout, "PT %s\n", token );
       token = strtok(NULL, simb);
    }
    fprintf(yyout, "%s", "\n");
+
 }
 
 int findSep(char * sig, char sep){
@@ -273,3 +289,21 @@ char *replaceWord(const char *s, const char *oldW,
 	result[i] = '\0'; 
 	return result; 
 } 
+
+
+void initHTML(char* nomefic, int len){
+
+    char* nome = (char *) malloc(10 + len + 1);
+    strcpy(nome, nomefic);
+    nome[len-4] = '\0';
+    strcat(nome, "SAIDA.html");
+
+    yyoutHTML = fopen(nome, "w");
+
+    fprintf(yyoutHTML,"%s", "<!DOCTYPE html><html><head><style>#erros {font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}#erros td, #customers th {border: 1px solid#ddd;padding: 8px;}#erros tr:nth-child(even){background-color:#f2f2f2;}      #erros tr:hover {background-color: #ddd;}#erros th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: Gray;color: white;}</style></head><body><center><h1>Reverse Engineering dum Dicionário Financeiro</h1></center><table id='erros'><tr><th>Original</th><th>Traduções</th></tr>");
+}
+
+void closeHTML(){
+    fprintf(yyoutHTML, "%s", "</table></body></html>");
+    fclose(yyoutHTML);
+}

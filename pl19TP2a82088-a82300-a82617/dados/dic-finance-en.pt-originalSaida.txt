@@ -20,6 +20,9 @@ PT  acima da paridade
 EN acceleration clause
 PT cláusula (f) de aceleração
 
+EN acceptance
+PT aceitação (f)
+
 EN  brand acceptance 
 +base acceptance
 PT aceitação (f) de uma marca
@@ -101,6 +104,9 @@ PT acumulação (f)
 EN acid test ratio
 PT índice (m) de liquidez geral
 
+EN acquisition
+PT aquisição (f)
+
 EN  acquisition profile
 +base acquisition
 PT perfil (m) de aquisição
@@ -114,6 +120,9 @@ PT plano (m) de ação
 
 EN activate (to -)
 PT ativar
+
+EN activity
+PT ramo (m) de negócios
 
 EN  activity chart
 +base activity
@@ -141,6 +150,9 @@ PT valor (m) agregado
 EN     value added tax (VAT)
 +base added
 PT imposto (m) sobre circulação de mercadorias (ICM)
+
+EN administration
+PT administração (f)
 
 EN  financial administration 
 +base administration
@@ -530,6 +542,9 @@ PT área (f) comercial
 EN assembly line
 PT linha (f) de montagem
 
+EN assessment
+PT avaliação (f)
+
 EN  demand assessment 
 +base assessment
 PT avaliação (f) de demanda
@@ -639,6 +654,9 @@ PT atitude (f) do consumidor
 EN audit (to -)
 PT examinar (livros contábeis)
 PT  realizar auditoria
+
+EN audit
+PT auditoria (f)
 
 EN  audit report
 +base audit
@@ -912,6 +930,9 @@ EN  executive board
 PT diretoria (f) executiva
 PT  junta (f) executiva
 
+EN bond
+PT bônus (m); obrigação (f); debênture (f); fiança (f); garantia (f)
+
 EN  guarantee bond 
 +base bond
 PT obrigação (f) garantida
@@ -966,6 +987,9 @@ PT cheque (m) sem fundos
 
 EN branch office
 PT filial (f)
+
+EN brand
+PT marca (f)
 
 EN  brand acceptance
 +base brand
@@ -1031,9 +1055,15 @@ EN briefing
 PT reunião (f) para dar informações resumidas
 PT  relato (m)
 
+EN broker
+PT corretor (m)
+
 EN  software broker 
 +base broker
 PT corretor (m) de sistemas
+
+EN budget
+PT orçamento (m)
 
 EN  budget appropriation
 +base budget
@@ -1084,6 +1114,9 @@ PT orçamento (m) de vendas
 EN budgetary control
 PT controle (m) orçamentário
 
+EN budgeting
+PT contabilidade (f) orçamentária
+
 EN  budgeting control
 +base budgeting
 PT controle (m) orçamentário
@@ -1116,6 +1149,9 @@ EN  programme budgeting
 +base budgeting
 PT sistema (m) de orçamentos programados
 
+EN buffer
+PT memória (f) auxiliar, buffer (m)
+
 EN  buffer stock
 +base buffer
 PT inventário (m) para imprevistos
@@ -1123,6 +1159,9 @@ PT  estoque (m) regulador
 
 EN built-in-obsolescence
 PT obsolescência (f) planejada
+
+EN bull
+PT especulador (m) que espera uma alta no mercado
 
 EN  bull market
 +base bull
@@ -1478,6 +1517,9 @@ EN  chain store
 +base chain
 PT rede (f) de lojas
 
+EN chairman
+PT presidente (m)
+
 EN  deputy chairman 
 +base chairman
 PT vice-presidente (m)
@@ -1775,6 +1817,9 @@ PT superintendente (m) fiscal (m)
 PT  inspetor (m)
 PT  controlador (m)
 
+EN computer
+PT computador (m)
+
 EN  computer bank
 +base computer
 PT banco (m) de dados de computador
@@ -1868,6 +1913,9 @@ PT limitação (f) orçamentária
 EN consultancy
 PT consultoria (m)
 
+EN consultant
+PT consultor (m)
+
 EN  management consultant 
 +base consultant
 PT consultor (m) de gerência
@@ -1952,6 +2000,9 @@ PT diminuição (f) de autoridade
 
 EN contribution analysis
 PT análise (m) de contribuições
+
+EN control
+PT controle (m)
 
 EN  control information
 +base control
@@ -2342,6 +2393,9 @@ PT método (m) do caminho crítico (CPM)
 EN crosslicensing
 PT concessão (f) recíproca de licenças
 
+EN currency
+PT moeda (m) corrente
+
 EN  currency rate
 +base currency
 PT taxa (f) de câmbio
@@ -2375,6 +2429,9 @@ EN  current liabilities
 PT passivo (m) corrente
 PT  passivo (m) exigível a curto prazo
 
+EN curve
+PT curva (f) de distribuição normal,
+
 EN  bell-shaped curve 
 +base curve
 PT curva (f) de Gauss curva (f) de Gauss
@@ -2388,6 +2445,9 @@ EN  learning curve
 +base curve
 PT curva (f) de incremento de salários
 
+EN customer
+PT orientação (f) do consumidor
+
 EN  customer orientation
 +base customer
 PT perfil (m) de consumidores
@@ -2399,6 +2459,9 @@ PT serviço (m) ao consumidor
 EN  customer service
 +base customer
 PT alfândega (f)
+
+EN customs
+PT desembaraço (m) aduaneiro
 
 EN  customs clearance
 +base customs
@@ -2478,6 +2541,9 @@ PT  obrigações (fpl)
 
 EN debit balance
 PT saldo (m) devedor
+
+EN debt
+PT dívida (f), débito (m)
 
 EN  debt ratio
 +base debt
@@ -2779,6 +2845,9 @@ EN  direct shipment
 +base direct
 PT embarque (m) direto
 
+EN director
+PT diretor (m)
+
 EN  executive director 
 +base director
 PT diretor (m) executivo
@@ -2822,6 +2891,9 @@ PT excluir
 EN discharge
 PT descarregamento (m)
 PT  quitação (f)
+
+EN discount
+PT desconto (m)
 
 EN  discount rate
 +base discount
@@ -2906,6 +2978,9 @@ EN distributor
 PT distribuidor (m)
 PT  atacadista (m)
 
+EN diversification
+PT diversificação (f)
+
 EN  diversification strategy
 +base diversification
 PT estratégia (f) de diversificação
@@ -2985,6 +3060,9 @@ PT subordinados (mpl)
 
 EN down time
 PT tempo (m) ocioso
+
+EN draft
+PT saque (m), letra (f) de câmbio, rascunho (m)
 
 EN  draft contract
 +base draft
@@ -3936,6 +4014,9 @@ PT futuros (mpl)
 
 G
 
+EN gain
+PT ganho (m), lucro (m)
+
 EN  gain or loss
 +base gain
 PT lucro (m) ou perda (f)
@@ -3990,6 +4071,9 @@ PT lançar uma oferta (f) pública de ações
 EN go slow
 PT operação (f) tartaruga
 
+EN goal
+PT objetivo (m), meta (f)
+
 EN  goal seeking
 +base goal
 PT identificação (f) de objetivos
@@ -4018,6 +4102,9 @@ PT hierarquia (f) de objetivos
 
 EN gold standard
 PT padrão (m) ouro
+
+EN goods
+PT bens (mpl)
 
 EN  capital goods 
 +base goods
@@ -4110,6 +4197,9 @@ PT grupo (m) de produtos
 EN groupage
 PT sistema (m) de consolidação de pedidos
 
+EN growth
+PT crescimento (m)
+
 EN  growth area
 +base growth
 PT área (f) de crescimento
@@ -4197,6 +4287,9 @@ PT hierarquia (f) de objetivos
 
 EN high market
 PT mercado (m) em alta
+
+EN hire
+PT contratar, admitir
 
 EN  plant hire 
 +base hire
@@ -4510,6 +4603,9 @@ PT dados (mpl) para gestão
 
 EN infringe (to -)
 PT violar
+
+EN input
+PT insumo
 
 EN  computer input 
 +base input
@@ -4941,6 +5037,9 @@ PT contrato (m) de arrendamento
 EN lease or buy
 PT aluguel (m) ou compra
 
+EN leasing
+PT arrendamento (m), aluguel (m)
+
 EN  equipment leasing 
 +base leasing
 PT aluguel (m) de equipamento
@@ -5019,6 +5118,9 @@ EN  limited company
 +base life
 PT companhia (f) limitada
 PT  sociedade (f) de responsabilidade limitada
+
+EN line
+PT linha (f)
 
 EN   line and staff
 +base line
@@ -5215,6 +5317,9 @@ PT  controlar
 EN  managed costs
 +base managed
 PT custos (mpl) controlados companhia (f) dirigida de forma
+
+EN management
+PT direção (f), gestão (f)
 
 EN  management accounting
 +base management
@@ -5446,6 +5551,9 @@ PT estrutura (f) administrativa
 EN  managerial style
 +base managerial
 PT estilo (m) gerencial
+
+EN managing director
+PT diretor-presidente (m), diretor-gerente (m)
 
 EN  deputy managing director 
 +base managing director
@@ -6159,6 +6267,9 @@ EN  random observation method
 +base observation
 PT método (m) de observação ao acaso
 
+EN obsolescence
+PT obsolescência (f)
+
 EN  built in obsolescence 
 +base obsolescence
 PT obsolescência (f) planejada
@@ -6383,6 +6494,9 @@ PT  canal (m) de venda
 EN  profit outlook 
 +base outlook
 PT perspectiva (f) de lucro
+
+EN output
+PT produção
 
 EN  output budgeting
 +base output
@@ -6822,6 +6936,9 @@ EN  systems planning
 +base planning
 PT planejamento (m) de sistemas
 
+EN plant
+PT parque (m) industrial, instalações (fpl)
+
 EN  plant 
 +base plant
 PT bargainning
@@ -6997,6 +7114,9 @@ PT valor (m) atual
 EN present value method
 PT método (m) de valor atual
 
+EN president
+PT presidente (m), diretor-gerente (m), diretor (m) geral
+
 EN  vice president 
 +base president
 PT vice-presidente (m)
@@ -7122,6 +7242,9 @@ PT administrativo
 EN  systems and procedures
 +base procedure
 PT procedimento (m) para atender queixa
+
+EN process
+PT sistemas (mpl) e procedimentos
 
 EN  process control
 +base process
@@ -7793,6 +7916,9 @@ EN  growth rate
 +base rate
 PT índice (m)
 
+EN rate of return
+PT taxa (f) de
+
 EN  internal rate of return (IRR)
 +base rate of return
 PT taxa (f) de
@@ -7868,6 +7994,9 @@ PT índice (m) de rentabilidade sobre o movimento
 EN rationalisation
 PT organização (f) racional
 PT  racionalização (f)
+
+EN rationing
+PT racionamento (m)
 
 EN  capital rationing 
 +base rationing
