@@ -26,14 +26,15 @@ char parentesis[500];
 acentos    \xc3[\x80-\xbf]
 hifen1     {letra}\-(\ )?({letra}|[\r\n]+)
 hifen2     {letra}(\ )?\-{letra}
+aspas1     \"[^\"]+\"
 letra      [a-zA-Z\(\)\+\/'0-9,;\.\_]|{acentos}
-letras     {letra}|{hifen1}|{hifen2}
+letras     {letra}|{hifen1}|{hifen2}|{aspas1}
 palavras   {letras}{1,}(\ {letras}{1,})*
 palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 %%
 
-(__BEGIN__)       { beginread = 1; }               
+(__BEGIN__)(\r\n)+       { beginread = 1; }               
 
 [A-Za-z]\ *[\r\n]+    { 
 						if(beginread){
@@ -53,7 +54,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 				} 
 			} 
 
-^{palavras}[\r\n]+/\ {1,2}{palavras}{palavrasinc} ;
+^{palavras}[\r\n]+\ {1,2}{palavras}{palavrasinc} { if(beginread) skipline = 1;   }
 
 {palavras}\-/[\r\n]+\ {1,4}{palavrasinc}   {
 												if(beginread){
@@ -94,7 +95,9 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 ^{palavras}\:(\r\n)+/{palavras}  ;
 
+^\ {1,2}{palavras}\:(\ +{palavras}\ +{palavras})?(\r\n)+/\ {1,4}{palavrasinc}  ;
 
+^{palavras}\:{palavras}\ +{palavras}[\r\n]+/{palavras}  ;
 
 {palavras} { 
 				if(beginread){

@@ -74,8 +74,16 @@ extern int yy_flex_debug;
 
 void yyerror();
 void erroSem(char*);
+void printTradSimples(char* sig);
+void splitSignificado(char* sig, char* simb);
+int findSep(char * sig, char sep);
+char *replaceWord(const char *s, const char *oldW, 
+								const char *newW);
+void printTradIncompleto(char* orig, char* sig);
 
-#line 79 "y.tab.c" /* yacc.c:339  */
+char* originalstr;
+
+#line 87 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -129,12 +137,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 14 "tp2.y" /* yacc.c:355  */
+#line 22 "tp2.y" /* yacc.c:355  */
 
     char* svalue;
     char cvalue;
 
-#line 138 "y.tab.c" /* yacc.c:355  */
+#line 146 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -151,7 +159,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 155 "y.tab.c" /* yacc.c:358  */
+#line 163 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -449,9 +457,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    34,    34,    38,    39,    43,    43,    47,    51,    51,
-      52,    56,    57,    61,    65,    66,    70,    71,    75,    79,
-      83,    87
+       0,    42,    42,    46,    47,    51,    51,    55,    59,    59,
+      60,    64,    65,    69,    73,    74,    78,    79,    83,    87,
+      91,    95
 };
 #endif
 
@@ -1234,85 +1242,55 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 43 "tp2.y" /* yacc.c:1646  */
-    { printf("Capitulo - %c\n", (yyvsp[0].cvalue)); }
-#line 1240 "y.tab.c" /* yacc.c:1646  */
+#line 51 "tp2.y" /* yacc.c:1646  */
+    { printf("%c\n\n", (yyvsp[0].cvalue)); }
+#line 1248 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 47 "tp2.y" /* yacc.c:1646  */
-    { (yyval.cvalue) = (yyvsp[0].cvalue); }
-#line 1246 "y.tab.c" /* yacc.c:1646  */
+#line 55 "tp2.y" /* yacc.c:1646  */
+    { (yyval.cvalue) = (yyvsp[0].cvalue);}
+#line 1254 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 51 "tp2.y" /* yacc.c:1646  */
-    { printf("Original - %s    ", (yyvsp[0].svalue)); }
-#line 1252 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 11:
-#line 56 "tp2.y" /* yacc.c:1646  */
-    { printf("Trad Simples - %s\n", (yyvsp[0].svalue));    }
-#line 1258 "y.tab.c" /* yacc.c:1646  */
+#line 59 "tp2.y" /* yacc.c:1646  */
+    { originalstr = strdup((yyvsp[0].svalue)); }
+#line 1260 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 61 "tp2.y" /* yacc.c:1646  */
-    { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1264 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 14:
-#line 65 "tp2.y" /* yacc.c:1646  */
-    { printf("Trad Inc %s    %s\n", (yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1270 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 15:
-#line 66 "tp2.y" /* yacc.c:1646  */
-    { printf("Trad Inc     %s\n", (yyvsp[0].svalue)); }
-#line 1276 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 16:
-#line 70 "tp2.y" /* yacc.c:1646  */
-    { (yyval.svalue) = strcat((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1282 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 17:
-#line 71 "tp2.y" /* yacc.c:1646  */
-    { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1288 "y.tab.c" /* yacc.c:1646  */
+#line 69 "tp2.y" /* yacc.c:1646  */
+    { printTradSimples((yyvsp[0].svalue));  }
+#line 1266 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 75 "tp2.y" /* yacc.c:1646  */
-    { (yyval.svalue) = strcat((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
-#line 1294 "y.tab.c" /* yacc.c:1646  */
+#line 83 "tp2.y" /* yacc.c:1646  */
+    { printTradIncompleto((yyvsp[-1].svalue), (yyvsp[0].svalue)); }
+#line 1272 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 79 "tp2.y" /* yacc.c:1646  */
+#line 87 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1300 "y.tab.c" /* yacc.c:1646  */
+#line 1278 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 83 "tp2.y" /* yacc.c:1646  */
+#line 91 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1306 "y.tab.c" /* yacc.c:1646  */
+#line 1284 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 87 "tp2.y" /* yacc.c:1646  */
+#line 95 "tp2.y" /* yacc.c:1646  */
     { (yyval.svalue) = (yyvsp[0].svalue); }
-#line 1312 "y.tab.c" /* yacc.c:1646  */
+#line 1290 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1316 "y.tab.c" /* yacc.c:1646  */
+#line 1294 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1540,7 +1518,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 90 "tp2.y" /* yacc.c:1906  */
+#line 98 "tp2.y" /* yacc.c:1906  */
 
 int main(){
     yy_flex_debug = 1;
@@ -1550,22 +1528,53 @@ int main(){
 
 void erroSem(char *s){
     printf("Erro Semântico na linha: %d: %s\n", yylineno, s);
-    yyparse();
 }
 
 void yyerror(){
     printf("Erro Sintático ou Léxico na linha: %d, com o texto: %s\n", yylineno, yytext);
-    //yyparse();
+}
+
+void printTradSimples(char* sig){
+    printf("EN %s\n", originalstr);
+
+    if(findSep(sig, ','))
+        splitSignificado(sig, ",");
+    else
+        splitSignificado(sig, ";");
+}
+
+void printTradIncompleto(char* orig, char* sig){
+    
+    char *result = NULL; 
+    char *comespacos = (char *) malloc(2 + strlen(originalstr) + 1);
+
+    strcpy(comespacos, " ");
+    strcat(comespacos, originalstr);
+    strcat(comespacos, " ");
+
+    result = replaceWord(orig, " - ", comespacos);
+
+    printf("EN %s\n", result);
+    printf("+base %s\n", originalstr);
+
+    free(result);
+    free(comespacos);
+
+    if(findSep(sig, ','))
+        splitSignificado(sig, ",");
+    else
+        splitSignificado(sig, ";");
 }
 
 void splitSignificado(char* sig, char* simb){
-   // Extract the first token
+
    char * token = strtok(sig, simb);
-   // loop through the string to extract all other tokens
+   
    while( token != NULL ) {
-      printf( " %s\n", token ); //printing each token
+      printf( "PT %s\n", token );
       token = strtok(NULL, simb);
    }
+   printf("\n");
 }
 
 int findSep(char * sig, char sep){
@@ -1577,7 +1586,6 @@ int findSep(char * sig, char sep){
     for(int i = 0; i < len && result!=1; i++)
         if(sig[i] == sep) result = 1;
 
-    printf("%d\n", result);
 
     return result;
 }
@@ -1591,27 +1599,23 @@ char *replaceWord(const char *s, const char *oldW,
 	int i, cnt = 0; 
 	int newWlen = strlen(newW); 
 	int oldWlen = strlen(oldW); 
-
-	// Counting the number of times old word 
-	// occur in the string 
+ 
 	for (i = 0; s[i] != '\0'; i++) 
 	{ 
 		if (strstr(&s[i], oldW) == &s[i]) 
 		{ 
 			cnt++; 
-
-			// Jumping to index after the old word. 
+ 
 			i += oldWlen - 1; 
 		} 
 	} 
 
-	// Making new string of enough length 
 	result = (char *)malloc(i + cnt * (newWlen - oldWlen) + 1); 
 
 	i = 0; 
 	while (*s) 
 	{ 
-		// compare the substring with the result 
+        
 		if (strstr(s, oldW) == s) 
 		{ 
 			strcpy(&result[i], newW); 
