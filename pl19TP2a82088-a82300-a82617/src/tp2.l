@@ -47,13 +47,16 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 				} 
 			} 
 
-^{palavras}[\r\n]+\ {1,2}{palavras}{palavrasinc} { if(beginread) skipline = 1;   }
+^{palavras}[\r\n]+\ {1,2}{palavras}{palavrasinc} { if(beginread){ skipline = 1; printError(1); }  }        ///////////////////////
 
 {palavras}\-/[\r\n]+\ {1,4}{palavrasinc}   {
-												if(beginread && !skipline){
-													skipline = 1;
-													yylval.svalue = strdup(yytext); 
-													return PALAVRAS;
+												if(beginread){
+													if(!skipline){
+														skipline = 1;
+														yylval.svalue = strdup(yytext); 
+														return PALAVRAS;
+													}
+													else printError(1);
 												}
 										   }
 
@@ -85,19 +88,25 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 														}
 
 {palavras} { 
-				if(beginread && !skipline){
-							skipline = 1;
-							yylval.svalue = strdup(yytext); 
-							return PALAVRAS;
+				if(beginread){
+					if(!skipline){
+						skipline = 1;
+						yylval.svalue = strdup(yytext); 
+						return PALAVRAS;
+					}
+					else printError(1); ///////////////////////////
 				}
 			}
 
 {palavras}([\r\n]+[\ \t]{8,}{palavras})+  { 
-											if(beginread && !skipline){
-												skipline = 1;
-												strip_linebreak(yytext); 
-												strip_extra_spaces(yytext); 
-												yylval.svalue = strdup(yytext); return PALAVRAS; 
+											if(beginread){
+												if(!skipline){
+													skipline = 1;
+													strip_linebreak(yytext); 
+													strip_extra_spaces(yytext); 
+													yylval.svalue = strdup(yytext); return PALAVRAS; 
+												}
+												else printError(1);          ///////////////////
 											}
 									
 										  }
@@ -110,8 +119,10 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 																yylval.svalue = strdup(yytext); 
 																return PALAVRASINC; 
 															}
-															else
+															else{
+																printError(1);   //////////////////////////////
 																skipline = 1;
+															}
 														}
 													}
 
@@ -145,9 +156,9 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 %%
 
 void printError(int cod){
-	fprintf(exceptions, "ERRO NA LINHA: %d\n", yylineno);
-	fprintf(exceptions, "COM O TEXTO: %s\n", yytext);
-	fprintf(exceptions, "CODIGO DE ERRO: %d\n\n", cod);
+	fprintf(exceptions, "{ERRO NA LINHA:%d\n", yylineno);
+	fprintf(exceptions, "COM O TEXTO:%s\n", yytext);
+	fprintf(exceptions, "CODIGO DE ERRO:%d}\n\n", cod);
 }
 
 void strip_linebreak(char* str) {

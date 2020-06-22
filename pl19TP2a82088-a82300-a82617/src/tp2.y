@@ -117,7 +117,7 @@ int main(int argc, char* argv[]){
             strcpy(nome, argv[1]);
             nome[len-4] = '\0';
 
-			strcat(nome, "Saida.txt");
+			strcat(nome, "SAIDA.txt");
 
             yyout = fopen(nome, "w");
 			
