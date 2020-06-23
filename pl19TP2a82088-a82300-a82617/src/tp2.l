@@ -94,7 +94,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 						yylval.svalue = strdup(yytext); 
 						return PALAVRAS;
 					}
-					else printError(1); ///////////////////////////
+					else printError(1); 
 				}
 			}
 
@@ -106,7 +106,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 													strip_extra_spaces(yytext); 
 													yylval.svalue = strdup(yytext); return PALAVRAS; 
 												}
-												else printError(1);          ///////////////////
+												else printError(1);  
 											}
 									
 										  }
@@ -121,7 +121,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 																return PALAVRASINC; 
 															}
 															else{
-																printError(1);   //////////////////////////////
+																printError(1);   
 																skipline = 1;
 															}
 														}
