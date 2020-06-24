@@ -10022,7 +10022,7 @@ void printError(int cod);
 
 int beginread = 0;
 int skipline = 0;
-int skipcomposto = 0;
+int zonacomplexa = 0;
 
 FILE *exceptions;
 #line 10029 "lex.yy.c"
@@ -10374,7 +10374,7 @@ YY_RULE_SETUP
 #line 43 "tp2.l"
 { 
 				if(beginread){
-                    skipcomposto = 1;
+                    zonacomplexa = 1;
 					return *yytext;
 				} 
 			} 
@@ -10383,7 +10383,7 @@ case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
 #line 50 "tp2.l"
-{ if(beginread){ skipline = 1; printError(1); }  }        ///////////////////////
+{ if(beginread){ skipline = 1; printError(1); }  }       
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
@@ -10396,7 +10396,7 @@ YY_RULE_SETUP
 														yylval.svalue = strdup(yytext); 
 														return PALAVRAS;
 													}
-													else printError(1);
+													else printError(2);
 												}
 										   }
 	YY_BREAK
@@ -10409,7 +10409,7 @@ YY_RULE_SETUP
 											strip_linebreak(yytext); 
 											strip_extra_spaces(yytext);
 											yylval.svalue = strdup(yytext); 
-											skipcomposto = 0;
+											zonacomplexa = 0;
 											skipline = 0;
 											return PALAVRAS; 	
 										}
@@ -10421,7 +10421,7 @@ YY_RULE_SETUP
 #line 74 "tp2.l"
 {
 									if(beginread){
-										printError(1);
+										printError(3);
 									}
                                  }
 	YY_BREAK
@@ -10431,7 +10431,7 @@ YY_RULE_SETUP
 #line 80 "tp2.l"
 {
 																					if(beginread) 
-																						printError(1);
+																						printError(4);
 																				}
 	YY_BREAK
 case 10:
@@ -10440,7 +10440,7 @@ YY_RULE_SETUP
 #line 85 "tp2.l"
 {
 															if(beginread) 
-																printError(1);
+																printError(5);
 														}
 	YY_BREAK
 case 11:
@@ -10454,7 +10454,7 @@ YY_RULE_SETUP
 						yylval.svalue = strdup(yytext); 
 						return PALAVRAS;
 					}
-					else printError(1); ///////////////////////////
+					else printError(2); 
 				}
 			}
 	YY_BREAK
@@ -10470,7 +10470,7 @@ YY_RULE_SETUP
 													strip_extra_spaces(yytext); 
 													yylval.svalue = strdup(yytext); return PALAVRAS; 
 												}
-												else printError(1);          ///////////////////
+												else printError(2);  
 											}
 									
 										  }
@@ -10481,15 +10481,14 @@ YY_RULE_SETUP
 #line 115 "tp2.l"
 { 
 														if(beginread){
-															if(skipcomposto){ 
+															if(zonacomplexa){ 
 																skipline = 0;
 																strip_linebreak(yytext);
-																//strip_extra_spaces(yytext);
 																yylval.svalue = strdup(yytext); 
 																return PALAVRASINC; 
 															}
 															else{
-																printError(1);   //////////////////////////////
+																printError(10);   
 																skipline = 1;
 															}
 														}
@@ -10498,10 +10497,11 @@ YY_RULE_SETUP
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 131 "tp2.l"
+#line 130 "tp2.l"
 {
 									if(beginread){
 										skipline = 1;
+										printError(6);
 									}
 								}
 	YY_BREAK
@@ -10511,7 +10511,7 @@ YY_RULE_SETUP
 #line 137 "tp2.l"
 {
 												if(beginread) 
-													printError(1);
+													printError(7);
 											}
 	YY_BREAK
 case 16:
@@ -10520,7 +10520,7 @@ YY_RULE_SETUP
 #line 142 "tp2.l"
 {
 							if(beginread) 
-								printError(1);
+								printError(8);
 						}
 	YY_BREAK
 case 17:
@@ -10529,7 +10529,7 @@ YY_RULE_SETUP
 #line 147 "tp2.l"
 {
 							if(beginread) 
-								printError(1);
+								printError(9);
 						}
 	YY_BREAK
 case 18:

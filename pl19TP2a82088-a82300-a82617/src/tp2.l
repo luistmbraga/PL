@@ -11,7 +11,7 @@ void printError(int cod);
 
 int beginread = 0;
 int skipline = 0;
-int skipcomposto = 0;
+int zonacomplexa = 0;
 
 FILE *exceptions;
 %}
@@ -42,12 +42,12 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 [:]         { 
 				if(beginread){
-                    skipcomposto = 1;
+                    zonacomplexa = 1;
 					return *yytext;
 				} 
 			} 
 
-^{palavras}[\r\n]+\ {1,2}{palavras}{palavrasinc} { if(beginread){ skipline = 1; printError(1); }  }        ///////////////////////
+^{palavras}[\r\n]+\ {1,2}{palavras}{palavrasinc} { if(beginread){ skipline = 1; printError(1); }  }       
 
 {palavras}\-/[\r\n]+\ {1,4}{palavrasinc}   {
 												if(beginread){
@@ -56,7 +56,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 														yylval.svalue = strdup(yytext); 
 														return PALAVRAS;
 													}
-													else printError(1);
+													else printError(2);
 												}
 										   }
 
@@ -65,7 +65,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 											strip_linebreak(yytext); 
 											strip_extra_spaces(yytext);
 											yylval.svalue = strdup(yytext); 
-											skipcomposto = 0;
+											zonacomplexa = 0;
 											skipline = 0;
 											return PALAVRAS; 	
 										}
@@ -73,18 +73,18 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 ^{palavras}\:[\r\n]+/{palavras}  {
 									if(beginread){
-										printError(1);
+										printError(3);
 									}
                                  }
 
 ^\ {1,2}{palavras}\:(\ +{palavras}\ +{palavras})?[\r\n]+/\ {1,4}{palavrasinc}  {
 																					if(beginread) 
-																						printError(1);
+																						printError(4);
 																				}
 
 ^{palavras}\:{palavras}\ +{palavras}[\r\n]+/{palavras} 	{
 															if(beginread) 
-																printError(1);
+																printError(5);
 														}
 
 {palavras} { 
@@ -94,7 +94,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 						yylval.svalue = strdup(yytext); 
 						return PALAVRAS;
 					}
-					else printError(1); 
+					else printError(2); 
 				}
 			}
 
@@ -106,7 +106,7 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 													strip_extra_spaces(yytext); 
 													yylval.svalue = strdup(yytext); return PALAVRAS; 
 												}
-												else printError(1);  
+												else printError(2);  
 											}
 									
 										  }
@@ -114,14 +114,14 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 
 ^\ {1,4}{palavrasinc}([\r\n]+\ {1,4}{palavrasinc})* { 
 														if(beginread){
-															if(skipcomposto){ 
+															if(zonacomplexa){ 
 																skipline = 0;
 																strip_linebreak(yytext);
 																yylval.svalue = strdup(yytext); 
 																return PALAVRASINC; 
 															}
 															else{
-																printError(1);   
+																printError(10);   
 																skipline = 1;
 															}
 														}
@@ -130,22 +130,23 @@ palavrasinc ((\ {0,1}{letras}{1,})|(\ {0,2}(\-(\ {0,1}))))*
 {palavrasinc}                   {
 									if(beginread){
 										skipline = 1;
+										printError(6);
 									}
 								}
 
 ^\ {1,4}{palavrasinc}[\r\n]+/{palavras}    	{
 												if(beginread) 
-													printError(1);
+													printError(7);
 											}
 
 \ {palavras}[\r\n]+    	{
 							if(beginread) 
-								printError(1);
+								printError(8);
 						}
 
 ^{palavras}[\r\n]+     	{
 							if(beginread) 
-								printError(1);
+								printError(9);
 						}
 
 
