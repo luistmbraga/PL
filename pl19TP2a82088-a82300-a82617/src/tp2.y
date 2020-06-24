@@ -172,7 +172,7 @@ void help(){
 	printf("**    Notas:                                                                                     **\n");
 	printf("**    O ficheiro resultante vai para a mesma pasta com o mesmo                                   **\n");
 	printf("**       nome do original, apenas com a modificação de ter                                       **\n");
-	printf("**       \"JSON.txt\" no final.                                                                **\n");
+	printf("**       \"SAIDA.txt\" no final.                                                               **\n");
 	printf("**                                                                                               **\n");
 	printf("***********************************************HELP************************************************\n");
 
