@@ -167,8 +167,8 @@ void strip_linebreak(char* str) {
             str[i] = ' ';
             str[i-1] = ' ';
         }
-        if(str[i] == '\n')
-            str[i] = ' ';
+        else if(str[i] == '\n')
+            	str[i] = ' ';
 }
 
 void strip_extra_spaces(char* str) {
