@@ -1135,7 +1135,7 @@ PT controle (m) orçamentário de produção
 
 EN  performance budgeting 
 +base budgeting
-PT controle (m) orçamentário de rendimen-
+PT controle (m) orçamentário de rendimen- to
 
 EN  planning programming budgeting system
 +base budgeting
@@ -1306,7 +1306,7 @@ EN  capital employed
 +base capital
 PT capital (m) investido
 
-EN  return on capital    employed (ROCE)
+EN  return on capital     employed (ROCE)
 +base capital
 PT rendimento (m) do capital investido
 
@@ -1640,7 +1640,7 @@ EN closed loop
 PT ciclo (m) fechado
 
 EN closed shop
-PT fábrica (f) com operários sindicaliza-
+PT fábrica (f) com operários sindicaliza- dos exclusivamente
 
 EN closing down cost
 PT custo (m) de liquidação
@@ -4922,7 +4922,7 @@ PT  perícia
 L
 
 EN LAFTA (Latin American Free
-PT ALALC (Associação Latino-
+PT ALALC (Associação Latino- Trade Association)
 
 EN LTD (limited)
 PT Ltda. (limitada)
@@ -5890,7 +5890,7 @@ EN  methods study
 +base method
 PT estudo (m) de métodos
 
-EN  organisation and methods  (O and M)
+EN  organisation and methods   (O and M)
 +base method
 PT organização (f) e métodos (mpl)
 
@@ -6247,7 +6247,7 @@ EN  overall objective
 +base objective
 PT objetivos (mpl) globais da empresa
 
-EN  management by objectives  (MBO)
+EN  management by objectives   (MBO)
 +base objective
 PT gestão por objetivos
 
@@ -7598,7 +7598,7 @@ EN  profit
 +base profit
 PT target
 
-EN  profit volume ratio (P/V)     
+EN  profit volume ratio (P/V)      
 +base profit
 PT movimento
 
@@ -8328,7 +8328,7 @@ EN  return on capital
 PT rendimento (m)
 PT  receita (f)
 
-EN  return on capital    employed (ROCE)
+EN  return on capital     employed (ROCE)
 +base return
 PT rendimento (m) de capital investido
 
@@ -9387,11 +9387,11 @@ EN  information system
 +base system
 PT sistema (m) de dados
 
-EN  computerised information system   (COINS)
+EN  computerised information system    (COINS)
 +base system
 PT sistema (m) computadorizado de dados
 
-EN  management information system   (MIS)
+EN  management information system    (MIS)
 +base system
 PT sistema (m) de dados para gestão
 
@@ -9460,7 +9460,7 @@ PT decolagem (f)
 
 EN  -bid
 +base takeover
-PT oferta (f) de compra (de uma compa-
+PT oferta (f) de compra (de uma compa- nhia)
 
 EN   sales talk 
 +base talk
