@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h> 
 #include <unistd.h>
+#include <ctype.h>
 
 extern int yylex();
 extern int yylineno;
@@ -44,8 +45,12 @@ FILE *yyoutHTML;
 %%
 
 DicFinance
-    : Capitulos
+    : Begin Capitulos
     ;
+
+Begin
+  : PALAVRAS
+  ;
 
 Capitulos
     : Capitulos Capitulo
@@ -53,7 +58,7 @@ Capitulos
     ;
 
 Capitulo
-    : Letra { fprintf(yyout, "%c\n\n", $1); } Traducoes
+    : Letra { fprintf(yyout, "%c\n\n", toupper($1)); } Traducoes
     ;
 
 Letra
@@ -197,6 +202,7 @@ void printTradSimples(char* sig){
 
 }
 
+
 void printTradIncompleto(char* orig, char* sig){
     
     char *result = NULL; 
@@ -224,6 +230,8 @@ void printTradIncompleto(char* orig, char* sig){
     fprintf(yyoutHTML, "%s", "</ul></td></tr>");
 }
 
+
+
 void splitSignificado(char* sig, char* simb){
 
    char * token = strtok(sig, simb);
@@ -237,6 +245,7 @@ void splitSignificado(char* sig, char* simb){
 
 }
 
+
 int findSep(char * sig, char sep){
     
     int result = 0;
@@ -245,7 +254,6 @@ int findSep(char * sig, char sep){
     
     for(int i = 0; i < len && result!=1; i++)
         if(sig[i] == sep) result = 1;
-
 
     return result;
 }
@@ -274,8 +282,7 @@ char *replaceWord(const char *s, const char *oldW,
 
 	i = 0; 
 	while (*s) 
-	{ 
-        
+	{     
 		if (strstr(s, oldW) == s) 
 		{ 
 			strcpy(&result[i], newW); 
@@ -302,6 +309,7 @@ void initHTML(char* nomefic, int len){
 
     fprintf(yyoutHTML,"%s", "<!DOCTYPE html><html><head><style>#erros {font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%;}#erros td, #customers th {border: 1px solid#ddd;padding: 8px;}#erros tr:nth-child(even){background-color:#f2f2f2;}      #erros tr:hover {background-color: #ddd;}#erros th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: Gray;color: white;}</style></head><body><center><h1>Reverse Engineering dum Dicionário Financeiro</h1></center><table id='erros'><tr><th>Original</th><th>Traduções</th></tr>");
 }
+
 
 void closeHTML(){
     fprintf(yyoutHTML, "%s", "</table></body></html>");

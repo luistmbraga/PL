@@ -1226,7 +1226,7 @@ EN by-product
 PT derivado (m)
 PT  subproduto (m)
 
-c
+C
 
 EN C and F (cost and freight)
 PT custo (m) e frete (m)
@@ -9864,7 +9864,7 @@ EN  trainee turnover
 +base turnover
 PT rotação (f) de estagiários
 
-u
+U
 
 EN unbundling
 PT separação (f) de tarifas
@@ -10050,7 +10050,7 @@ EN  profit volume ratio (P/V)
 +base volume
 PT sobre o movimento volume (m) de vendas
 
-w
+W
 
 EN  wage differential
 +base wage
@@ -10215,7 +10215,7 @@ EN  earnings yield
 +base yield
 PT taxa (f) de rendimento
 
-z
+Z
 
 EN Z-chart
 PT gráfico (m) Z

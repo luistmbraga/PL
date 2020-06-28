@@ -21,11 +21,12 @@ dot:
 	dot -Tpdf y.dot > automato.pdf 
 
 clean: 
+	rm tp2
 	rm lex.yy.c 
 	rm lex.yy.o 
 	rm y.tab.c 
 	rm y.tab.h 
 	rm y.tab.o 
+	rm y.output
 	rm y.dot 
 	rm automato.pdf 
-	rm tp2
